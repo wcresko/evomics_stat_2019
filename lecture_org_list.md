@@ -68,11 +68,12 @@
 
 
 - 2. Documenting and reproducing genomics research (Scott's recommendations, below)
+	- What is markdown??? Types with commonality
+	-Write md that makes a formatted list (Bill's lec)
 	- R Markdown
 	 - Effective use of Chunks
 	 - Setting up an effective R Project [skip]
 	 - Knitting for report production
-	 - Interactive plots (Plotly)
 	 - Sharing/Publishing (RPubs, shiny)
 	 - (maybe, possibly just a quick demo?) FlexDashboards 
 	- GitHub (integrated with RStudio)
