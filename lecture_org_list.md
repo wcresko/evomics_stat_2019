@@ -1,6 +1,6 @@
-Content for CK lectures:
+#Content for CK lectures:
 
-Penultimate 1a
+- Penultimate 1a
 	-Overview of R and scripting-based analyses
 	-R is for statistics! Good at stats processes and all the packages available! Derived from S.
 	-Some examples of cool plots [plotly, ggplot]
@@ -33,7 +33,7 @@ Penultimate 1a
 	-----
 	
 
-1a. Rintro-as is
+- 1a. Rintro-as is
 	- Goals and why we need stats
 	- stickleback example (need to add slide of data table)
 	- rules for setting up datasets and doing repeatalbe work (plug for Rmarkdown and Github)
@@ -55,7 +55,7 @@ Penultimate 1a
 	- Setup account
 	- clone our repository (need to change the web address to correct repo) 
 
-1b. Scott's version of Rintro
+- 1b. Scott's version of Rintro
 	-More upfront intro to R and resources (pull some of these?)
 	- Basic functionality- overlaps with above
 	- Basic manipulation (pull some of this?)
@@ -67,7 +67,7 @@ Penultimate 1a
 	- Then a pretty comprehensive tutorial online for ggplot (Do we want to add this???)
 
 
-2. Documenting and reproducing genomics research (Scott's recommendations, below)
+- 2. Documenting and reproducing genomics research (Scott's recommendations, below)
 	- R Markdown
 	 - Effective use of Chunks
 	 - Setting up an effective R Project [skip]
