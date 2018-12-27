@@ -1,7 +1,7 @@
 #Content for CK lectures:
 
 - Penultimate 1a
-		-Overview of R and scripting-based analyses
+		- Overview of R and scripting-based analyses
 		-R is for statistics! Good at stats processes and all the packages available! Derived from S.
 		-Some examples of cool plots [plotly, ggplot]
 		-Rstudio- front-end, nice for beginners, can open .r or .rmd files in there [explore R studio section in separate Rmd]
