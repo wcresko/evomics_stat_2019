@@ -1,5 +1,5 @@
 # Content for CK lectures
-below are the contents for each lecture.
+below are the contents for each lecture...
 -----
 - 1a. Rintro-as is
 - Penultimate 1a
