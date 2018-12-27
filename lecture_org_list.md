@@ -24,19 +24,19 @@ below are the contents for each lecture...
 - 20mins lec/ 40mins work
 
 ## Lecture 1 | hour 2
-	- Think more about the dataset w/ stickleback data
-	    - Different types of data- must be assigned in R
-			- Data structure- Bill's figures
-			- Observations, replicates, etc
-			- True for all data, then this is how R interprets it!
-	- Indexing and subsetting to subset out from really complex datasets!
-	    - [] and $
-	- Tidyverse!
-	    - Variable manipulation
-			- Exercises form Bill's slides
-			- tibble/subsetting/manipulate
-			- functions in dplyr
-			- Tidyverse.R script (Bill add)
+- Think more about the dataset w/ stickleback data
+		- Different types of data- must be assigned in R
+		- Data structure- Bill's figures
+		- Observations, replicates, etc
+		- True for all data, then this is how R interprets it!
+- Indexing and subsetting to subset out from really complex datasets!
+    - [] and $
+- Tidyverse!
+    - Variable manipulation
+		- Exercises form Bill's slides
+		- tibble/subsetting/manipulate
+		- functions in dplyr
+		- Tidyverse.R script (Bill add)
 
 ## Lecture 1 | hour 3
 	- ggplot and plotly! (look at Scott's lectures)
