@@ -1,5 +1,5 @@
 #Content for CK lectures:
-
+-----
 - Penultimate 1a
 		- Overview of R and scripting-based analyses
 		-R is for statistics! Good at stats processes and all the packages available! Derived from S.
