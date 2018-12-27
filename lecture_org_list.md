@@ -70,14 +70,34 @@ below are the contents for each lecture...
 
 
 - 2. Documenting and reproducing genomics research (Scott's recommendations, below)
-	- What is markdown??? Types with commonality
-	-Write md that makes a formatted list (Bill's lec)
+	- What is markdown/LaTeX??? 
+		- Write md that makes a formatted list (Bill's lec)
+		- formal and informal languages
+		- markdown versus latex
+		- inline versus fenced
+		- different flavors of markdown (Types with commonality)	
 	- R Markdown
-	 - Effective use of Chunks
-	 - Setting up an effective R Project [skip]
+	 	- Effective use of Chunks (arguments)
+		- Formatting text, images, etc
+		- FlexDashboards
 	 - Knitting for report production
+	 	- YAML headers and incorporating pandoc
+		- Presentations
+		- Manuscripts	
 	 - Sharing/Publishing (RPubs, shiny)
-	 - (maybe, possibly just a quick demo?) FlexDashboards 
-	- GitHub (integrated with RStudio)
-	 - Editing GitHub Pages
-	 - GitHub Additions (wiki, GitHub pages, etc.) 
+	 	- Working together- rmd not rendered each time
+		- Reports to nontech people- knit to a friendly output
+		- Final publication (journal template)
+-----
+	- GitHub
+		- Place to work collaboratively
+		- Basics of command line git (you can also do this in R studio...)
+		- Git and GitHub!
+		- Make your GitHub acct!
+		- Working in github through a browser versus syncing
+		- Create a repo
+		- Cloning a repo
+	 	- Push to Github
+		- Collaborating in a repo
+		- Brief mention of other functions
+	 	- Mention GitHub Pages or other additions
