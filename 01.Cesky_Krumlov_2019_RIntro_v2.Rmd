@@ -1,5 +1,5 @@
 ---
-title: "Statistics using R"
+title: "Introduction to R"
 author: "Hannah Tavalire and Bill Cresko - University of Oregon"
 date: "January 2019 - Cesky Krumlov"
 output: ioslides_presentation
@@ -38,14 +38,11 @@ knitr::include_graphics("images/week_01.003.jpeg")
     - Powerful and flexible
     - Runs on all computer platforms
     
+## Why use `R`?  {.flexbox .vcenter}
 - Well established system of packages and documentation- new enhancements all the time!
-
 - Active development and dedicated community (lots of help)
-
 - Can use a nice GUI front end such as `Rstudio`
-
 - Can embed your `R` analyses in dynamic, polished files using `R markdown`
-
 - FREE
     
 ## Why use `R`? {.flexbox .vcenter}
@@ -90,7 +87,7 @@ knitr::include_graphics("images/RStudio_Screenshot.png")
     - In the plots and files window, click on the packages and help tabs to see what they offer. 
     - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
 
-- Now open the file called 'Student_Exercises_for_Workshop_Lectures.Rmd'. This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
+- Now open the file called *Student_Exercises_for_Workshop_Lectures.Rmd*. This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
 
 
 ## `RMarkdown` {.flexbox .vcenter}
@@ -232,7 +229,7 @@ class(n_factor)
 
 
 ## Basic Statistics {.flexbox .vcenter}
-- Many functions exist to operate on vectors.
+Many functions exist to operate on vectors.
 
 ```{r, eval = FALSE, echo = TRUE}
 mean(n)
@@ -255,7 +252,7 @@ sample(n, replace = T)
 - There are functions for just about anything within `R` and it is easy enough to write your own functions if none already exist to do what you want to do.
 - In general, function calls have a simple structure: a function name, a set of parentheses and an optional set of parameters to send to the function.
 - Help pages exist for all functions that, at a minimum, explain what parameters exist for the function.  
-- Help can be accessed a few ways - try them :
+
 
 ## Getting Help {.flexbox .vcenter}
 
@@ -356,12 +353,6 @@ curve(50000*dnorm(x, 0, 100), xlim = c(-500,500), add=TRUE, col='Red')
 - Each of these is called a `high level` plotting function, which sets the stage
 - `Low level` plotting functions will tweak the plots and make them beautiful
 
-## Visualizing Data {.flexbox .vcenter}
-
-- What do you think that each of the arguments means for the plot function?
-- A cool thing about `R` is that the options for the arguments make sense.
-- Try adjusting an argument and see if it works
-
 ## Visualizing Data {.flexbox .vcenter .smaller}
 
 ```{r, echo = TRUE}
@@ -407,8 +398,6 @@ EXPERIMENTAL SETUP - You carry out an experiment by treating multiple fish from 
 knitr::include_graphics("images/week_01.005.jpeg")
 ```
 
-## {.flexbox .vcenter}
-ADD DATA TABLE
 
 ## {.flexbox .vcenter}
 
@@ -724,14 +713,14 @@ ggplot(data=diamonds) +
 ```
 
 ## The `geom_histogram` and `geom_freqpoly` function {.flexbox .vcenter }
-- With this function you can make a histogram
+With this function you can make a histogram
 ```{r, eval=TRUE, echo=TRUE,fig.asp=0.4}
 ggplot(data=diamonds) +
   geom_histogram(mapping=aes(x=carat), binwidth=0.5)
 ```
 
 ## The `geom_histogram` and `geom_freqpoly` function {.flexbox .vcenter }
-- This allows you to make a frequency polygram
+This allows you to make a frequency polygram
 ```{r, eval=TRUE, echo=TRUE,fig.asp=0.4}
 ggplot(data=diamonds) +
   geom_freqpoly(mapping=aes(x=carat), binwidth=0.5)
@@ -789,7 +778,7 @@ ggplot(data=mpg) +
 
 ```{r, eval=TRUE, echo=TRUE,fig.asp=0.5}
 ggplot(data=mpg) +
-  geom_smooth(mapping=aes(x=displ, y=hwy))
+  geom_smooth(mapping=aes(x=displ, y=hwy), method = "loess")
 ```
 
 ## Combining geoms {.flexbox .vcenter}
@@ -797,7 +786,7 @@ ggplot(data=mpg) +
 ```{r, eval=TRUE, echo=TRUE,fig.asp=0.5}
 ggplot(data=mpg) +
   geom_point(mapping=aes(x=displ, y=hwy)) +
-  geom_smooth(mapping=aes(x=displ, y=hwy))
+  geom_smooth(mapping=aes(x=displ, y=hwy), method = "loess")
 ```
 
 ## Adding labels {.flexbox .vcenter}
@@ -805,12 +794,10 @@ ggplot(data=mpg) +
 ```{r, eval=TRUE, echo=TRUE,fig.asp=0.5}
 ggplot(data=mpg, aes(displ, hwy)) +
   geom_point(aes(color=class)) +
-  geom_smooth(se=FALSE) +
-  labs(
-    title = "Fuel efficiency generally decreases with engine size",
-    subtitle = "Two seaters (sports cars) are an exception because of their light weight",
-    caption = "Data from fueleconomy.gov"
-  )
+  geom_smooth(se=FALSE, method="loess") +
+  labs(title = "Fuel efficiency generally decreases with engine size",
+  subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+  caption = "Data from fueleconomy.gov")
 ```
 
 
