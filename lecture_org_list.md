@@ -17,13 +17,13 @@ below are the contents for each lecture...
 - Functionality and Rmd- show 'raw' script and putting the code into context- then show that lecture is an Rmd file too!
 - Also a variety of outputs and ways to report!
 - Intro to basic functions- calculator, creating objects and variables, vectors, creating a dataframe, data structures.
-- Importing data: need sample dataset- stickleback?
 - Descriptive statistics- mean/var/etc,
 - Basic data visualization- plotting
 - Sample from normal distribution/randomization/etc
 - 20mins lec/ 40mins work
 
 ## Lecture 1 | hour 2
+- Importing data: need sample dataset- stickleback?
 - Think more about the dataset w/ stickleback data
 	- Different types of data- must be assigned in R
 	- Data structure- Bill's figures
