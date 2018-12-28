@@ -32,7 +32,7 @@ below are the contents for each lecture...
 - Indexing and subsetting to subset out from really complex datasets!
   - [] and $
 - Tidyverse!
-  - Variable manipulation
+	- Variable manipulation
 	- Exercises form Bill's slides
 	- tibble/subsetting/manipulate
 	- functions in dplyr
