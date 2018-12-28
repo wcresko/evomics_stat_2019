@@ -11,7 +11,7 @@ below are the contents for each lecture...
 - Overview of R and scripting-based analyses
 		- R is for statistics! Good at stats processes and all the packages available! Derived from S.
 		- More upfront intro to R and resources (pull some of these?)
-		- Some examples of cool plots [plotly, ggplot]
+		- Some examples of cool plots (plotly, ggplot)
 		- Overview of more advanced applications (perhaps worth mentioning?)
 - Rstudio- front-end, nice for beginners, can open .r or .rmd files in there [explore R studio section in separate Rmd]
 - Functionality and Rmd- show 'raw' script and putting the code into context- then show that lecture is an Rmd file too!
@@ -39,10 +39,10 @@ below are the contents for each lecture...
 		- Tidyverse.R script (Bill add)
 
 ## Lecture 1 | hour 3
-	- ggplot and plotly! (look at Scott's lectures)
-	- show and tell
-	- provide a LARGE dataset
-	- replicate the plots using ggplot
+- ggplot and plotly! (look at Scott's lectures)
+		- show and tell
+		- provide a LARGE dataset
+		- replicate the plots using ggplot
 
 ## Lecture 2 | Learning Objectives
 - XXX
@@ -58,11 +58,11 @@ below are the contents for each lecture...
 		- inline versus fenced
 		- different flavors of markdown (Types with commonality)
 - R Markdown
- 		- Effective use of Chunks (arguments)
+		- Effective use of Chunks (arguments)
 		- Formatting text, images, etc
 		- FlexDashboards
 - Knitting for report production
- 		- YAML headers and incorporating pandoc
+		- YAML headers and incorporating pandoc
 		- Presentations
 		- Manuscripts
 - Sharing/Publishing (RPubs, shiny)
@@ -74,12 +74,12 @@ below are the contents for each lecture...
 - GitHub
 		- Place to work collaboratively
 		- Basics of command line git (you can also do this in R studio...)
-		- Git and GitHub!
+- Git and GitHub!
 		- Make your GitHub acct!
 		- Working in github through a browser versus syncing
 		- Create a repo
 		- Cloning a repo
-	 	- Push to Github
+		- Push to Github
 		- Collaborating in a repo
 		- Brief mention of other functions
-	 	- Mention GitHub Pages or other additions
+		- Mention GitHub Pages or other additions
