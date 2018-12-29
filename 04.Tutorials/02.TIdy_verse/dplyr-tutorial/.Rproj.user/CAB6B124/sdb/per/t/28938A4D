@@ -1,0 +1,16 @@
+{
+    "contents" : "source(\"1-data.R\")\n\n# Motivation: plotting delays on map -------------------------------------------\n\nlocation <- airports %>% \n  select(dest = iata, name = airport, lat, long)\n\ndelays <- flights %>%\n  group_by(dest) %>%\n  summarise(arr_delay = mean(arr_delay, na.rm = TRUE), n = n()) %>%\n  arrange(desc(arr_delay)) %>%\n  inner_join(location)\n\nggplot(delays, aes(long, lat)) + \n  borders(\"state\") + \n  geom_point(aes(colour = arr_delay), size = 5, alpha = 0.9) + \n  scale_colour_gradient2() +\n  coord_quickmap()\n\ndelays %>% filter(arr_delay < 0)\n\n\n# What weather condition is most related to delays? ----------------------------\n\nhourly_delay <- flights %>% \n  group_by(date, hour) %>%\n  filter(!is.na(dep_delay)) %>%\n  summarise(\n    delay = mean(dep_delay),\n    n = n()\n  ) %>% \n  filter(n > 10)\ndelay_weather <- hourly_delay %>% left_join(weather)\n\narrange(delay_weather, desc(delay))\n\nqplot(temp, delay, data = delay_weather)\nqplot(wind_speed, delay, data = delay_weather)\nqplot(gust_speed, delay, data = delay_weather)\nqplot(is.na(gust_speed), delay, data = delay_weather, geom = \"boxplot\")\nqplot(conditions, delay, data = delay_weather, geom = \"boxplot\") + coord_flip()\nqplot(events, delay, data = delay_weather, geom = \"boxplot\") + coord_flip()\n\n# Another approach is to look at a specific day and think about\n# unusual values\njune22 <- filter(flights, date == as.Date(\"2011-06-22\"))\nqplot(hour + minute / 60, dep_delay, data = june22)\n\n# What plane conditions are most related to delays? ----------------------------\n\nplanes <- tbl_df(read.csv(\"planes.csv\", stringsAsFactors = FALSE))\nplanes %>% group_by(type) %>% tally()\nplanes %>% group_by(engine) %>% tally()\nplanes %>% group_by(type, engine) %>% tally()\n\nqplot(year, data = planes, binwidth = 1)\nplanes %>% filter(year <= 1960) %>% View()\n\nqplot(no.seats, data = planes, binwidth = 10)\nplanes %>% filter(no.seats < 10) %>% View()\n\nplane_delay <- flights %>% \n  group_by(plane) %>%\n  summarise(\n    n = n(),\n    dist = mean(dist),\n    delay = mean(dep_delay, na.rm = TRUE)\n  )\nanti_join(plane_delay, planes) %>% arrange(desc(n)) %>% View()\n# What's the common pattern?\n\nplane_delay <- plane_delay %>% left_join(planes)\n\nplane_delay %>% arrange(n)\nqplot(n, data = plane_delay, binwidth = 1)\nqplot(n, data = plane_delay, binwidth = 1) + xlim(0, 250)\n\nplane_delay <- plane_delay %>% filter(n > 50)\nqplot(dist, delay, data = plane_delay)\n\nqplot(year, delay, data = plane_delay)\nqplot(year, delay, data = plane_delay) + \n  xlim(1990, 2011) + \n  geom_smooth(span = 0.5, method = \"loess\")\n",
+    "created" : 1404170714302.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1073845826",
+    "id" : "28938A4D",
+    "lastKnownWriteTime" : 1403703849,
+    "path" : "~/Dropbox (RStudio)/rstudio-training/14-dplyr-user/dplyr-tutorial/5-joins.R",
+    "project_path" : "5-joins.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

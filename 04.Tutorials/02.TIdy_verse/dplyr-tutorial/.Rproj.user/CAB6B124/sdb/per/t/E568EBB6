@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1404165217200.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E568EBB6",
+    "lastKnownWriteTime" : 7741240723082584064,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "flights",
+        "contentUrl" : "content?title=flights&file=439e26fa5ac54a18ac3de538d6ecfcc4.htm",
+        "displayedObservations" : "1000",
+        "displayedVariables" : 15,
+        "totalObservations" : "227496",
+        "variables" : "15"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "# Which destinations have the highest average delay?\n  \n\nflights %>%\n  filter(!is.na(arr_delay)) %>%\n  group_by(dest) %>%\n  summarise(mean = mean(arr_delay), n = n()) %>%\n  arrange(mean) %>%\n  filter(n >= 200) %>%\n  head()\n\n\nflights %>%\n  group_by(carrier, flight, dest) %>%\n  summarise(n = n_distinct(date))  %>%\n  filter(n == 365)\n\nflights %>% \n  filter(cancelled == 0) %>%\n  group_by(hour, minute) %>%\n  summarise(n = n(), mean = mean(dep_delay))",
+    "created" : 1404168610070.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1773587197",
+    "id" : "405D85C",
+    "lastKnownWriteTime" : 7452894923749420032,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

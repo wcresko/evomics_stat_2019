@@ -1,0 +1,17 @@
+{
+    "contents" : "flights <- mutate(flights, \n  speed = dist / (time / 60))\narrange(flights, desc(speed))\n\nmutate(flights, delta = abs(dep_delay - arr_delay))\n\nmutate(flights, \n  hour = dep %/% 100, \n  minute = dep %% 100)\n\nby_date <- group_by(flights, date)\n\n\nsummarise(filter(by_date, !is.na(arr_delay)),\n  med = median(arr_delay),\n  mean = mean(arr_delay),\n  max = max(arr_delay),\n  q90 = quantile(arr_delay, 0.9),\n  q95 = quantile(arr_delay, 0.95),\n  delayed = mean(arr_delay > 0),\n  delay15 = mean(arr_delay > 15),\n)\n",
+    "created" : 1404165195135.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1149000012",
+    "id" : "411AFE45",
+    "lastKnownWriteTime" : -2305834238890475520,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

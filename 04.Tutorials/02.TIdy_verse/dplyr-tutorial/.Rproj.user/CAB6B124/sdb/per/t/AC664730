@@ -1,0 +1,16 @@
+{
+    "contents" : "library(dplyr)\nlibrary(ggplot2)\n\nflights <- tbl_df(read.csv(\"flights.csv\", stringsAsFactors = FALSE))\nflights$date <- as.Date(flights$date)\n\nweather <- tbl_df(read.csv(\"weather.csv\", stringsAsFactors = FALSE))\nweather$date <- as.Date(weather$date)\n\nplanes <- tbl_df(read.csv(\"planes.csv\", stringsAsFactors = FALSE))\n\nairports <- tbl_df(read.csv(\"airports.csv\", stringsAsFactors = FALSE))\n\nflights\nweather\nplanes\nairports\n",
+    "created" : 1404162724285.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "835425594",
+    "id" : "AC664730",
+    "lastKnownWriteTime" : 1403644001,
+    "path" : "~/Dropbox (RStudio)/rstudio-training/14-dplyr-user/dplyr-tutorial/1-data.R",
+    "project_path" : "1-data.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

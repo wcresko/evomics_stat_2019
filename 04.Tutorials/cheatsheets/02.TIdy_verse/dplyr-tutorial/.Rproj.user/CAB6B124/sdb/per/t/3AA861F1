@@ -1,0 +1,16 @@
+{
+    "contents" : "options(digits = 3)\n# Do with one unnamed argument -------------------------------------------------\n\n# Derived from http://stackoverflow.com/a/23341485/16632\nlibrary(dplyr)\nlibrary(zoo)\n\n# Data frame\ndf <- data.frame(\n  houseID = rep(1:10, each = 10), \n  year = 1995:2004, \n  price = ifelse(runif(10 * 10) > 0.50, NA, exp(rnorm(10 * 10)))\n)\n\n# . is a pronoun representing the current group\n\ndf %>% \n  group_by(houseID) %>% \n  do(na.locf(.))\n\ndf %>% \n  group_by(houseID) %>% \n  do(head(., 2))\n\ndf %>% \n  group_by(houseID) %>% \n  do(data.frame(year = .$year[1]))\n\n\n# Do with multiple named arguments ---------------------------------------------\nsource(\"0-data.R\")\n# How do delays vary over the course of the day?\n\nmodels <- flights %>% \n  filter(hour >= 5, hour <= 20) %>%\n  group_by(date) %>%\n  do(\n    mod = lm(dep_delay ~ hour, data = .)\n  )\n\nmodels\nstr(models) # don't do this!\nstr(models[1, ])\n\nrsq <- function(x) summary(x)$r.squared\nfit <- models %>% \n  summarise(date = as.Date(date[1]), rsq = rsq(mod))\nfit %>% arrange(desc(rsq))\nfit %>% arrange(rsq)\n\ncoef_df <- function(x) {\n  sc <- coef(summary(x))\n  colnames(sc) <- c(\"est\", \"se\", \"t\", \"P\")\n  data.frame(coef = rownames(sc), sc)\n}\nmodels %>% do(coef_df(.$mod))\n\nhourly <- flights %>%\n  filter(hour >= 5, hour <= 20) %>%\n  group_by(date, hour) %>%\n  summarise(dep_delay = mean(dep_delay))\n\nqplot(hour, dep_delay, data = hourly %>% semi_join(fit %>% filter(rsq > 0.2)), geom = \"line\") + facet_wrap(~date)\nqplot(hour, dep_delay, data = hourly %>% semi_join(fit %>% filter(rsq < 0.001)), geom = \"line\") + facet_wrap(~date)\n",
+    "created" : 1404172366368.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "986118761",
+    "id" : "3AA861F1",
+    "lastKnownWriteTime" : 1403702685,
+    "path" : "~/Dropbox (RStudio)/rstudio-training/14-dplyr-user/dplyr-tutorial/6-do.R",
+    "project_path" : "6-do.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
