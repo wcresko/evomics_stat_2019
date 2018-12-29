@@ -1,0 +1,1342 @@
+---
+title: "Statistics with R in Cesky Krumlov"
+author: "Hannah Tavalire and Bill Cresko"
+date: "January 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# But first a beautiful chair
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("images/week_01.001.jpeg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_01.002.jpeg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_01.003.jpeg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/week_01.004.jpeg")
+```
+
+
+
+## Goals for statistics section
+- **NEEDS TO BE UPDATED ONCE FINAL PRESENTATION MADE**
+- Dynamical systems and stochastic processes
+- Probability distributions and density functions
+- Bernoulli, Binomial, Normal, Poisson
+- Data wrangling and Exploratory Data Analysis (EDA)
+- Figures - the good, the bad and the ugly
+- Grammar of Graphics (GG)
+- Creating beautiful graphics using GGPlot2
+- FOR THURSDAY - On your EDA exercises will be posted
+- Finish point estimation
+- Tidy data wrangling and Exploratory Data Analysis (EDA)
+- Hypothesis testing and Types of errors
+- Figures - the good, the bad and the ugly
+- Grammar of Graphics (GG) and Creating beautiful graphics using GGPlot2
+- Introduction to Linear Models
+- Simple linear regression and multiple linear regression (next week)
+- Git and GitHub (starting next Tuesday)
+- Finish simple linear regression
+- Analysis of residuals
+- How to report your statistical results
+- Multiple linear regression
+- Git and GitHub
+- One factor ANOVA
+- Experimental Design
+- Finish simple linear regression
+- Analysis of residuals
+- How to report your statistical results
+- **Non-linear regression**
+- **Multiple linear regression**
+- **Git and GitHub**
+- **One factor ANOVA**
+- **Experimental Design (Tuesday)**
+- One factor ANOVA
+- Git and GitHub
+- Means tests in ANOVA
+- Experimental Design
+- Power analyses
+- Multi-factor ANOVA
+- Experimental Design
+- Power analyses
+- Multi-factor ANOVA
+- Nested ANOVA
+- Factorial ANOVA
+- Analysis of CoVariance (ANCOVA)
+- Experimental Design
+- Power analyses
+- Multi-factor ANOVA
+- **Nested ANOVA**
+- **Factorial ANOVA**
+- **Analysis of CoVariance (ANCOVA)**
+- Figures - the good, the bad and the ugly
+- Grammar of Graphics (GG)
+- Creating beautiful graphics using GGPlot2
+- Introduction to Linear Models
+- Simple linear regression
+- Analysis of residuals
+- Multiple linear regression
+- Git and GitHub (Thursday)
+
+# Basics of probability and distributions
+
+## Bernoulli distribution {.smaller}
+
+- Describes the expected outcome of a single event with probability `p`
+
+- Example of flipping of a **fair** coin once
+
+$$Pr(X=\text{Head}) = \frac{1}{2} = 0.5 = p $$
+
+$$Pr(X=\text{Tails}) = \frac{1}{2} = 0.5 = 1 - p $$
+
+- If the coin isn't fair then $p \neq 0.5$
+- However, the probabilities still sum to 1 
+
+$$ p + (1-p) = 1 $$
+
+- Same is true for other binary possibilities
+    - success or failure
+    - yes or no answers
+    - choosing an allele from a population based upon allele frequences
+
+## Probability rules {.flexbox .vcenter}
+
+- Flip a coin twice
+- Represent the first flip as ‘X’ and the second flip as ‘Y’
+- First, pretend you determine the probability in advance of flipping both coins
+
+\br
+\br
+\br
+
+$$ Pr(\text{X=H and Y=H}) = p*p = p^2 $$
+$$ Pr(\text{X=H and Y=T}) = p*p = p^2 $$
+$$ Pr(\text{X=T and Y=H}) = p*p = p^2 $$
+$$ Pr(\text{X=T and Y=T}) = p*p = p^2 $$
+
+## Probability rules
+
+
+- Now determine the probability if the `H` and `T` can occur in any order
+
+$$ \text{Pr(H and T) =} $$ 
+$$ \text{Pr(X=H and Y=T) or Pr(X=T and Y=H)} = $$ 
+$$ (p*p) + (p*p) = 2p^{2} $$
+  
+
+- These are the **'and'** and **'or'** rules of probability
+    - 'and' means multiply the probabilities
+    - 'or' means sum the probabilities
+    - most probability distributions can be built up from these simple rules
+
+
+## Binomial Distribution {.smaller}
+
+- A **binomial distribution** results from the **combination** of several independent Bernoulli events 
+
+- **Example** - pretend that you flip 20 fair coins and record the number of heads
+- Now repeat that process and record the number of heads for each
+- We expect that most of the time we will get approximately 10 heads
+- Sometimes we get many fewer heads or many more heads
+- The distribution of probabilities for each combination of outcomes is
+
+$$\large f(k) = {n \choose k} p^{k} (1-p)^{n-k}$$
+
+- `n` is the total number of trials
+- `k` is the number of successes
+- `p` is the probability of success
+- `q` is the probability of not success
+- For binomial as with the Bernoulli `p = 1-q`
+
+## Binomial Probability Distribution  {.smaller}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.003.jpeg")
+```
+
+## Binomial Probability Distribution {.smaller}
+
+- Note that the binomial function incorporates both the 'and' and 'or' rules of probability
+- This part is the probability of each outcome (multiplication)
+
+$$\large p^{k} (1-p)^{n-k}$$
+
+This part (called the binomial coefficient) is the number of different ways each combination of outcomes can be achieved (summation)
+
+$$\large {n \choose k}$$
+
+Together they equal the probability of a specified number of successes
+
+ $$\large f(k) = {n \choose k} p^{k} (1-p)^{n-k}$$
+
+
+## Poisson Probability Distribution  {.smaller}
+
+- Another common situation in biology is when each trial is discrete but number of observations of each outcome is observed
+
+- Some examples are
+    - counts of snails in several plots of land
+    - observations of the firing of a neuron in a unit of time
+    - count of genes in a genome binned to units of 500 amino acids in length
+- Just like before you have 'successes', but 
+    - now you count them for each replicate
+    - the replicates now are units of area or time
+    - the values can now range from 0 to an arbitrarily large number
+
+## Poisson Probability Distribution  {.smaller}
+
+- For example, you can examine 100 plots of land
+    - count the number of snails in each plot
+    - what is the probability of observing a plot with 'r' snails is
+- `Pr(Y=r)` is the probability that the number of occurrences of an event `y` equals a count `r` in the total number of trials
+
+$$Pr(Y=r) = \frac{e^{-\mu}\mu^r}{r!}$$
+
+- Note that this is a single parameter function because $\mu = \sigma^2$, and the two together are often just represented by $\lambda$
+
+$$Pr(y=r) = \frac{e^{-\lambda}\lambda^r}{r!}$$
+
+- This means that for a variable that is truly Poisson distributed:
+    - the mean and variance should be equal to one another, a hypothesis that you can test
+    - variables that are approximately Poisson distributed but have a larger variance than mean are often called 'overdispersed'
+
+## Poisson Probability Distribution | gene length by bins of 500 nucleotides {.smaller}
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("images/week_2.004.jpeg")
+```
+
+## Poisson Probability Distribution | increasing parameter values of $\lambda$ {.smaller}
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("images/week_2.005.jpeg")
+```
+
+## Log-normal PDF | Continuous version of Poisson (-ish) { .smaller}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.006.jpeg")
+```
+
+## Transformations to ‘normalize’ data {.smaller .vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.007.jpeg")
+```
+
+## Transformations to ‘normalize’ data {.smaller .vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.008.jpeg")
+```
+
+## Binomial to Normal | Categorical to continuous {.smaller .vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.009.jpeg")
+```
+
+## The Normal (aka Gaussian) | Probability Density Function (PDF) {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_2.011.jpeg")
+```
+
+## Normal PDF {.smaller}
+
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("images/week_2.012.jpeg")
+```
+
+
+## Normal PDF | A function of two parameters ($\mu$ and $\sigma$) {.smaller}
+
+```{r, echo=FALSE, out.width='40%', fig.align='center'}
+knitr::include_graphics("images/week_2.032.jpeg")
+```
+where 
+$$\large \pi \approx 3.14159$$
+
+$$\large \epsilon \approx 2.71828$$
+
+To write that a variable (v) is distributed as a normal distribution with mean $\mu$ and variance $\sigma^2$, we write the following:
+
+$$\large v \sim \mathcal{N} (\mu,\sigma^2)$$
+
+## Normal PDF | estimates of mean and variance {.smaller}
+
+Estimate of the mean from a single sample
+
+$$\Large \bar{x} = \frac{1}{n}\sum_{i=1}^{n}{x_i} $$
+
+Estimate of the variance from a single sample
+
+$$\Large s^2 = \frac{1}{n-1}\sum_{i=1}^{n}{(x_i - \bar{x})^2} $$
+
+The standard deviation is the square root of the variance
+
+$$\Large s = \sqrt{s^2} $$
+
+## Normal PDF
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_2.010.jpeg")
+```
+
+## Why is the Normal special in biology?
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.013.jpeg")
+```
+
+## Why is the Normal special in biology? {.smaller}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/week_2.015.jpeg")
+```
+
+## Why is the Normal special in biology? {.smaller}
+
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics("images/week_2.014.jpeg")
+```
+
+## Parent-offspring resemblance {.smaller}
+
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("images/week_2.016.jpeg")
+```
+
+## Genetic model of complex traits {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_2.017.jpeg")
+```
+
+## Distribution of $F_2$ genotypes | really just binomial sampling {.smaller}
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("images/week_2.018.jpeg")
+```
+
+## Why else is the Normal special?
+
+- The normal distribution is immensely useful because of the central limit theorem  
+- The central limit theorem states that, under mild conditions, the mean of many random variables independently drawn from the same distribution is distributed approximately normally, irrespective of the form of the original distribution
+- One can think of numerous situations, such as when multiple genes contribute to a phenotype, that many factors contribute to a biological process
+- In addition, whenever there is variance introduced by stochastic factors or sampling error, the central limit theorem holds as well
+- Thus, normal distributions occur throughout biology and biostatistics
+
+## z-scores of normal variables | Mean centering and ranging  {.smaller}
+
+- Often we want to make variables more comparable to one another
+- For example, consider measuring the leg length of mice and of elephants
+- Which animal has longer legs in absolute terms? 
+- Which has longer legs on average proportional to their body size? Which has more variation proportional to their body size?
+- A qood way to answer this last question is to use 'z-scores', which are standardized to a mean of 0 and a s.d. of 1
+- We can modify any normal distribution to have a mean of 0 and a standard deviation of 1 
+- Another term for this is the standard normal distribution
+
+$$\huge z_i = \frac{(x_i - \bar{x})}{s}$$
+## R Interlude | Complete Exercises 3.1-3.2
+
+# Hypothesis testing, test statistics, p-values {.smaller}
+
+## What is a hypothesis {.vcenter .flexbox}
+
+- A statement of belief about the world
+- Need a **critical** test to 
+    - accept or reject the hypothesis
+    - compare the relative merits of different models
+- This is where **statistical sampling distributions** come into play
+
+## Hypothesis tests {.vcenter .flexbox}
+
+$H_0$ : *Null hypothesis* : Ponderosa pine trees are the same height on average as Douglas fir trees
+
+$H_A$ : *Alternative Hypothesis*: Ponderosa pine trees are not the same height on average as Douglas fir trees
+
+## Hypothesis tests {.vcenter .flexbox}
+
+- What is the probability that we would reject a **true null hypothesis**?
+
+- What is the probability that we would accept a **false null hypothesis**?
+
+- How do we **decide** when to reject a null hypothesis and support an alternative?
+
+- What can we **conclude** if we fail to reject a null hypothesis?
+
+- What **parameter estimates of distributions** are important to test hypotheses?
+
+## Null and alternative hypotheses | population distributions {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.001.jpeg")
+```
+
+## Null and alternative hypotheses | population distributions {.smaller}
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("images/week_3.002.jpeg")
+```
+
+## Statistical sampling distributions {.vcenter .flexbox}
+
+- Statistical tests provide a way to perform **critical tests** of hypotheses
+- Just like raw data, statistics are **random variables** and depend on sampling distributions of the underlying data
+- The particular **form of the statistical distribution** depends on the test statistic and parameters such as the degrees of freedom that are determined by sample size.
+
+## Statistical sampling distributions {.vcenter .flexbox}
+
+- In many cases we create a **null statistical distribution** that models the distribution of a test statistic under the **null hypothesis**. 
+- Similar to point estimates, we calculate an **observed test statistic value** for our data
+- Then see how probable it was by comparing against **the null distribution**
+- The probability of seeing that value or greater is called the **p-value** of the statistic
+
+
+## Four common statistical distributions {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.003.jpeg")
+```
+
+## The t-test and t sampling distribution {.vcenter .flexbox}
+
+$H_0$ : Null hypothesis : Ponderosa pine trees are the same height on average as Douglas fir trees
+
+$$H_0 : \mu_1 = \mu_2$$
+
+$H_A$ : Alternative Hypothesis: Ponderosa pine trees are not the same height as Douglas fir trees
+
+
+$$H_A : \mu_1 \neq \mu_2$$
+
+## The t-test and t sampling distribution {.smaller}
+
+$$\huge t = \frac{(\bar{y}_1-\bar{y}_2)}{s_{\bar{y}_1-\bar{y}_2}} $$
+
+where
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("images/week_3.016.jpeg")
+```
+
+which is the calculation for the standard error of the mean difference
+
+## The t-test and t sampling distribution | under different degrees of freedom {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.004.jpeg")
+```
+
+## The t-test and t sampling distribution | one tailed test {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.005.jpeg")
+```
+
+## The t-test and t sampling distribution | two tailed test {.smaller}
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("images/week_3.006.jpeg")
+```
+
+## Assumptions of parameteric t-tests  {.vcenter .flexbox}
+
+- The theoretical t-distributions for each degree of freedom were calculated for populations that are:  
+    - normally distributed
+    - have equal variances (if comparing two means)
+    - observations are independent (randomly drawn)
+- This is an example of a **parametric** test
+- What do you do if the there is non-normality?  
+    - nonparametric tests such as Mann-Whitney-Wilcoxon
+    - randomization tests to create a null distribution
+
+## Type 1 and Type 2 errors {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.007.jpeg")
+```
+
+## Components of hypothesis testing
+
+- **p-value** = the long run probability of rejecting a true null hypothesis
+- **alpha** = critical value of p-value cutoff for experiments. The Type I error we are willing to tolerate.
+- **beta** = cutoff for probability of accepting a false null hypothesis
+- **Power** = the probability that a test will reject a false null hypothesis (1 - beta). It depends on effect size, sample size, chosen alpha, and population standard deviation
+- **Multiple testing** = performing the same or similar tests multiple times - need to correct
+
+## Null distributions and p-values {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.009.jpeg")
+```
+
+## Why do we use $\alpha = 0.5$ as a cutoff? {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/week_3.008.jpeg")
+```
+
+## R Interlude | Complete Exercises 3.3-3.4
+
+# Linear Models and Regression
+
+## Parent offspring regression
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.002.jpeg")
+```
+
+## Linear Models - a note on history
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.003.jpeg")
+```
+
+## Linear Models - a note on history
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.004.jpeg")
+```
+
+## Bivariate normality
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.005.jpeg")
+```
+
+## Covariance and correlation
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.006.jpeg")
+```
+
+## Anscombe's Quartet
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.007.jpeg")
+```
+
+## Anscombe's Quartet {.smaller}
+
+- *Mean* of x in each case 9 (exact)
+
+- *Variance* of x in each case 11 (exact)
+
+- Mean of y in each case 7.50 (to 2 decimal places)
+
+- Variance of y in each case 4.122 or 4.127 (to 3 decimal places)
+
+- Correlation between x and y in each case 0.816 (to 3 decimal places)
+
+- Linear regression line in each case
+$$ y = 3.00 + 0.50x$$
+
+## A linear model to relate two variables
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.008.jpeg")
+```
+
+## Many approaches are linear models
+
+- Is flexible: Applicable to many different study designs 
+- Provides a common set of tools (lm in R for fixed effects)
+- Includes tools to estimate parameters:
+  - (e.g. sizes of effects, like the slope, or change in means)
+- Is easier to work with, especially with multiple variables
+
+## Many approaches are linear models
+
+- Linear regression 
+- Single factor ANOVA
+- Analysis of covariance
+- Multiple regression
+- Multi-factor ANOVA
+- Repeated-measures ANOVA
+
+## Plethora of linear models
+
+- General Linear Model (**GLM**) - two or more continuous variables
+
+- General Linear Mixed Model (**GLMM**) - a continuous response variable with a mix of continuous and categorical predictor variables
+
+- Generalized Linear Model - a GLMM that doesn’t assume normality of the response (we’ll get to this later)
+
+- Generalized Additive Model (**GAM**) - a model that doesn’t assume linearity (we won’t get to this later)
+
+
+## Linear models {.smaller}
+
+All an be written in the form
+
+response variable = intercept + (explanatory_variables) + random_error
+
+
+
+in the general form:
+
+$$ Y=\beta_0 +\beta_1*X_1 + \beta_2*X_2 +... + error$$  
+
+where $\beta_0, \beta_1, \beta_2, ....$ are the parameters of the linear model
+
+## linear model parameters
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.010.jpeg")
+```
+
+
+## linear model parameters
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.009.jpeg")
+```
+
+
+## linear models in R
+
+All of these will *include* the intercept
+```{r, echo=TRUE, eval=FALSE}
+Y~X
+Y~1+X
+Y~X+1
+```
+
+All of these will *exclude* the intercept
+```{r, echo=TRUE, eval=FALSE}
+Y~-1+X
+Y~X-1
+```
+
+Need to fit the model and then 'read' the output
+```{r, echo=TRUE, eval=FALSE}
+trial_lm <- lm(Y~X)
+summary (trial_lm)
+```
+
+## Model fitting and hypothesis tests in regression
+
+$$H_0 : \beta_0 = 0$$
+$$H_0 : \beta_1 = 0$$
+
+
+
+full model - $y_i = \beta_0 + \beta_1*x_i + error_i$
+
+reduced model - $y_i = \beta_0 + 0*x_i + error_i$
+
+
+1. fits a “reduced” model without slope term (H0)
+2. fits the “full” model with slope term added back
+3. compares fit of full and reduced models using an F test
+
+## Model fitting and hypothesis tests in regression
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.011.jpeg")
+```
+
+## Hypothesis tests in linear regression {.smaller}
+
+Estimation of the variation that is explained by the model (SS_model)
+
+SS_model = SS_total(reduced model) - SS_residual(full model)
+
+The variation that is unexplained by the model (SS_residual)
+
+SS_residual(full model)
+
+## Hypothesis tests in linear regression {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.012.jpeg")
+```
+
+## Hypothesis tests in linear regression {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.013.jpeg")
+```
+
+
+## $r^2$ as a measure of model fit
+
+$$r^2 = SS_{regression}/SS_{total} = 1 - (SS_{residual}/SS_{total})$$
+or 
+$$r^2 = 1 - (SS_{residual(full)}/SS_{total(reduced)})$$
+Which is the proportion of the variance in Y that is explained by X
+
+## Relationship of correlation and regression
+
+$$\beta_{YX}=\rho_{YX}*\sigma_Y/\sigma_X$$
+$$b_{YX} = r_{YX}*S_Y/S_X$$
+
+## Residual Analysis | did we meet our assumptions?
+
+- Independent errors (residuals)
+- Equal variance of residuals in all groups
+- Normally-distributed residuals
+- Robustness to departures from these assumptions is improved when sample size is large and design is balanced
+
+
+## Residual Analysis | did we meet our assumptions?
+
+$$y_i = \beta_0 + \beta_1 * x_I + \epsilon_i$$
+
+## Residual Analysis
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.015.jpeg")
+```
+
+## Residual Analysis
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.016.jpeg")
+```
+
+## Handling violations of the assumptions of linear models
+
+- What if your residuals aren’t normal because of outliers? 
+
+- Nonparametric methods exist, but these don’t provide parameter estimates with CIs.
+
+- Robust regression (rlm)
+
+- Randomization tests 
+
+## Anscombe's quartet again | what would residual plots look like for these?
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.017.jpeg")
+```
+
+## Anscombe's quartet again | what would residual plots look like for these?
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.018.jpeg")
+```
+
+## Residual Plots | Spotting assumption violations
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.020.jpeg")
+```
+
+## Residuals | leverage and influence {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.021.jpeg")
+```
+
+- 1 is an outlier for both Y and X
+- 2 is not an outlier for either Y or X but has a high residual
+- 3 is an outlier in just X - and thus a high residual - and therefore has high influence as measured by Cook's D
+
+## Residuals | leverage and influence {.smaller}
+
+- **Leverage** - a measure of how much of an outlier each point is in x-space (on x-axis) and thus only applies to the predictor variable.
+(Values > 2*(2/n) for simple regression are cause for concern)
+
+- **Residuals** - As the residuals are the differences between the observed and predicted values along a vertical plane, they provide a measure of how much of an outlier each point is in y-space (on y-axis). The patterns of residuals against predicted y values (residual plot) are also useful diagnostic tools for investigating linearity and homogeneity of variance assumptions
+
+- **Cook’s D** statistic is a measure of the influence of each point on the fitted model (estimated slope) and incorporates both leverage and residuals. Values ≥ 1 (or even approaching 1) correspond to highly influential observations.
+
+
+## R INTERLUDE | Complete Exercises 3.5-3.6
+
+
+# Non-Linear Regression
+
+## Complex non-linear regression | one response and one predictor
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.002.jpeg")
+```
+
+## Complex non-linear regression | one response and one predictor{.smaller}
+
+- power
+- exponential
+- polynomial
+
+```{r, echo=FALSE, out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4b.019.jpeg")
+```
+
+## Complex non-linear regression | one response and one predictor
+
+```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.003.jpeg")
+```
+
+# Multiple Linear Regression
+
+## Multiple Linear Regression - Goals
+
+- To develop a better predictive model than is possible from models based on single independent variables.
+
+- To investigate the relative individual effects of each of the multiple independent variables above and beyond the effects of the other variables.
+
+- The individual effects of each of the predictor variables on the response variable can be depicted by single partial regression lines. 
+
+- The slope of any single partial regression line (partial regression slope) thereby represents the rate of change or effect of that specific predictor variable (holding all the other predictor variables constant to their respective mean values) on the response variable.
+
+## Multiple Linear Regression | Additive and multiplicative models of 2 or more predictors
+
+Additive model
+$$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + B_jx_{ij} + \epsilon_i$$
+
+Multiplicative model (with two predictors)
+$$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + B_3x_{i1}x_{i2} + \epsilon_i$$
+
+## Multiple Linear Regression | Additive and multiplicative models {.smaller}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5a.006.jpeg")
+```
+
+## Multiple linear regression assumptions
+
+- linearity
+- normality
+- homogeneity of variance
+- **multi-collinearity** - a predictor variable must not be correlated to the combination of other predictor variables.
+
+## checking for multi-collinearity
+
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.001.jpeg")
+```
+
+```{r, echo=TRUE, eval=FALSE}
+library(car)
+scatterplotMatrix(~var1+var2+var3, diag=”boxplot”)
+```
+
+## R Interlude | Exercise 3.7
+
+# ANOVA
+
+## ANOVA {.flexbox .vcenter}
+
+- Stands for **AN**alysis **o**f **VA**riance
+- Core statistical procedure in biology
+- Developed by R.A. Fisher in the early 20th Century
+- The core idea is to ask how much variation exists within vs. among groups
+- ANOVAs are linear models that have **categorical predictor** and **continuous response** variables
+- The categorical predictors are often called **factors**, and can have two or more **levels** (important to specify in R)
+- Each factor will have a **hypothesis test**
+- The levels of each factor may also need to be tested
+
+## ANOVA | Let's start with an example
+
+- Percent time that male mice experiencing discomfort spent “stretching”.
+- Data are from an experiment in which mice experiencing mild discomfort (result of injection of 0.9% acetic acid into the abdomen) were kept in:
+    - isolation 
+    - with a companion mouse not injected or 
+    - with a companion mouse also injected and exhibiting “stretching” behaviors associated with discomfort 
+- The results suggest that mice stretch the most when a companion mouse is also experiencing mild discomfort. Mice experiencing pain appear to “empathize” with co-housed mice also in pain.
+
+From Langford, D. J.,et al. 2006. Science 312: 1967-1970
+
+## ANOVA | Let's start with an example {.flexbox .vcenter}
+
+In words:
+  
+**stretching = intercept + treatment**
+  
+</br > 
+</br >
+</br >
+</br >
+</br >
+- The model statement includes a response variable, a constant, and an explanatory variable.  
+- The only difference with regression is that here the explanatory variable is categorical.
+
+## ANOVA | Let's start with an example {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.014.jpeg")
+```
+
+## ANOVA {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.015.jpeg")
+```
+
+## ANOVA | Conceptually similar to regression {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.016.jpeg")
+```
+
+## ANOVA | Statistical results table {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.017.jpeg")
+```
+
+## ANOVA | F-ratio calculation {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.018.jpeg")
+```
+
+## ANOVA | F-ratio calculation {.vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.019.jpeg")
+```
+
+
+## One way ANOVA {.smaller .vcenter .flexbox}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_6a.001.jpeg")
+```
+
+## ANOVA | One or more predictor variables
+
+- One-way ANOVAs just have a single factor
+- Multi-factor ANOVAs 
+    - Factorial - two or more factors and their interactions
+    - Nested - the levels of one factor are contained within another level
+    - The models can be quite complex
+- ANOVAs use an F-statistic to test factors in a model
+    - Ratio of two variances (numerator and denominator)
+    - The numerator and denominator d.f. need to be included (e.g. $F_{1, 34} = 29.43$)
+- Determining the appropriate test ratios for complex ANOVAs takes some work
+
+## ANOVA | Assumptions 
+
+- Normally distributed groups
+    - robust to non-normality if equal variances and sample sizes
+- Equal variances across groups
+    - okay if largest-to-smallest variance ratio < 3:1
+    - problematic if there is a mean-variance relationship among groups
+- Observations in a group are independent
+    - randomly selected
+    - don’t confound group with another factor
+
+# Factorial Designs: Multifactor ANOVA
+
+## Multifactor ANOVA {.smaller}
+
+- For example, Relyae (2003) looked at how a moderate dose (1.6mg/L) of a commonly used pesticide, carbaryl (Sevin), affected bullfrog tadpole survival. 
+- In particular, the experiment asked how the effect of carbaryl depended on whether a native predator, the red-spotted newt, was also present. 
+- The newt was caged and could cause no direct harm, but it emitted visual and chemical cues to other tadpoles
+- The experiment was carried out in 10-L tubs (experimental units), each containing 10 tadpoles. 
+- The four combinations of pesticide treatment (carbaryl vs. water only) and predator treatment (present or absent) were randomly assigned to tubs.
+- The results showed that survival was high except when pesticide was applied together with the predator. 
+- Thus, the two treatments, predation and pesticide, seem to have interacted.
+
+
+```{r, echo=FALSE, out.width='30%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.011.jpeg")
+```
+
+## Multifactor ANOVA
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.012.jpeg")
+```
+
+## Two Factor Factorial Designs {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.013.jpeg")
+```
+
+## Factorial Designs | Number of Replicates {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.015.jpeg")
+```
+
+## Interpretation | significant main and interaction effects {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.021.jpeg")
+```
+
+## Interaction plots {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_7a.022.jpeg")
+```
+
+
+## R Interlude | Exercise 3.8-3.9
+
+
+# MULTIVARIATE STATS- PCoA????- BILL TO ADD
+
+
+# Design principles for planning a good experiment
+
+## What is an experimental study?
+
+- In an experimental study the researcher assigns treatments to units
+- In an observational study nature does the assigning of treatments to units
+- The crucial advantage of experiments derives from the random assignment of treatments to units
+- Random assignment, or randomization, minimizes the influence of confounding variables
+
+
+## Mount Everest example {.vcenter .flexbox}
+
+Survival of climbers of Mount Everest is higher for individuals taking supplemental oxygen than those who don’t.  
+  
+**Why?**
+
+## Mount Everest example
+
+- One possibility is that supplemental oxygen (explanatory variable) really does cause higher survival (response variable).
+- The other is that the two variables are associated because other variables affect both supplemental oxygen and survival. 
+- Use of supplemental oxygen might be a benign indicator of a greater overall preparedness of the climbers that use it.
+- Variables (like preparedness) that distort the causal relationship between the measured variables of interest (oxygen use and survival) are called **confounding variables**
+- They are correlated with the variable of interest, and therefore preventing a decision about cause and effect.
+- With random assignment, no confounding variables will be associated with treatment except by chance.
+
+## Replication
+
+- The goal of experiments is to estimate and test treatment effects against the background of variation between individuals (“noise”) caused by other variables
+- One way to reduce noise is to make the experimental conditions constant 
+- In field experiments, however, highly constant experimental conditions might not be feasible nor desirable 
+- By limiting the conditions of an experiment, we also limit the generality of the results
+- Another way to make treatment effects stand out is to include extreme treatments and to replicate the data.
+
+## Replication {.smaller}
+
+- Replication is the assignment of each treatment to multiple, independent experimental units.
+- Without replication, we would not know whether response differences were due to the treatments or just chance differences between the treatments caused by other factors.
+- Studies that use more units (i.e. that have larger sample sizes) will have smaller standard errors and a higher probability of getting the correct answer from a hypothesis test.
+- Larger samples mean more information, and more information means better estimates and more powerful tests.
+- Replication is not about the number of plants or animals used, but the number of independent units in the experiment. An “experimental unit” is the independent unit to which treatments are assigned.
+- The figure shows three experimental designs used to compare plant growth under two temperature treatments (indicated by the shading of the pots). The first two designs are un-replicated.
+
+## Pseudoreplication {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_6a.006.jpeg")
+```
+
+## Balance {.smaller}
+
+- A study design is balanced if all treatments have the same sample size. 
+- Conversely, a design is unbalanced if there are unequal sample sizes between treatments. 
+- Balance is a second way to reduce the influence of sampling error on estimation and hypothesis testing. 
+- To appreciate this, look again at the equation for the standard error of the difference between two treatment means.
+
+```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_6a.007.jpeg")
+```
+
+- For a fixed total number of experimental units, n1 + n2, the standard error is smallest when n1 and n2 are equal.
+- Balance has other benefits. For example, ANOVA is more robust to departures from the assumption of equal variances when designs are balanced or nearly so.
+
+## Blocking
+
+- Blocking is the grouping of experimental units that have similar properties. Within each block, treatments are randomly assigned to experimental units. 
+- Blocking essentially repeats the same, completely randomized experiment multiple times, once for each block. 
+- Differences between treatments are only evaluated within blocks, and in this way the component of variation arising from differences between blocks is discarded. 
+
+```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_6a.008.jpeg")
+```
+
+## Blocking | Paired designs {.smaller}
+
+```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_6a.009.jpeg")
+```
+
+## Blocking | Randomized complete block design
+
+- RCB design is analogous to the paired design, but may have more than two treatments. Each treatment is applied once to every block. 
+- As in the paired design, treatment effects in a randomized block design are measured by differences between treatments exclusively within blocks. 
+- By accounting for some sources of sampling variation blocking can make differences between treatments stand out. 
+- Blocking is worthwhile if units within blocks are relatively homogeneous, apart from treatment effects, and units belonging to different blocks vary because of environmental or other differences.
+
+
+## What if you can't do experiments?
+
+- Experimental studies are not always feasible, in which case we must fall back upon observational studies.
+- The best observational studies incorporate as many of the features of good experimental design as possible to minimize bias (e.g., blinding) and the impact of sampling error (e.g., replication, balance, blocking, and even extreme treatments) except for one: randomization.
+- Randomization is out of the question, because in an observational study the researcher does not assign treatments to subjects. Instead, the subjects come as they are.
+- Two strategies are used to limit the effects of confounding variables on a difference between treatments in a controlled observational study: matching; and adjusting for known confounding variables (covariates).
+
+# How to present your statistical results
+
+## Style of a results section {.flexbox .vcenter}
+
+- Write the text of the Results section concisely and objectively. 
+- The passive voice will likely dominate here, but use the active voice as much as possible. 
+- Use the past tense. 
+- Avoid repetitive paragraph structures. Do not interpret the data here.
+
+## Function of a results section {.flexbox .vcenter}
+
+- The function is to objectively present your key results, without interpretation, in an orderly and logical sequence using both text and illustrative materials (Tables and Figures). 
+
+- The results section always begins with text, reporting the key results and referring to figures and tables as you proceed. 
+
+- The text of the Results section should be crafted to follow this sequence and highlight the evidence needed to answer the questions/hypotheses you investigated. 
+
+- Important negative results should be reported, too. Authors usually write the text of the results section based upon the sequence of Tables and Figures.
+
+## Summaries of the statistical analyses {.smaller .flexbox .vcenter}
+
+May appear either in the text (usually parenthetically) or in the relevant Tables or Figures (in the legend or as footnotes to the Table or Figure). Each Table and Figure must be referenced in the text portion of the results, and you must tell the reader what the key result(s) is that each Table or Figure conveys.
+
+- Tables and Figures are assigned numbers separately and in the sequence that you will refer to them from the text.
+    - The first Table you refer to is Table 1, the next Table 2 and so forth.
+    - Similarly, the first Figure is Figure 1, the next Figure 2, etc.
+
+- Each Table or Figure must include a brief description of the results being presented and other necessary information in a legend.
+    - Table legends go above the Table; tables are read from top to bottom.
+    - Figure legends go below the figure; figures are usually viewed from bottom to top.
+
+- When referring to a Figure from the text, "Figure" is abbreviated as Fig.,e.g., (Fig. 1. Table is never abbreviated, e.g., Table 1.
+
+## Example {.flexbox .vcenter}
+
+For example, suppose you asked the question, "Is the average height of male students the same as female students in a pool of randomly selected Biology majors?"  You would first collect height data from large random samples of male and female students. You would then calculate the descriptive statistics for those samples (mean, SD, n, range, etc) and plot these numbers. Suppose you found that male Biology majors are, on average, 12.5 cm taller than female majors; this is the answer to the question. Notice that the outcome of a statistical analysis is not a key result, but rather an analytical tool that helps us understand what is our key result.
+
+## Differences, directionality, and magnitude {.smaller .flexbox .vcenter}
+
+- Report your results so as to provide as much information as possible to the reader about the nature of differences or relationships. 
+
+- For example, if you are testing for differences among groups, and you find a significant difference, it is not sufficient to simply report that "groups A and B were significantly different". How are they different? How much are they different? 
+
+- It is much more informative to say something like, "Group A individuals were 23% larger than those in Group B", or, "Group B pups gained weight at twice the rate of Group A pups." 
+
+- Report the direction of differences (greater, larger, smaller, etc) and the magnitude of differences (% difference, how many times, etc.) whenever possible.
+
+## Statistical results in text {.smaller .flexbox .vcenter}
+
+- Statistical test summaries (test name, p-value) are usually reported parenthetically in conjunction with the biological results they support. This parenthetical reference should include the statistical test used, the value, degrees of freedom and the level of significance. 
+
+- For example, if you found that the mean height of male Biology majors was significantly larger than that of female Biology majors, you might report this result (in blue) and your statistical conclusion (shown in red) as follows:
+
+    - "Males (180.5 ± 5.1 cm; n=34) averaged 12.5 cm taller than females (168 ± 7.6 cm; n=34) in the pool of Biology majors (two-sample t-test, t = 5.78, 33 d.f., p < 0.001).”
+
+- If the summary statistics are shown in a figure, the sentence above need not report them specifically, but must include a reference to the figure where they may be seen:
+
+    - "Males averaged 12.5 cm taller than females in the pool of Biology majors (two-sample t-test, t = 5.78, 33 d.f., p < 0.001; Fig. 1)."
+
+## Statistical results in text {.flexbox .vcenter}
+
+- Always enter the appropriate units when reporting data or summary statistics.
+    - for an individual value you would write, "the mean length was 10 cm", or, "the maximum time was 140 min."
+    - When including a measure of variability, place the unit after the error value, e.g., "...was 10 ± 2.3 m".
+    - Likewise place the unit after the last in a series of numbers all having the same unit. For example: "lengths of 5, 10, 15, and 20 m", or "no differences were observed after 2, 4, 6, or 8 min. of incubation".
+
+
+# Graphical representation
+
+## Graphical representation | general approaches {.smaller}
+
+1. Distributions of data
+    * location
+    * spread
+    * shape
+  
+2. Associations between variables
+    * relationship among two or more variables
+    * differences among groups in their distributions
+  
+## Graphical representation | general approaches {.smaller}
+
+1. Distributions of data
+    * bar graph
+    * histogram
+    * box plot
+  
+2. Associations between variables
+    * pie chart
+    * grouped bar graph
+    * mosaic plot
+    * box plot
+    * scatter plot
+    * dot plot 'stripchart'
+
+## Box Plot {.flexbox .vcenter .smaller}
+
+- Displays median, first and third quartile, range, and extreme observations 
+- Can be combined with mean and standard error of the mean
+- Concise way to visualize many aspects of distribution
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.001.jpeg")
+```
+
+[//]: The relationship between the ornamentation of male guppies and the average attractiveness of their sons, n=36
+
+## Scatter Plot {.flexbox .vcenter .smaller}
+
+- Displays association between two numerical variables 
+- Non-zero baseline often ok  
+- Goal is association not magnitude or frequency  
+- Points fill the space available 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.002.jpeg")
+```
+
+[//]: The relationship between the ornamentation of male guppies and the average attractiveness of their sons, n=36
+
+## Examples of the good, bad and the ugly of graphical representation {.flexbox .vcenter}
+
+- Examples of bad graphs and how to improve them.
+- Courtesy of K.W. Broman  
+- www.biostat.wisc.edu/~kbroman/topten_worstgraphs/ 
+
+## Ticker tape parade {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.003.jpeg")
+```
+
+[//]: Roeder K  1994  DNA fingerprinting: A review of the controversy  with discussion . Statistical Science 9:222T278, Figure 4 
+
+## A line to no understanding {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.004.jpeg")
+```
+
+[//]: Epstein MP, Satten GA  2003  Inference on haplotype effects in caseTcontrol studies using unphased genotype data.  American Journal of Human Genetics 73:1316T1329, Figure 1
+
+## Distribution of TFBS {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.005.jpeg")
+```
+
+[//]: Cawley S, et al.  2004  Unbiased mapping of transcription factor binding sites along human chromosomes 21 and 22  points to widespread regulation of noncoding RNAs. Cell 116:499T509, Figure 1
+
+## Carolyn's favorite figure {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.006.jpeg")
+```
+
+## A bake sale of pie charts {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.007.jpeg")
+```
+
+[//]: Bell ML, et al.  2007  Spatial and temporal variation in PM2.5 chemical composition in the United States for health effects  studies. Environmental Health Perspectives 115:989T995, Figure 3
+
+## Wack a mole
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.008.jpeg")
+```
+
+[//]: Cotter DJ, et al.  2004  Hematocrit was not validated as a surrogate endpoint for survival amoung epoetinTtreated  hemodialysis patients. Journal of Clinical Epidemiology 57:1086T1095, Figure 2  
+
+
+# Graphical representation best practices
+
+## Principles of effective display {.flexbox .vcenter}
+
+> "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time  with the least ink in the smallest space"
+>
+> --- Edward Tufte
+
+## The best statistical graphic ever drawn | according to Edward Tufte
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.009.jpeg")
+```
+
+[//]: This map by Charles Joseph Minard portrays the losses suffered by Napoleon's army in the  Russian campaign of 1812. Beginning at the Polish-Russian border, the thick band shows  the size of the army at each position. The path of Napoleon's retreat from Moscow in the  bitterly cold winter is depicted by the dark lower band, which is tied to temperature and  time scales. 
+
+## Principles of effective display
+
+- Show the data  
+- Encourage the eye to compare differences 
+- Represent magnitudes honestly and accurately  
+- Draw graphical elements clearly, minimizing clutter  
+- Make displays easy to interpret 
+
+## “Above all else show the data” | Tufte  1983 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.010.jpeg")
+```
+
+[//]: The relationship between the numbers of native tropical stingless bees and Africanized honey bees onflowering shrubs in French Guiana. The data have been erased in the left panel. Redrawn from Roubik 1978.
+
+## “Maximize  the  data to ink  ratio,  within  reason” | Tufte   1983   
+
+Draw  graphical  elements  clearly,  minimizing  clutter  
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.011.jpeg")
+```
+
+[//]: The percentage of adults over 18 with a “body mass index” greater than 25 in different years    The Economist 2006  . Body mass index is a measure of weight relative to height. 
+
+## “A  graphic  does  not  distort  if  the  visual  representation  of  the  data  is  consistent  with  the  numerical   representation” – Tufte   1983   
+
+Represent  magnitudes  honestly  and  accurately  
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.012.jpeg")
+```
+
+[//]: Slow wave sleep in the brain hemispheres of mallard ducks sleeping with one eye open. From Rattenborg et al. 1999  Nature 
+
+## How Fox News makes a figure ....    
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.013.jpeg")
+```
+
+## How Fox News makes a figure ....   
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.013.jpeg")
+```
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.014.jpeg")
+```
+
+“Graphical  excellence  begins  with  telling  the  truth  about  the  data”  –  Tufte    1983  
+
+## Make  displays  easy  to  interpret  
+
+“Graphical  excellence  consists  of  complex  ideas  communicated  with  clarity,  precision  and  efficiency”    – Tufte   1983 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.015.jpeg")
+```
+
+[//]: Map displaying the number of bird species and the number of distinct human languages present in each square of a grid of continental Africa. (Reproduced from Moore et al.  2002)
