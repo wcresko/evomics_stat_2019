@@ -2,7 +2,7 @@
 title: "Documenting and Reproducing Genomics Research"
 author: "Hannah Tavalire and Bill Cresko - University of Oregon"
 date: "January 2019 - Cesky Krumlov"
-output: ioslides_presentation
+output: revealjs::revealjs_presentation
 ---
 
 ```{r setup, include=FALSE}

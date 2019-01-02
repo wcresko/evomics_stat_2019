@@ -9,6 +9,8 @@ output: revealjs::revealjs_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Lecture 1 - Using R for Biostatistical Analyses
+
 # But first a beautiful chair
 
 ## {.flexbox .vcenter}
@@ -29,25 +31,26 @@ knitr::include_graphics("images/week_01.002.jpeg")
 knitr::include_graphics("images/week_01.003.jpeg")
 ```
 
+___________________
+
 # Why use `R`?
 
-## Why use `R`?  {.smaller}
-
+## {}
 - R is a _statistical_ programming language (derived from S)
 - Superb data management & graphics capabilities
-- Reproducibility - can keep your scripts to see exactly what was done
 - You can write your own functions
 - Powerful and flexible
 - Runs on all computer platforms
-    
-##
-- Well established system of packages and documentation- new enhancements all the time!
-- Active development and dedicated community (lots of help)
+- Well established system of packages and documentation
+- Active development and dedicated community
 - Can use a nice GUI front end such as `Rstudio`
-- Can embed your `R` analyses in dynamic, polished files using `R markdown`
+- Reproducibility 
+  - keep your scripts to see exactly what was done
+  - distribute these with your data
+  - embed your `R` analyses in polished `R markdown` files
 - FREE
     
-## Why use `R`? {.flexbox .vcenter}
+## {.flexbox .vcenter}
 ```{r, echo=FALSE, out.width='35%'}
 knitr::include_graphics("images/volcano_plot.png")
 knitr::include_graphics("images/rainbow_boxplot.png")
@@ -62,18 +65,23 @@ knitr::include_graphics("images/Stacked_barplot.png")
 - Quick R Homepage: http://www.statmethods.net
 - Bioconductor: http://www.bioconductor.org    
 - An Introduction to R (long!): http://cran.r-project.org/doc/manuals/R-intro.html
+- R for Data Science: https://r4ds.had.co.nz
 - Google - tutorials, guides, demos, packages and more
 
-
 ## Running `R` {.flexbox .vcenter}
-
-- Run R from the command line- type R
+- Need to make sure that you have `R` installed 
+  - locally or on a server
+  - https://www.r-project.org
+  
+- Run R from the command line
+  - just type `R`
+  - can run it locally as well as on clsuters
 
 - Install a R Integrated Development Environment (IDE)
-    - RStudio: http://www.rstudio.com
-    - Makes working with R much easier, particularly for a new R user
-    - Run on Windows, Mac or Linux OS
-
+  - RStudio: http://www.rstudio.com
+  - Makes working with R much easier, particularly for a new R user
+  - Run on Windows, Mac or Linux OS
+  - We're running as a server on the AWS instance
 
 ## `R Studio` {.flexbox .vcenter}
 
@@ -81,44 +89,66 @@ knitr::include_graphics("images/Stacked_barplot.png")
 knitr::include_graphics("images/RStudio_Screenshot.png")
 ```
 
-## _Exercise 1.1: Exploring R studio_ {.flexbox .vcenter}
+___________________
+
+# Exercise 1.1 - Exploring R studio {.flexbox .vcenter}
+
+## Exercise 1.1 - Exploring R studio {}
 
 - Take a few minutes to familiarize yourself with the R studio environment by locating the following features:
     - The windows clockwise from top left are: the code editor, the workspace and history, the plots and files window, and the R console.
     - In the plots and files window, click on the packages and help tabs to see what they offer. 
     - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
 
-- Now open the file called *Student_Exercises_for_Workshop_Lectures.Rmd*. This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
+- Now open the file called *Student_Exercises_for_Workshop_Lectures.Rmd*. 
+- This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
 
+___________________
+
+# Introduction to `RMarkdown`
 
 ## `RMarkdown` {.flexbox .vcenter}
 
 - A better way to embed code in R Markdown files
-- http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+  - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+  - https://bookdown.org/yihui/rmarkdown/
+  - https://bookdown.org/yihui/bookdown/
 - You can insert `R chunks` into `Rmarkdown` documents
-- _Exercise 1.2: Intro to `R Markdown` Files_
+- You will be doing more with markdown on Thursday
+
+## Exercise 1.2 - `R Markdown` Files
+
+- Take a few minutes to familiarize yourself with RMarkdown Files
+- You will be doing all of your work in RMarkdown
+
+___________________
 
 # BASICS of `R` 
 
-## BASICS of `R` {.flexbox .vcenter .smaller}
+## BASICS of `R` {}
 
-- Commands can be submitted through the terminal, console or scripts
-- In your scripts, anything that follows '#' symbol (aka hash) is just for humans
-- Notice on these slides I'm evaluating the code chunks and showing output
-- The output is shown here after the two `#` symbols and the number of output items is in `[]`
-- Also notice that `R` follows the normal priority of mathematical evaluation
+- Commands can be submitted through 
+  - terminal, console or scripts
+  - can be embedded as `code chunks` in RMarkdown
+- On these slides evaluating code chunks and showing output
+  - shown here after the two `#` symbols
+  - the number of output items is in `[]`
+- `R` follows the normal priority of mathematical evaluation (PEDMAS)
 
+## BASICS of `R` {}
 
+input code chunk and then output
 ```{r basic multiplication, echo=TRUE}
 4*4
 ```
 
+input code chunk and then output
 ```{r more multiplication, echo=TRUE}
 (4+3*2^2)
 ```
 
-
 ## Assigning Variables {.flexbox .vcenter}
+
 - A better way to do this is to assign variables
 - Variables are assigned values using the `<-` operator.
 - Variable names must begin with a letter, but other than that, just about anything goes.
@@ -147,12 +177,14 @@ These do not work
 
 - Arithmetic operations can be performed easily on functions as well as numbers.
 
-```{r functions, eval = FALSE, echo = TRUE}
+```{r functions, eval = TRUE, echo = TRUE}
+x <- 12
 x+2
 x^2
 log(x)
 ```
 
+## Arithmetic operations on functions {}
 - Note that the last of these - `log` - is a built in function of `R`, and therefore the object of the function needs to be put in parentheses
 - These parentheses will be important, and we'll come back to them later when we add arguments after the object in the parentheses  
 - The outcome of calculations can be assigned to new variables as well, and the results can be checked using the 'print' command
@@ -190,7 +222,10 @@ print (z)
 
 ## VECTORS {.flexbox .vcenter}
 
-- In general `R` thinks in terms of vectors (a list of characters, factors or numerical values) and it will benefit any `R` user to try to write programs with that in mind, as it will simplify most things.
+- In general `R` thinks in terms of vectors
+  - a list of characters, factors or numerical values
+  - it will benefit any `R` user to try to write scripts with that in mind
+  - it will simplify most things
 - Vectors can be assigned directly using the 'c()' function and then entering the exact values.
 
 ## VECTORS {.flexbox .vcenter}
@@ -198,6 +233,11 @@ print (z)
 ```{r Example vectors, echo=TRUE}
 n <- c(2,3,4,2,1,2,4,5,10,8,9)
 print(n)
+```
+
+```{r Example vectors two, echo=TRUE}
+z <- n +3
+print(z)
 ```
 
 ## FACTORS {.flexbox .vcenter}
@@ -245,7 +285,7 @@ length(n)
 sample(n, replace = T)
 ```
 - Notice that the last function (`sample`) has an argument (`replace=T`)
-- Arguments simply modify or direct the function in some way
+- Arguments modify or direct the function in some way
 - There are many arguments for each function, some of which are defaults
 
 ## Getting Help {.flexbox .vcenter}
@@ -267,19 +307,26 @@ sample(n, replace = T)
 - args(mean)
 ```
 
-## Creating vectors {.smaller}
+## Creating vectors {}
 
 - Creating vector of new data by entering it by hand can be a drag
-- However, it is also very easy to use functions such as `seq` and `sample`
-- Try the examples below Can you figure out what the three arguments in the parentheses mean?
-- Try varying the arguments to see what happens.
+- However, it is also very easy to use functions such as
+  - `seq`
+  - `sample`
+- Try the examples below 
+  - Can you figure out what the three arguments in the parentheses mean?
+  - Try varying the arguments to see what happens.
 - Don't go too crazy with the last one or your computer might slow way down
 
-## Creating vectors {.smaller}
+## Creating vectors {}
 
 ```{r, echo = TRUE}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
 print(seq_1)
+```
+
+## Creating vectors {}
+```{r, echo = TRUE}
 seq_2 <- seq(10.0, 0.0, by = -0.1)
 print(seq_2)
 ```
@@ -298,24 +345,14 @@ seq_square_new <- (seq_2)^2
 print(seq_square_new)
 ```
 
-
-## Drawing samples from distributions {.flexbox .vcenter}
+## Drawing samples from distributions {}
 
 - Here is a way to create your own data sets that are random samples.
 - Again, play around with the arguments in the parentheses to see what happens.
 
 ## Drawing samples from distributions {.smaller}
 
-```{r Samples from distributions 1, out.width='100%', echo = TRUE}
-x <- rnorm (10000, 0, 10)
-y <- sample (1:10000, 10000, replace = T)
-xy <- cbind(x,y)
-plot(x,y)
-```
-
-## Drawing samples from distributions {.smaller}
-
-```{r Samples from distributions 2, out.width='100%', echo = TRUE}
+```{r Samples from distributions 2, out.width='50%', echo = TRUE}
 x <- rnorm (10000, 0, 10)
 y <- sample (1:10000, 10000, replace = T)
 xy <- cbind(x,y)
@@ -324,7 +361,7 @@ plot(xy)
 
 ## Drawing samples from distributions {.smaller}
 
-```{r Samples from distributions 3, out.width='100%', echo = TRUE}
+```{r Samples from distributions 3, out.width='50%', echo = TRUE}
 x <- rnorm (10000, 0, 10)
 y <- sample (1:10000, 10000, replace = T)
 xy <- cbind(x,y)
@@ -339,13 +376,17 @@ hist(x)
 
 ## Drawing samples from distributions {.flexbox .vcenter out.width='50%'}
 
-```{r, out.width='100%', echo = TRUE}
+- `dnorm()` generates the probability density, which can be plotted using the `curve()` function.
+- Note that is curve is added to the plot using `add=TRUE`
+
+```{r, out.width='40%', echo = TRUE}
 x <-rnorm(1000, 0, 100)
 hist(x, xlim = c(-500,500))
 curve(50000*dnorm(x, 0, 100), xlim = c(-500,500), add=TRUE, col='Red')
 ```
-- `dnorm()` generates the probability density, which can be plotted using the `curve()` function.
-- Note that is curve is added to the plot using `add=TRUE`
+
+
+# Visualizing Data in `R`
 
 ## Visualizing Data {.flexbox .vcenter}
 
@@ -357,7 +398,7 @@ curve(50000*dnorm(x, 0, 100), xlim = c(-500,500), add=TRUE, col='Red')
 
 ## Visualizing Data {.flexbox .vcenter .smaller}
 
-```{r, echo = TRUE}
+```{r, out.width='50%', echo = TRUE}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
 plot (seq_1, xlab="space", ylab ="function of space", type = "p", col = "red")
 ```
@@ -365,16 +406,24 @@ plot (seq_1, xlab="space", ylab ="function of space", type = "p", col = "red")
 ## Putting plots in a single figure {.flexbox .vcenter}
 
 - On the next slide
-- The first line of the lower script tells R that you are going to create a composite figure that has two rows and two columns. Can you tell how?
+- The first line of the lower script tells R that you are going to create a composite figure that has two rows and two columns. 
+- Can you tell how?
 
-```{r, echo=TRUE, outwidth="50%", out.height="20%"}
+```{r, echo=TRUE, outwidth="40%", out.height="20%"}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
 seq_2 <- seq(10.0, 0.0, by = -0.1)
 ```
 
+```{r, echo=TRUE, eval=FALSE, outwidth="50%", out.height="50%"}
+par(mfrow=c(2,2))
+plot (seq_1, xlab="time", ylab ="p in population 1", type = "p", col = 'red')
+plot (seq_2, xlab="time", ylab ="p in population 2", type = "p", col = 'green')
+plot (seq_square, xlab="time", ylab ="p2 in population 2", type = "p", col = 'blue')
+plot (seq_square_new, xlab="time", ylab ="p in population 1", type = "l", col = 'yellow')
+```
 ## Putting plots in a single figure {.flexbox .vcenter .smaller}
 
-```{r, echo=TRUE, outwidth="50%", out.height="50%"}
+```{r, echo=FALSE, eval=TRUE, outwidth="50%", out.height="50%"}
 par(mfrow=c(2,2))
 plot (seq_1, xlab="time", ylab ="p in population 1", type = "p", col = 'red')
 plot (seq_2, xlab="time", ylab ="p in population 2", type = "p", col = 'green')
@@ -382,54 +431,11 @@ plot (seq_square, xlab="time", ylab ="p2 in population 2", type = "p", col = 'bl
 plot (seq_square_new, xlab="time", ylab ="p in population 1", type = "l", col = 'yellow')
 ```
 
+## R Interlude 
 
-## R Interlude | Complete Excercises 1.3-1.8
+Complete Excercises 1.3-1.8
 
-## Working with 'Real' Datasets
-
-
-## A biological example to get us started {.flexbox .vcenter}
-
-Say you perform an experiment on two different strains of stickleback fish, one from an ocean population (RS) and one from a freshwater lake (BP) by making them microbe free. Microbes in the gut are known to interact with the gut epithelium in ways that lead to a proper maturation of the immune system.
-
-## A biological example to get us started {.smaller .flexbox .vcenter}
-
-EXPERIMENTAL SETUP - You carry out an experiment by treating multiple fish from each strain so that some of them have a conventional microbiota, and some are inoculated with only one bacterial species. You then measure the levels of gene expression in the stickleback gut using RNA-seq. You suspect that the sex of the fish might be important so you track it too.
-
-```{r, echo=FALSE, out.width='60%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/week_01.005.jpeg")
-```
-
-
-## {.flexbox .vcenter}
-
-```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/week_01.006.jpeg")
-```
-
-## Collecting Data with Analyses in Mind {.flexbox .vcenter}
-
-- How should the data set be organized to best analyze it?
-- What are the key properties of the variables?
-- Why does that matter for learning R?
-- Why does that matter for performing statistical analyses?
-
-
-## Data set rules of thumb (aka Tidy Data) {.flexbox .vcenter}
-
-- Store a copy of data in non-proprietary formats
-- Leave an uncorrected file when doing analyses
-- Maintain effective metadata about the data
-- When you add observations to a database, add rows
-- When you add variables to a database, add columns
-- A column of data should contain only one data type
-
-## {.flexbox .vcenter}
-
-```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/week_01.007.jpeg")
-```
-
+# Working with 'Real' Datasets in `R`
 
 ## Creating Data Frames in R {.smaller}
 
@@ -448,16 +454,10 @@ elevation <- c(0, 9.2, 3.8, 5, 5.6, 4.1, 7.1, 5.3)
 
 ```{r, echo=TRUE}
 mydata <- data.frame(habitat, temp, elevation)
-row.names(mydata) <- c("Reedy Lake", "Pearcadale", "Warneet", "Cranbourne",
-                       "Lysterfield", "Red Hill", "Devilbend", "Olinda")
+row.names(mydata) <- c("Reedy Lake", "Pearcadale", "Warneet", "Cranbourne", "Lysterfield", "Red Hill", "Devilbend", "Olinda")
 ```
 
 - Now you have a hand-made data frame with row names
-
-
-
-
-
 
 ## Reading in Data Frames in R {.flexbox .vcenter}
 
@@ -507,7 +507,136 @@ tapply(YourFile$temp, YourFile$habitat, var)
 ```
 
 
+________________________
+
+# Lecture 2 - Collaboration, Documentation and Reproducibility
+
+________________________
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("images/week_01.001.jpeg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/Messy-Lab.jpg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("images/example_screenshot_labnotebook.png")
+```
+
+# Collaboration using Git and GitHub
+
+## GitHub
+- Place to work collaboratively
+- Basics of command line git 
+- you can also do this in RStudio
+
+## Git and GitHub!
+- Make your GitHub acct!
+- Working in github through a browser versus syncing
+- Create a repo
+- Cloning a repo
+- Push to Github
+- Collaborating in a repo
+- Brief mention of other functions
+- Mention GitHub Pages or other additions
+
+## Git Interlude | Practicing basic git commands
+
+## What is markdown?  {.flexbox .vcenter}
+- Lightweight _formal_ markup language used to add formatting to plaintext documents
+    - Adding basic syntax to the text will make elements look different once rendered
+    - Available in many base editors (e.g., Atom text editor)
+- You then need a markdown application with a markdown processor/parser to render your text files into something more exciting
+    - Static and dynamic outputs!
+    - pdf, HTML, presentations, websites, scientific articles, etc
+
+## What is LaTeX?  {.flexbox .vcenter}
+
+
+## Markdown versus LaTeX {.flexbox .vcenter}
+
+
+## In-line versus Fenced Coding {.flexbox .vcenter}
+
+
+## Different Flavors of Markdown {.flexbox .vcenter}
+
+
+## RMarkdown
+- Effective use of Chunks (arguments)
+- Formatting text, images, etc
+- FlexDashboards
+
+## Knitting for report production
+- YAML headers and incorporating pandoc
+- Presentations
+- Manuscripts
+## Sharing/Publishing (RPubs, shiny)
+- Working together- rmd not rendered each time
+- Reports to nontech people- knit to a friendly output
+- Final publication (journal template)
+
+## R Interlude | Exploring RMarkdown
+
+
+
+
+_______________________________
+
 # Data wrangling and exploratory data analysis (EDA)
+
+## A biological example to get us started {.flexbox .vcenter}
+
+Say you perform an experiment on two different strains of stickleback fish, one from an ocean population (RS) and one from a freshwater lake (BP) by making them microbe free. Microbes in the gut are known to interact with the gut epithelium in ways that lead to a proper maturation of the immune system.
+
+## A biological example to get us started {.smaller .flexbox .vcenter}
+
+EXPERIMENTAL SETUP - You carry out an experiment by treating multiple fish from each strain so that some of them have a conventional microbiota, and some are inoculated with only one bacterial species. You then measure the levels of gene expression in the stickleback gut using RNA-seq. You suspect that the sex of the fish might be important so you track it too.
+
+```{r, echo=FALSE, out.width='60%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/week_01.005.jpeg")
+```
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/week_01.006.jpeg")
+```
+
+## Collecting Data with Analyses in Mind {.flexbox .vcenter}
+
+- How should the data set be organized to best analyze it?
+- What are the key properties of the variables?
+- Why does that matter for learning R?
+- Why does that matter for performing statistical analyses?
+
+
+## Data set rules of thumb (aka Tidy Data) {.flexbox .vcenter}
+
+- Store a copy of data in non-proprietary formats
+- Leave an uncorrected file when doing analyses
+- Maintain effective metadata about the data
+- When you add observations to a database, add rows
+- When you add variables to a database, add columns
+- A column of data should contain only one data type
+
+## {.flexbox .vcenter}
+
+```{r, echo=FALSE, out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/week_01.007.jpeg")
+```
+
+____________________________________________________
+
+# Tidyverse family of packages {.smaller}
 
 ## Tidyverse family of packages {.smaller}
 
@@ -546,21 +675,21 @@ knitr::include_graphics("images/week_3.013.jpeg")
 knitr::include_graphics("images/week_3.014.jpeg")
 ```
 
-## Types of vectors of data {.vcenter}
+## Types of vectors of data {}
 
-`int` stands for integers  
+- `int` stands for integers  
 
-`dbl` stands for doubles, or real numbers
+- `dbl` stands for doubles, or real numbers
 
-`chr` stands for character vectors, or strings  
+- `chr` stands for character vectors, or strings  
 
-`dttm` stands for date-times (a date + a time)  
+- `dttm` stands for date-times (a date + a time)  
 
-`lgl` stands for logical, vectors that contain only TRUE or FALSE
+- `lgl` stands for logical, vectors that contain only TRUE or FALSE
 
-`fctr` stands for factors, which R uses to represent categorical variables with fixed possible values  
+- `fctr` stands for factors, which R uses to represent categorical variables with fixed possible values  
 
-`date` stands for dates  
+- `date` stands for dates  
 
 ## Types of vectors of data {.smaller}
 
@@ -664,7 +793,9 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
 
 ## R INTERLUDE | Complete Exercises 1.9-1.11 {.flexbox .vcenter}
 
-# The tidyverse Continued: ggplot2 {.flexbox .vcenter}
+_________________________________
+
+# Graphical representation
 
 ## GGPlot2 and the Grammar of Graphics
 
@@ -679,8 +810,193 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
 knitr::include_graphics("images/images_4a.017.jpeg")
 ```
 
+# Graphical representation
 
-[//]: The Grammar of Graphics. Visual by Thomas de Beus
+## Graphical representation | general approaches {.smaller}
+
+1. Distributions of data
+    * location
+    * spread
+    * shape
+  
+2. Associations between variables
+    * relationship among two or more variables
+    * differences among groups in their distributions
+  
+## Graphical representation | general approaches {.smaller}
+
+1. Distributions of data
+    * bar graph
+    * histogram
+    * box plot
+  
+2. Associations between variables
+    * pie chart
+    * grouped bar graph
+    * mosaic plot
+    * box plot
+    * scatter plot
+    * dot plot 'stripchart'
+
+## Box Plot {.flexbox .vcenter .smaller}
+
+- Displays median, first and third quartile, range, and extreme observations 
+- Can be combined with mean and standard error of the mean
+- Concise way to visualize many aspects of distribution
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.001.jpeg")
+```
+
+[//]: The relationship between the ornamentation of male guppies and the average attractiveness of their sons, n=36
+
+## Scatter Plot {.flexbox .vcenter .smaller}
+
+- Displays association between two numerical variables 
+- Non-zero baseline often ok  
+- Goal is association not magnitude or frequency  
+- Points fill the space available 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.002.jpeg")
+```
+
+[//]: The relationship between the ornamentation of male guppies and the average attractiveness of their sons, n=36
+
+## Examples of the good, bad and the ugly of graphical representation {.flexbox .vcenter}
+
+- Examples of bad graphs and how to improve them.
+- Courtesy of K.W. Broman  
+- www.biostat.wisc.edu/~kbroman/topten_worstgraphs/ 
+
+## Ticker tape parade {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.003.jpeg")
+```
+
+[//]: Roeder K  1994  DNA fingerprinting: A review of the controversy  with discussion . Statistical Science 9:222T278, Figure 4 
+
+## A line to no understanding {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.004.jpeg")
+```
+
+[//]: Epstein MP, Satten GA  2003  Inference on haplotype effects in caseTcontrol studies using unphased genotype data.  American Journal of Human Genetics 73:1316T1329, Figure 1
+
+## Distribution of TFBS {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.005.jpeg")
+```
+
+[//]: Cawley S, et al.  2004  Unbiased mapping of transcription factor binding sites along human chromosomes 21 and 22  points to widespread regulation of noncoding RNAs. Cell 116:499T509, Figure 1
+
+## Carolyn's favorite figure {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.006.jpeg")
+```
+
+## A bake sale of pie charts {.flexbox .vcenter .smaller}
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.007.jpeg")
+```
+
+[//]: Bell ML, et al.  2007  Spatial and temporal variation in PM2.5 chemical composition in the United States for health effects  studies. Environmental Health Perspectives 115:989T995, Figure 3
+
+## Wack a mole
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.008.jpeg")
+```
+
+[//]: Cotter DJ, et al.  2004  Hematocrit was not validated as a surrogate endpoint for survival amoung epoetinTtreated  hemodialysis patients. Journal of Clinical Epidemiology 57:1086T1095, Figure 2  
+
+
+# Graphical representation best practices
+
+## Principles of effective display {.flexbox .vcenter}
+
+> "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time  with the least ink in the smallest space"
+>
+> --- Edward Tufte
+
+## The best statistical graphic ever drawn | according to Edward Tufte
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.009.jpeg")
+```
+
+[//]: This map by Charles Joseph Minard portrays the losses suffered by Napoleon's army in the  Russian campaign of 1812. Beginning at the Polish-Russian border, the thick band shows  the size of the army at each position. The path of Napoleon's retreat from Moscow in the  bitterly cold winter is depicted by the dark lower band, which is tied to temperature and  time scales. 
+
+## Principles of effective display
+
+- Show the data  
+- Encourage the eye to compare differences 
+- Represent magnitudes honestly and accurately  
+- Draw graphical elements clearly, minimizing clutter  
+- Make displays easy to interpret 
+
+## “Above all else show the data” | Tufte  1983 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.010.jpeg")
+```
+
+[//]: The relationship between the numbers of native tropical stingless bees and Africanized honey bees onflowering shrubs in French Guiana. The data have been erased in the left panel. Redrawn from Roubik 1978.
+
+## “Maximize  the  data to ink  ratio,  within  reason” | Tufte   1983   
+
+Draw  graphical  elements  clearly,  minimizing  clutter  
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.011.jpeg")
+```
+
+[//]: The percentage of adults over 18 with a “body mass index” greater than 25 in different years    The Economist 2006  . Body mass index is a measure of weight relative to height. 
+
+## “A  graphic  does  not  distort  if  the  visual  representation  of  the  data  is  consistent  with  the  numerical   representation” – Tufte   1983   
+
+Represent  magnitudes  honestly  and  accurately  
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.012.jpeg")
+```
+
+[//]: Slow wave sleep in the brain hemispheres of mallard ducks sleeping with one eye open. From Rattenborg et al. 1999  Nature 
+
+## How Fox News makes a figure ....    
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='75%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.013.jpeg")
+```
+
+## How Fox News makes a figure ....   
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.013.jpeg")
+```
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.014.jpeg")
+```
+
+“Graphical  excellence  begins  with  telling  the  truth  about  the  data”  –  Tufte    1983  
+
+## Make  displays  easy  to  interpret  
+
+“Graphical  excellence  consists  of  complex  ideas  communicated  with  clarity,  precision  and  efficiency”    – Tufte   1983 
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='50%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.015.jpeg")
+```
+
+[//]: Map displaying the number of bird species and the number of distinct human languages present in each square of a grid of continental Africa. (Reproduced from Moore et al.  2002)
+
+
+
 
 ## The `geom_bar` function {.flexbox .vcenter}
 
