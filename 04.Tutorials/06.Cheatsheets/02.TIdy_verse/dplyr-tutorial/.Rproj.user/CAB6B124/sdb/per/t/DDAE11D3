@@ -1,0 +1,16 @@
+{
+    "contents" : "library(dplyr)\nsource(\"1-data.R\")\n\n# Create new sqlite3 database\nhflights_db <- src_sqlite(\"hflights.sqlite3\", create = TRUE)\n\n# Copy local data to remote database. Use indexes to make\n# joins faster\n#\n# ?copy_to.src_sql\ncopy_to(hflights_db, as.data.frame(flights), name = \"flights\", \n  indexes = list(c(\"date\", \"hour\"), \"plane\", \"dest\", \"arr\"), temporary = FALSE)\ncopy_to(hflights_db, as.data.frame(weather), name = \"weather\", \n  indexes = list(c(\"date\", \"hour\")), temporary = FALSE)\ncopy_to(hflights_db, as.data.frame(airports), name = \"airports\", \n  indexes = list(\"iata\"), temporary = FALSE)\ncopy_to(hflights_db, as.data.frame(planes), name = \"planes\", \n  indexes = list(\"plane\"), temporary = FALSE)\n\n# Once you have the data in the database, connect to it, instead of \n# loading data from disk\nflights_db <- hflights_db %>% tbl(\"flights\")\nweather_db <- hflights_db %>% tbl(\"weather\")\nplanes_db <- hflights_db %>% tbl(\"planes\")\nairports_db <- hflights_db %>% tbl(\"airports\")\n\n# You can now work with these objects like they're local data frames\nflights_db %>% filter(dest == \"SFO\")\nflights_db %>% left_join(planes_db)\n\n# Note that you often won't know how many rows you'll get - that's an expensive\n# operation (requires running the complete query) and dplyr doesn't do that\n# unless it has to.\n\n# Operations are lazy: they don't do anything until you need to see the data\nhourly <- flights_db %>%\n  filter(!is.na(hour)) %>%\n  group_by(date, hour) %>%\n  summarise(n = n(), arr_delay = mean(arr_delay))\n\nflights_db %>% \n  filter(!is.na(dep_delay)) %>%\n  group_by(date, hour) %>%\n  summarise(\n    delay = mean(dep_delay),\n    n = n()\n  ) %>% \n  filter(n > 10) %>% explain()\n\n\n# Use explain to see SQL and get query plan\nexplain(hourly)\nhourly\n\n# Use collect to pull down all data locally\nhourly_local <- collect(hourly)\nhourly_local\n\n# (Unfortunately date-time conversion for RSQLite is not great)\n",
+    "created" : 1404172565544.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2189121534",
+    "id" : "DDAE11D3",
+    "lastKnownWriteTime" : 1403708305,
+    "path" : "~/Dropbox (RStudio)/rstudio-training/14-dplyr-user/dplyr-tutorial/7-databases.R",
+    "project_path" : "7-databases.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

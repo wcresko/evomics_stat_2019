@@ -105,7 +105,7 @@ ___________________
     - In the plots and files window, click on the packages and help tabs to see what they offer. 
     - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
 
-- Now open the file called *Student_Exercises_for_Workshop_Lectures.Rmd*. 
+- Now open the file called *Exercises_for_R_Lectures.Rmd* 
 - This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
 
 ___________________
@@ -840,13 +840,34 @@ Whereas this equation, $$y=\frac{1}{2}$$, is put on a separate line
 
 Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
 
-## Final Thoughts about Markdown
-- HTML is a form of markdown
-- RMardown is just a specific form of Markdown
-- GitHub flavored markdown
-- Working together- rmd not rendered each time
-- Reports to nontech people- knit to a friendly output
-- Final publication (journal template)
+## Markdown is very flexible
+- You can import RMarkdown templates into RStudio
+- Just find a template and open it in RStudio
+- Better yet there are packages that add functionality
+- When you install the package it will show up in the 'From Template' section of the 'new file' startup screen
+- There are packages to make
+  - books
+  - journal articles
+  - slide shows
+  - interactive exercises
+  - many more
+- Some of these use 'Shiny'
+  - an interactive web based application
+  - allows users to input and get output
+
+## Final Thoughts on Markdown, LaTeX and GitHub
+- Many forms of markdown
+  - HTML is just a form of markdown
+  - RMardown is just a specific form of Markdown
+  - There is GitHub flavored markdown
+  - Once you learn one all the others are very easy
+- The goal increased collaboration and reproducibility
+  - Allows you to easily work with others by sharing the markdown file
+  - Allows **formal** representation of code and math
+  - Allows others to run your code directly
+  - Allows reports to nontech people
+  - All files are easily shared on GitHub
+- Once you start using Markdown you won't stop.....
 
 ## R Interlude | Exploring RMarkdown
 
@@ -1058,7 +1079,7 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
 
 _________________________________
 
-# Graphical representation
+# Graphical Communication
 
 ## GGPlot2 and the Grammar of Graphics
 
@@ -1072,8 +1093,6 @@ _________________________________
 ```{r, echo=FALSE, fig.cap="xxx", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4a.017.jpeg")
 ```
-
-# Graphical representation
 
 ## Graphical representation | general approaches {.smaller}
 
@@ -1159,9 +1178,9 @@ knitr::include_graphics("images/images_4a.007.jpeg")
 knitr::include_graphics("images/images_4a.008.jpeg")
 ```
 
-# Graphical representation best practices
+# Graphical communication best practices
 
-## Principles of effective display {.flexbox .vcenter}
+##
 
 > "Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time  with the least ink in the smallest space"
 >
@@ -1220,14 +1239,6 @@ knitr::include_graphics("images/images_4a.014.jpeg")
 ```
 
 “Graphical  excellence  begins  with  telling  the  truth  about  the  data”  –  Tufte    1983  
-
-## Make  displays  easy  to  interpret  
-
-“Graphical  excellence  consists  of  complex  ideas  communicated  with  clarity,  precision  and  efficiency”    – Tufte   1983 
-
-```{r, echo=FALSE, out.width='50%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/images_4a.015.jpeg")
-```
 
 # Using GGPlot2 to make nice figures
 

@@ -1,0 +1,126 @@
+---
+title: "Student Exercises"
+output: pdf_document
+author: your name here 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## _Exercise 1.1: Exploring R Studio_
+Take a few minutes to familiarize yourself with the R studio environment by locating the following features:
+- The windows clockwise from top left are: the code editor, the workspace and history, the plots and files window, and the R console.
+- In the plots and files window, click on the packages and help tabs to see what they offer. 
+- See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
+
+Now open the file called 'Student_Exercises_for_Workshop_Lectures.Rmd'. This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
+
+
+## _Exercise 1.2: Intro to `R Markdown` Files_
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded `R` code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+Each code chunk begins and ends in the same way- with a fence. You can further specify what you want to show up in your final document using the `echo` and `eval` commands in the opening line. Insert a few code chunks below using the `insert` tab at the top of this window. Then, change the `echo` and `eval` arguments to TRUE or FALSE and see how different combinations of these arguments change the output when you knit. I have done the first one for you. Notice too that each `R` code chunk requires a unique title argument (here 'cars variant 1'), or the Rmd will not knit. 
+
+```{r cars variant 1, echo=TRUE, eval=TRUE}
+summary(cars)
+```
+
+What do you think `echo` and `eval` do, based on your manipulations?
+
+What are the defaults for `echo` and `eval`, based on your manipulations? 
+
+
+## _Exercise 1.3: Basic Mathmatics in `R`_
+Insert a code chunk below and complete the following tasks:
+1. Add and subtract
+2. Multiply and divide
+3. Raise a number to a power using the ^ symbol
+4. Create a more complex equation involving all of these operations to convince yourself that `R` follows the normal priority of mathematical evaluation
+
+## _Exercise 1.4: Assigning Variables and Arithmetic Functions in `R`_
+Insert a code chunk below and complete the following tasks:
+1. Assign three variables using basic mathmatic operations
+2. Take the log of your three variables
+3. Use the print function to display your most complex variable
+4. Use the `concatenate` function to print a sentence
+
+## _Exercise 1.5: Vectors and Factors_
+Insert a code chunk below and complete the following tasks:
+1. Create a numeric vector using the `c` function
+2. Create a multi-level character factor using the `c` function
+3. Use `str` and `class` to evaluate your variables
+
+## _Exercise 1.6: Basic Statistics_
+Insert a code chunk below and complete the following tasks:
+1. Create a vector and calculate the mean, sd, sum, length, and var
+2. Use the log and sqrt functions on your vector
+3. What happens when you try to apply these functions to a factor?
+4. Type the first couple letters of a function into your chunk, then hit tab- what happens?
+
+## _Exercise 1.7: Creating Larger Vectors and Random Sampling_
+Insert a code chunk below and complete the following tasks:
+1. Create a vector with 100 elements using the `seq` function and calculate two basic statistics on your vector
+2. Create a variable and `sample` it with equal probability 
+3. Create a normally distributed variable of 1000 elements using the `rnorm` function then `sample` that variable with and without replacement
+4. Use `hist`, `curve`, and `dnorm` to plot your normally distributed variable
+
+## Including Plots
+You can also embed plots, for example:
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## _Exercise 1.8: Basic Visualization_
+Insert a code chunk below and complete the following tasks, make sure to label all plot axes and have fun with colors!
+1.Create a variable using `seq` and make two different plots by changing the `type` argument 
+2.Create a normally distributed variable using `rnorm` and make two different plots using `hist` by varying the `breaks` argument (what does `breaks` appear to do?)
+3. Modify your parameter arguments to create a composite figure of the above graphs. 
+
+--------------------------------------------------
+
+## _Exercise 1.9: Creating a Data Frame and Evaluating Class_
+Insert a code chunk below and complete the following tasks:
+1. Recreate the dataframe from the slides by creating each vector then using `data.frame`
+2. Assign rownames to your dataframe using `rownames` and `c`
+3. Get class assignments for your whole dataframe using `str`
+4. Calculate the mean of each numeric variable 
+5. Make a descriptive plot of your choosing
+6. What happens when you use the functions `head` and `tail` on your dataframe?
+
+
+## _Exercise 1.10: Reading in Datasets and Indexing_
+By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
+1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to autopopulate paths (<-read.csv("data/RNAseq..."))
+2. Use `str` and `head` to get an idea of the data structure
+3. Use the `$` and `[ ]` operators to select out different parts of the dataframe.
+4. Make the dataset into a tibble
+
+
+## _Exercise 1.11: Indexing and Data Wrangling_
+Insert a code chunk below and complete the following tasks:
+1. `Select` all of the categorical variables and only 4 of the gene count variables and put them into a new variable
+2. `Mutate` each of the 4 gene expression values by performing a square root transformation making a new variable for each of the original (keep all 8 in the dataset).
+3. `Summarise` the mean and standard deviation for each of the gene count variables grouped by the ‘Microbiota’ and ‘Genotype’ categorical variables (hint, using `group_by` may make this easier; also remember your `na.rm=TRUE`)
+4. Create a histogram for one of the original gene expression variables, and one of the derived variables 
+5. Create a box plot for one of the original gene expression variables, and one of the derived variables, split by treatment
+6. Write the final data table to a .csv file and one of the figures to a .pdf file
+ 
+ 
+--------------------------------------------------
+
+
+## _Exercise 1.12: Data Visualization with ggplot2_
+Insert a code chunk below and complete the following tasks using your gene expression tibble:
+1. Create a barplot of microbiota and genotype- what does this tell you about experimental design? What if you randomly sample 100 rows with replacement (use `mydata[sample(nrow(mydata), 100, replace=T), ]`) - does the plot change?
+2. Create a histogram and freq polygram of the expression of GeneX. What is the best binwidth?
+3. Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.
+4. Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using `geom_point`. Plot your most interesting coexpression by treatment using `facet_wrap`.
+5. Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes. 
