@@ -55,7 +55,7 @@ x_sample_means[i] <- mean(x_samp)
 
 _______________________________
 
-##_Exercise 3.xx: An example of creating your own function to model forward and reverse mutation equilibrium
+##_Exercise 3.3: An example of creating your own function to model forward and reverse mutation equilibrium
 
 ```{r}
 forward_reverse_mutation <- function(forward = 0.00, reverse = 0.00, start_freq = 0.5, generations = 1000)
@@ -84,7 +84,7 @@ forward_reverse_mutation(forward = 0.001, reverse = 0.01, start_freq = seq(0.0, 
 
 _______________________________
 
-## _Exercise 3.3: Parametric t-test in R_
+## _Exercise 3.4: Parametric t-test in R_
 
 1. Using R make a dummy data set that contains one continuous and one categorical value (with two levels). Draw individuals of the two different factor levels from normal distributions with slightly different means. Take 100 obsv. per factor level. 
 
@@ -101,7 +101,7 @@ t.test(continuous_variable~cat_variable, dataset name)
 
 
 
-##_Exercise 3.xx: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square
+##_Exercise 3.5: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square
 
 ```{r}
 # initial genotype frequencies
@@ -155,7 +155,7 @@ print(chi.sq)
 
 _______________________________
 
-## _Exercise 3.4: Linear Models_
+## _Exercise 3.6: Linear Models_
 Write a script to read in the perchlorate data set. Now, add the code to perform a linear model of two continuous variables. Notice how the output of the linear model is specified to a new variable. Also note that the variables and dataset are placeholders
 
 ```{r, echo=TRUE, eval=FALSE}
@@ -194,7 +194,7 @@ Finally, remake this plot in GGPlot2
   
 _______________________________
 
-## _Exercise 3.5: Residual Analyses_
+## _Exercise 3.7: Residual Analyses_
 Take a look at the zebrafish diet data in the data folder. 
 1. Plot the relationship between protein and weight, fit the linear model (call it `zfish_lm`), and add the prediction line to your plot.
 2. Plot the residuals and fitted values using the following code: 
@@ -245,6 +245,9 @@ rna_aov <- aov(gene ~ microbiota*genotype)
 
 
 ____________________________________
+
+## _Exercise 4.1: NMDS
+
 
 # Nonmetric Multidimensional Scaling (NMDS) is a form of nonparametric clustering
 # As such, some of the distributional assumptions of multivariate analyses are relaxed
@@ -340,7 +343,7 @@ print (grp)
 ________________________________________
 
 
-# Biodiversity analysis in R
+## _Exercise 4.2: Biodiversity analysis in R - pulling it all together
 ## Steven Kembel
 ## UQAM
 ### steve.kembel@gmail.com
