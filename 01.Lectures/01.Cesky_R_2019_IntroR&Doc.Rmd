@@ -748,6 +748,16 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 3. Three
 4. Four
 
+## Inserting images or URLs  {}    
+
+```{r, eval=FALSE, echo=TRUE}
+[Link](https://commonmark.org/help/)
+![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
+```
+
+[Link](https://commonmark.org/help/)
+![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
+
 ## What is LaTeX?  {.flexbox .vcenter}
 
 - Pronounced «Lah-tech» or «Lay-tech» (to rhyme with «Bertolt Brecht»)
