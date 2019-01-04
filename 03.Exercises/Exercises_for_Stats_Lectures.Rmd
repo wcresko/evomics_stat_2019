@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Statistics for Genomics Lab
 
 
-## _Exercise 3.1: Examining Binomially Distributed Data
+## _Exercise 3.1: Examining Binomially Distributed Data_
 - Using R, simulate the following experimental data 
     - use the `rbinom()` function to create a new data set
     - look at the arguments to see how they relate to the trials, probability of each trial, and number of replicates
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
     
 _______________________________
 
-## _Exercise 3.2: Examining Normally Distributed Data
+## _Exercise 3.2: Examining Normally Distributed Data_
 
 - Simulate a population of 10,000 individual values for a variable x with a mean of 50 and a sd of 5.5.
 - From your simulated data take 1000 random samples of size 20, take the mean of each sample, and plot the distribution of these 1000 sample means using the for loop below.
@@ -56,7 +56,7 @@ x_sample_means[i] <- mean(x_samp)
 
 _______________________________
 
-##_Exercise 3.3: An example of creating your own function to model forward and reverse mutation equilibrium
+##_Exercise 3.3: An example of creating your own function to model forward and reverse mutation equilibrium_
 
 Populations of organisms constantly experience mutations, often in opposing directions for the same genes. For example, some mutations may create a new function, whereas others destroy that function. The relative rates of those mutations will determine the equilibrium frequencies of the wild type and mutant alleles in a population. Below is a function, defined using R, to calculate that equilibrium frequency over time. The values for the different forward and reverse mutatations, starting frequencies, and generations for the simulation are defined in the first script. Change those values in the last line to see how they affect the equilibrium frequency in the population. 
 
@@ -107,7 +107,7 @@ t.test(continuous_variable~cat_variable, dataset name)
 
 _______________________________
 
-##_Exercise 3.5: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square
+##_Exercise 3.5: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square_
 
 Another common statistical scenario is to test whether counts in different categories of variables is random or not. A good example is the combination of alleles in to genotypes in a diploid, sexually reproducing population. This so-called Hardy-Weinberg Equilibrium (HWE) expectation is simply a statement that the choice of each allele is an independent random event. Therefore, the null expectation under random mating and lack of strong selection is that the genotypes will be predicted by the binomial sampling of alleles based upon their frequencies. We can test against these expectations using the Chi-square statistic. Below modify the counts of genotypes to see how this affects your conclusion as to whether the population is in HWE.
 
@@ -164,7 +164,7 @@ print(chi.sq)
 
 _______________________________
 
-## _Exercise 3.6: Linear Models to examine the relationship of different hormone and thyroid morphology levels in stickleback fish
+## _Exercise 3.6: Linear Models to examine the relationship of different hormone and thyroid morphology levels in stickleback fish_
 
 Write a script to read in the 'perchlorate.tsv' data set. This data set is of a test of different zebrafish of the toxic compound perchlorate, which interferes with thyroid development and function. Several outcomes of fish thyroid morphology and hormone concentration were measured. The data set comprises the following variables in this order:
 
@@ -208,7 +208,7 @@ Finally, remake this plot in GGPlot2
 
 _______________________________
 
-## _Exercise 4.1: 2-by-2 fixed effect factorial ANOVA examining the effects of microbiome treatment on RNA expression levels in the guts of threespine stickleback
+## _Exercise 4.1: 2-by-2 fixed effect factorial ANOVA examining the effects of microbiome treatment on RNA expression levels in the guts of threespine stickleback_
 
 Load the RNAseq_microbiome.csv dataset which represents RNAseq data collected for three different genes (FGF3, Sox10 and SLC5) from the guts of threespine stickleback fish. In this experiment two different genotypes of stickleback (ocean and freshwater) were tested by subjecting each to two different microbiome treatments (conventional or mono associated). Stickleback can be made germ free and then either exposed to the conventional microbiome or just one microbe. After exposure the guts were extracted, RNA isolated, and RNAseq data collected. This data set has just three genes.
 
@@ -234,7 +234,7 @@ rna_aov <- aov(gene ~ microbiota*genotype)
 
 ____________________________________
 
-## _Exercise 4.2: NMDS for the analysis of multivariate data
+## _Exercise 4.2: NMDS for the analysis of multivariate data_
 
 Nonmetric Multidimensional Scaling (NMDS) is a form of nonparametric clustering. As such, some of the distributional assumptions of multivariate analyses are relaxed. The package VEGAN was orginally derived for ecological data across plots or sites. For example, ennumeration of species across different locations. However, the approach is very applicable to genetic data across geographic locals or phenotypes, or gene expression data across different samples.
 
@@ -347,7 +347,7 @@ print (grp)
 ________________________________________
 
 
-## _Exercise 4.3: Biodiversity analysis in R - pulling it all together
+## _Exercise 4.3: Biodiversity analysis in R - pulling it all together_
 
 This last exercise comes to us thanks to the hard work of Steven Kembel, who is a faculty member at the University of Montreal in Canada. Steve was a postdoctoral scholar at the University of Oregon and put together this very nice exercise to demonstrate how to pull numerous different R packages and scripts together into an integrated data analysis pipeline. The purpose of this particular script is to examine the biodiversity of grassland plants in ecological communities in Canada using several common ecological statistics. 
 
