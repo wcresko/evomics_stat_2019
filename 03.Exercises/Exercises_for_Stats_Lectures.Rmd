@@ -1,0 +1,829 @@
+---
+title: "Student Exercises | Genomics Statistics"
+output: pdf_document
+author: your name here 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Statistics for Genomics Lab
+
+## _Exercise 3.1: Binomially Distributed Data_
+- Using R, simulate these experimental data 
+    - using the `rbinom()` function
+    - look at the arguments to see how they map on to the trials, probability of each trial, and number of replicates
+    - use the `hist()` function to plot the simulated data.
+    - what do the y- and x-axes represent?
+    - what is the most common outcome, in terms of the number of “successes” per trial? Does this make sense?
+- Now just change you script to do the following
+    - perform 200 trials for each of the 100 replicates
+    - perform 2000 trials for each of the 100 replicate
+    - how do the distributions change when you go from 20 to 200 to 2000 trials?
+    
+    
+    
+    
+    
+
+    
+_______________________________
+
+## _Exercise 3.2: Normally Distributed Data_
+
+- Simulate a population of 10,000 individual values for a variable x with a mean of 50 and a sd of 5.5.
+- Take 1000 random samples of size 20, take the mean of each sample, and plot the distribution of these 1000 sample means using the for loop below.
+
+```{r, eval = F, echo = T}
+x_sample_means <- NULL
+for(i in 1:1000){
+x_samp <- sample(x, 20, replace=FALSE)
+x_sample_means[i] <- mean(x_samp)
+}
+```
+
+- For one of your samples, transform the observation values to z-scores. 
+- Plot the distribution of the z-scores, and calculate the mean and the standard deviation.  
+- Now, create a second population (called x.lognorm) by log-transforming all 10,000 values from population “x”
+- Plot the histogram of these data
+
+
+
+
+
+
+_______________________________
+
+##_Exercise 3.xx: An example of creating your own function to model forward and reverse mutation equilibrium
+
+```{r}
+forward_reverse_mutation <- function(forward = 0.00, reverse = 0.00, start_freq = 0.5, generations = 1000)
+
+{
+	freq <- start_freq + (1-start_freq)*forward - start_freq*reverse
+	freq_array = NULL
+	freq_array <- rbind(freq_array, start_freq, freq)
+		
+	for (j in 1:generations) {
+ 		freq <- freq + (1-freq)*forward - freq*reverse
+		freq_array <- rbind(freq_array, freq)	
+			}
+
+matplot (freq_array, xlab="generations", ylab="Equilibrium frequency of the A1 allele", ylim=c(0:1.0), type="l", col = 1:20)
+legend(600, 1, start_freq, col = 1:20, lty = 1:20)
+
+}
+
+forward_reverse_mutation(forward = 0.001, reverse = 0.01, start_freq = seq(0.0, 1.0, by = 0.1), generations = 1000)
+```
+
+
+
+
+
+_______________________________
+
+## _Exercise 3.3: Parametric t-test in R_
+
+1. Using R make a dummy data set that contains one continuous and one categorical value (with two levels). Draw individuals of the two different factor levels from normal distributions with slightly different means. Take 100 obsv. per factor level. 
+
+2. Now, perform a t-test to see if the two populations are statistically different from one another
+
+```{r, eval=FALSE, echo=TRUE}
+boxplot(continuous_variable~cat_variable, dataset name) 
+t.test(continuous_variable~cat_variable, dataset name) 
+```
+
+3. Repeat steps 1 and 2 above but use different sample sizes (e.g. 10 , then 100, then 1000, then 10,000 obsv. per factor level) 
+
+4. Repeat steps 1 and 2 above but now test between a categorical and continuous variable in the perchlorate data set
+
+
+
+##_Exercise 3.xx: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square
+
+```{r}
+# initial genotype frequencies
+AA_counts <- 11
+Aa_counts <- 43
+aa_counts <- 0
+```
+
+
+```{r}
+# total number of alleles, allele frequencies and probabilities
+num.alleles <- 2*sum(AA_counts,Aa_counts,aa_counts)
+num.a.alleles <- 2*aa_counts + Aa_counts
+num.A.alleles <- 2*AA_counts + Aa_counts
+p <- num.A.alleles / num.alleles
+q <- num.a.alleles / num.alleles
+```
+
+
+```{r}
+# Expected genotype probabilities in the F1
+expected.AA <- p^2
+expected.Aa <- 2 * p * q
+expected.aa <- q^2
+# Expected genotype frequencies in the F1
+E.AA <- expected.AA * num.alleles/2
+E.Aa <- expected.Aa * num.alleles/2
+E.aa <- expected.aa * num.alleles/2
+```
+
+```{r}
+# Calculate the chi squared statistic
+chi.sq <- ((AA-E.AA)^2 - E.AA) / E.AA  +
+          ((Aa-E.Aa)^2 - E.Aa) / E.Aa  +
+          ((aa-E.aa)^2 - E.aa) / E.aa 
+print(chi.sq)
+```
+
+- Calculate the p-value asscoted with chi.sq with 2 degrees of freedom
+- Significant p-values (< 0.05) mean that the population deviates from hardy-weinberg equilibrium
+- note: by defuault probability distribution calls give the "left-hand" probabilities (ie. the probability that your statistic is less than the given statistic), therefore we just subtract it from 1 to get the probability that the true statistic is greater than our estimate.
+
+```{r}
+1- pchisq(20.63219,df = 2)
+```
+
+
+
+
+
+
+_______________________________
+
+## _Exercise 3.4: Linear Models_
+Write a script to read in the perchlorate data set. Now, add the code to perform a linear model of two continuous variables. Notice how the output of the linear model is specified to a new variable. Also note that the variables and dataset are placeholders
+
+```{r, echo=TRUE, eval=FALSE}
+my_lm <- lm(XXX ~ YYY)
+```
+
+Now look at a summary of the linear model
+```{r, echo=TRUE, eval=FALSE}
+summary(my_lm)
+print(my_lm)
+```
+
+Now let's produce a nice regression plot
+```{r, echo=TRUE, eval=FALSE}
+plot(XXX~YYY, col = “blue”)
+abline(my_lm, col = “red”)
+```
+Notice that you are adding the fitted line from your linear model
+Finally, remake this plot in GGPlot2
+
+## Dataset information
+- Perchlorate_Data.tsv
+  - Strain - of zebrafish
+  - Perchlorate Level - treatment of perchlorate
+  - T4 Hormone Level
+  - Follicle Area
+  - Number of Follicles
+  - Age_Category
+  - Testes Area
+  - Testes Stage
+  
+  
+  
+  
+  
+  
+_______________________________
+
+## _Exercise 3.5: Residual Analyses_
+Take a look at the zebrafish diet data in the data folder. 
+1. Plot the relationship between protein and weight, fit the linear model (call it `zfish_lm`), and add the prediction line to your plot.
+2. Plot the residuals and fitted values using the following code: 
+```{r, echo=TRUE, eval=FALSE}
+hist(residuals(zfish_lm), breaks=30)
+
+plot (residuals(zfish_lm) ~ fitted.values(zfish_lm))
+plot (residuals(zfish_lm) ~ x)
+```
+3. Or apply the plot() function to the linear model object directly
+```{r, echo=TRUE, eval=FALSE}
+plot(zfish_lm)
+```
+4. Figure out what these plots are telling you
+5. Use the influence.measures function to detemine if we have any high leverage observations to worry about
+
+
+
+
+
+
+_______________________________
+
+## _Exercise 3.8: One way ANOVA_
+Again, use the RNAseq_lip.tsv data. Let’s test for an effect of Population on Gene01 expression levels
+1. First, look at how the data are distributed using a boxplot.
+2. now use the `aov` and `summary` functions to run an ANOVA. 
+
+
+
+
+
+_______________________________
+
+## _Exercise 3.9: 2-by-2 fixed effect factorial ANOVA_
+Load the RNAseq.tsv dataset. What are the variables? Continuous or categorical?
+1. Use boxplots to graphically illustrate differences in distributions among genotype and microbiota treatment.
+2. Fit the factorial linear model - two different ways to do the same thing- then use the summary function to look at your results. 
+
+```{r, echo=TRUE, eval=FALSE}
+rna_aov <- aov(gene ~ microbiota + genotype + microbiota:genotype)
+rna_aov <- aov(gene ~ microbiota*genotype)
+```
+3. If there is an interaction, can we understand it by looking at the boxplots?
+
+
+
+
+
+____________________________________
+
+# Nonmetric Multidimensional Scaling (NMDS) is a form of nonparametric clustering
+# As such, some of the distributional assumptions of multivariate analyses are relaxed
+# The package vegan was orginally derived for ecological data across plots or sites.
+# For example, ennumeration of species across different locations.
+# However, the approach is very applicable to genetic data across geographic locals or phenotypes,
+# Or gene expression data across different samples.
+
+# First off, make sure to install the vegan package with all dependencies.
+# Now, we'll reanalyze the yeast data from yesterday but with samples as rows and genes as columns.
+# This is similar to a community composition raw matrix where sites would be rows and species in the columns.
+
+libray (vegan)
+yeast_data <- read.table('yeast.tsv', row.names = 1, header = T, sep = '\t')
+head (yeast_data)
+
+# We'll first turn the raw data matrix into a dissimilarity matrix for all samples
+# The decostand function is a form of normalization.
+
+vare.dis <- vegdist(decostand(yeast_data, "hell"), "euclidean")
+print (vare.dis)
+
+# Now we'll perform the clustering of the samples using multidimensional scaling.
+# The goal of this is to represent complex data in lower dimensions without losing too much information.
+# Take a look at the 'stress' values of moving from a higher to lower
+# dimensionality of the data. Usually a value of 0.15 or lower is considered acceptable.
+
+vare.mds0 <- monoMDS(vare.dis)
+print (vare.mds0)
+
+# Let's take a look at how the dissimilarities among samples maps onto the ordination distance.
+# Notice that there is a fit with the data, but we're no longer assumed consistent linearity over the entire data set.
+
+stressplot(vare.mds0, vare.dis)
+
+# Now let's look at the grouping of the samples in this lower dimensional space. Any clustering?
+
+ordiplot (vare.mds0, type = "t")
+
+# Now we can rerun the ordination and add all of the data (genes) as well.
+
+vare.mds <- metaMDS(yeast_data, trace = F)
+plot (vare.mds, type = "t")
+
+# We can run our old friend PCA on our data as well.
+
+vare.pca <- rda(yeast_data, scale = TRUE)
+print (vare.pca)
+
+# Showing both the locations of the samples. Try both plots.
+plot (vare.pca, scaling = -1)
+plot (vare.pca, scaling = 1)
+plot (vare.pca, scaling = 2)
+plot (vare.pca, scaling = 3)
+
+# And the weighting of the original variables (expression level) on the PCs
+biplot (vare.pca, scaling = -1)
+biplot (vare.pca, scaling = 1)
+
+# Lastly, we can use the dissimilarity matrices to perform hierarchical clustering.
+# Try both the non-normalized (clus.dis1) and normalized (clus.dis2) distances.
+
+clus.dis1 <- vegdist(yeast_data)
+clus.dis2 <- vegdist(decostand(yeast_data, "hell"), "euclidean")
+
+cluster <- hclust(clus.dis1, "single")
+plot(cluster)
+
+# now, try these different versions of clustering
+# what is different about them?
+
+cluster_complete <- hclust(clus.dis1, "complete")
+plot(cluster_complete)
+
+cluster_average <- hclust(clus.dis1, "average")
+plot(cluster_average)
+
+
+# Lastly, let's ask R to cut the tree into several clusters for us
+# I've written it as three. Try it with different numbers of clusters
+# and the different types of clustering from above.
+
+plot(cluster)
+rect.hclust(cluster, 4)
+grp <- cutree(cluster, 4)
+print (grp)
+
+
+
+
+
+
+________________________________________
+
+
+# Biodiversity analysis in R
+## Steven Kembel
+## UQAM
+### steve.kembel@gmail.com
+
+# General background
+In this workshop we are going to analyze a data set on the biodiversity of grassland plants in Alberta. This data set consists of data on the occurrence of grassland plants at several different sites in Alberta, along with information on their functional traits and phylogenetic relationships.
+
+I described this data set in more detail in a recent paper:
+S.W. Kembel and J.F. Cahill, Jr. 2011. Independent evolution of leaf and root traits within and among temperate grassland plant communities. PLoS ONE 6(6): e19992. (doi:10.1371/journal.pone.0019992).
+
+# How to use these workshop materials
+
+This workshop will walk through the process of loading and analyzing biodiversity data in R. If you want to work through the entire workshop you can follow along from the beginning. If you want to jump in to try an analysis at any point in the workshop,  make sure you have loaded the picante package and the workspace image that contains all of the data files by running the following commands.
+
+```{r eval=FALSE}
+library(picante)
+```
+```{r eval=FALSE}
+load("R_biodiversity_workspace.RData") # or replace filename with file.choose()
+```
+
+# Getting biodiversity data into R
+
+The first thing we need to do is import all the data we need into R.
+
+We will want to make sure the different packages we are going to use are loaded. We will be using functions from the **ape**, **picante**, and **vegan** packages today. Since **picante** depends on the other two packages, loading it will load the other two as well.
+
+```{r}
+library(picante)
+```
+
+To make it easier to load files, we can set our working directory to the folder containing the grassland data. The exact format of a filename will vary depending on your operating system. The format below works for Mac or Linux (although you'll need to change the location to wherever you put the files on your system). For Windows the file naming convention is different, a typical location would be something like `"c://Documents//grassland_data"`.
+
+Also, remember that you could use the `file.choose()` function for each of the file-reading commands in this tutorial to interactively select files to load, rather than setting the working directory and writing out the filenames.
+
+## Community data
+
+Ecological community data consist of observations of the (relative) abundance of species in different samples. In our case, the abundance measure is percent cover of different plant species in 20x20m quadrats in grasslands in different habitat types.
+
+The format for community data is a data.frame with samples in the rows and species in the columns. Our data are already in this format so we can load them using the following command. Note that since we've set our working directory to the folder containing all the data files, we just have to type the filename.
+
+```{r}
+# read community data
+# use plot IDs as rownames (first column of data)
+# use species names as colnames (default read.csv is header=TRUE)
+# replace filename with file.choose() to open interactive window
+comm <- read.csv("data/grassland.community.csv", header=TRUE, row.names=1)
+```
+
+By reading the data in this way, we have set the species names as the column names, and the sample names as the row names. This is important to note - we didn't load these labels in as data - they are the *names* of the rows/columns. Later this will make it easier for us to link different data sets. Let's check to make sure our rows and columns have reasonable-looking names.
+
+```{r}
+class(comm)
+# get the dimension of the community object (rows x columns)
+dim(comm)
+rownames(comm)
+head(colnames(comm))
+# take a peek at the data (just the first five rows/columns)
+comm[1:5, 1:5]
+```
+
+Each cell contains the percent cover of a species in a sample. Many multivariate methods are sensitive to the total abundance in a sample, so we should probably convert these absolute abundance estimates to a relative abundance estimate. We can do this with a function from the **vegan** package.
+
+```{r}
+# check total abundance in each sample
+apply(comm, 1, sum)
+# Turn percent cover to relative abundance by dividing each value by sample total abundance
+comm <- decostand(comm, method="total")
+# check total abundance in each sample
+apply(comm, 1, sum)
+# look at the transformed data
+comm[1:5, 1:5]
+```
+
+## Trait data
+We also have information on the leaf and root traits of each species. We can load these data in the same way as the community data, but now we will have species in the rows and traits in the columns.
+
+```{r}
+# replace filename with file.choose() to open interactive window
+traits <- read.csv("data/species.traits.csv", header=TRUE, row.names=1)
+# take a peek at the data
+head(traits)
+# plot the data
+pairs(traits)
+# some variables look skewed - log transform all variables
+traits <- log10(traits)
+# plot the transformed data
+pairs(traits)
+```
+
+## Metadata
+We have some information about the samples, including the habitat and site they were collected from, and a few basic environmental variables such as slope and moisture regime.
+
+```{r}
+# replace filename with file.choose() to open interactive window
+metadata <- read.csv("data/plot.metadata.csv", header=TRUE, row.names=1)
+# take a peek at the data
+head(metadata)
+```
+
+## Phylogeny
+
+If you have a phylogeny in the commonly used Newick or Nexus format it can be imported into R with the read.tree or read.nexus functions.
+
+```{r}
+# replace filename with file.choose() to open interactive window
+phy <- read.tree("data/grassland.phylogeny.newick")
+class(phy)
+phy
+```
+
+Our phylogeny is a special object of type `phylo`. The `phylo` format itself is documented at the **ape** homepage (http://ape.mpl.ird.fr/). A `phylo` object is a special type of `list` object - it has different elements such as tip labels and edge lengths, and R knows how to summarize and plot a `phylo` object due to the way it is defined by the **ape** package.
+
+```{r}
+# list the elements of our phylogeny
+names(phy)
+# what are the first few tip labels?
+phy$tip.label[1:5]
+# how many tips does our phylogeny have?
+Ntip(phy)
+# plot our phylogeny (the cex argument makes the labels small enough to read)
+plot(phy, cex=0.5)
+```
+
+## Cleaning and matching data sets
+Our workspace contains the community, trait, phylogeny, and metadata that we will need for our analyses.
+
+```{r}
+ls()
+```
+
+The data sets we are using today have already been cleaned up so that they contain the same species and the same samples, but often when we are working with our own data, there will be mismatches among different types of data. For example, our community data might only contain a subset of the species in our phylogeny, or there might be some species for which we have trait information but no phylogenetic information. For some analyses, R will assume that species are in the same order in both the community data set and the phylogeny. Sometimes there might be a typo in the labels for a dataset, and we will want to catch those before proceeding.
+
+There are several functions in **picante** that are designed to make sure different data sets match with one another. We should check that our phylogeny and community contain the same species, and that they are in the same order. The `match.phylo.comm` takes a community object and a phylo object, reports any species that are not present in both data sets, and outputs a version of each object in the same order and containing the same species.
+
+```{r}
+# check for mismatches/missing species
+combined <- match.phylo.comm(phy, comm)
+# the resulting object is a list with $phy and $comm elements.
+# replace our original data with the sorted/matched data
+phy <- combined$phy
+comm <- combined$comm
+```
+
+We should do the same matching for our trait data.
+
+```{r}
+combined <- match.phylo.data(phy, traits)
+# the resulting object is a list with $phy and $data elements.
+# replace our original data with the sorted/matched data
+phy <- combined$phy
+traits <- combined$data
+```
+
+We should also check whether our community data and metadata are in the same order.
+
+```{r}
+all.equal(rownames(comm), rownames(metadata))
+# they all match - if they didn't we could sort them to the same order
+# sort metadata rows to be in the same order as community rows
+metadata <- metadata[rownames(comm), ]
+```
+
+We're done! All of our data are now ready for analysis. In each of the sections below we will explore different ways of analyzing the biodiversity of plants in these grasslands.
+
+# Visualizing and summarizing biodiversity data
+
+## Community richness and diversity
+
+At a most basic level, we can ask about the overall taxonomic diversity of these grasslands. How many plant species are there? Do habitats differ in species richness?
+
+```{r fig.width=4,fig.height=4}
+# compare species richness between fescue and mixedgrass habitats
+boxplot(specnumber(comm) ~ metadata$habitat, ylab="# of species")
+# statistical test of difference
+t.test(specnumber(comm) ~ metadata$habitat)
+```
+
+Did we do a good job of sampling the diversity that is out there? We can look at a collector's curve to assess this.
+
+```{r fig.width=5,fig.height=5}
+# plot species accumulion curve across samples
+plot(specaccum(comm), xlab="# of samples", ylab="# of species")
+```
+
+# Multivariate community analysis
+
+How does the composition of plant communities vary across different samples? How are habitat type and environmental variables related to plant community composition?
+
+We can use multivariate ordination methods to explore community structure in more detail. These methods are available in the **vegan** package, which also includes excellent documentation and tutorials for these methods. The book "Numerical Ecology in R" by Borcard et al. gives a great overview of multivariate analysis methods.
+
+## Hierarchical clustering
+
+We can cluster together plots based on their overall community composition. We will calculate Bray-Curtis dissimilarity among all the samples, an abundance-weighted measure of how similar two communities are in terms of their species composition. We will then cluster together communities that are similar using an agglomerative hierarchical clustering algorithm.
+
+```{r}
+# calculate Bray-Curtis distance among samples
+comm.bc.dist <- vegdist(comm, method="bray")
+# cluster communities using average-linkage algorithm
+comm.bc.clust <- hclust(comm.bc.dist, method="average")
+# plot cluster diagram
+plot(comm.bc.clust, ylab="Bray-Curtis dissimilarity")
+```
+It looks like mixedgrass and fescue habitats contain different plant community types - the two main clusters separate fescue samples from all other samples.
+
+## Ordination
+
+There are numerous ordination methods available in R. For now, let's use non-metric multidimensional scaling to visualize the multivariate structure of these communities.
+
+```{r fig.width=4,fig.height=4}
+# The metaMDS function automatically transforms data and checks solution robustness
+comm.bc.mds <- metaMDS(comm, dist="bray")
+# Assess goodness of ordination fit (stress plot)
+stressplot(comm.bc.mds)
+```
+
+We can plot the ordination results in a variety of different ways.
+
+```{r}
+# plot site scores as text
+ordiplot(comm.bc.mds, display="sites", type="text")
+# automated plotting of results - tries to eliminate overlapping labels
+ordipointlabel(comm.bc.mds)
+# ordination plots are highly customizable
+# set up the plotting area but don't plot anything yet
+mds.fig <- ordiplot(comm.bc.mds, type="none")
+# plot just the samples, colour by habitat, pch=19 means plot a circle
+points(mds.fig, "sites", pch=19, col="green", select=metadata$habitat=="Fescue")
+points(mds.fig, "sites", pch=19, col="blue", select=metadata$habitat=="Mixedgrass")
+# add confidence ellipses around habitat types
+ordiellipse(comm.bc.mds, metadata$habitat, conf=0.95, label=TRUE)
+# overlay the cluster results we calculated earlier
+ordicluster(comm.bc.mds, comm.bc.clust, col="gray")
+```
+
+We can also visualize the abundance of species. The `ordisurf` function fits a smooth surface to estimates of species abundance.
+
+```{r message=FALSE,fig.width=5,fig.height=4,warning=FALSE}
+# plot Sphaeralcea abundance. cex increases the size of bubbles.
+ordisurf(comm.bc.mds, comm[,"Sphaeralcea_coccinea"], bubble=TRUE, main="Sphaeralcea coccinea abundance", cex=3)
+```
+
+### Adding environmental and trait data to ordinations
+
+How are environmental variables correlated with the ordination axes?
+
+```{r}
+ordiplot(comm.bc.mds)
+# calculate and plot environmental variable correlations with the axes
+# use the subset of metadata that are environmental data
+plot(envfit(comm.bc.mds, metadata[,3:6]))
+```
+
+It is also possible to do a constrained ordination such as constrained correspondence analysis (CCA) or redundancy analysis (RDA), where trait or environmental data are incorporated directly into the ordination. These methods are implemented in the functions `cca` and `rda` in **vegan**.
+
+# Trait evolution
+
+## Phylogenetic signal
+
+The idea of phylogenetic niche conservatism (the ecological similarity of closely related species) has attracted a lot of attention recently, for example in the widely used framework of inferring community assembly processes based on knowledge of community phylogenetic structure plus the phylogenetic conservatism of traits. (Webb et al. 2002).
+
+Phylogenetic signal is a quantitative measure of the degree to which phylogeny predicts the ecological similarity of species. The K statistic is a measure of phylogenetic signal that compares the observed signal in a trait to the signal under a Brownian motion model of trait evolution on a phylogeny (Blomberg et al. 2003). K values of 1 correspond to a Brownian motion process, which implies some degree of phylogenetic signal or conservatism. K values closer to zero correspond to a random or convergent pattern of evolution, while K values greater than 1 indicate strong phylogenetic signal and conservatism of traits. The statistical significance of phylogenetic signal can be evaluated by comparing observed patterns of the variance of independent contrasts of the trait to a null model of shuffling taxa labels across the tips of the phylogeny. These tests are implemented in the `Kcalc`, `phylosignal`, and `multiPhylosignal` functions.
+
+Let's measure phylogenetic signal in these data.
+
+```{r}
+# one way to do it - apply the Kcalc function to each column of the data.frame
+apply(traits, 2, Kcalc, phy)
+# another way to do it with significance testing
+# we have to convert the tree to be dichotomous before calculating P-values
+multiPhylosignal(traits, multi2di(phy))
+```
+
+In the output, `K` is the K statistic (magnitude of signal vs. Brownian motion), and `PIC.variance.P` is the P-value of the test for non-random signal. Most variables show more phylogenetic signal than expected by chance.
+
+## Visualizing trait evolution
+
+We can visualize trait values on the phylogeny by plotting a different color or size of symbol for each trait value. Let's visualize leaf area, the trait with the strongest phylogenetic signal. The cex argument to the tiplabels function adjusts the size of the trait symbols - some tinkering around with the scaling of the symbol sizes is required depending on the trait.
+
+```{r}
+# Plot phylogeny facing upwards. Show node labels but not tip labels. cex shrinks labels.
+plot(phy, direction="up", show.tip.label = FALSE, show.node.label=TRUE, cex=0.7)
+# Plot leaf area on the phylogeny. cex argument scales symbol size by trait value.
+tiplabels(pch = 19, col="black", cex = 3*(traits[,"LeafArea"] / max(traits[,"LeafArea"])))
+```
+
+## Phylogenetic analysis of trait relationships
+
+Phylogenetic signal means that closely related species have similar traits. This violates the assumption of independence of data points that is inherent in many methods including correlation and regression (Felsenstein 1985). We can account for non-independence due to phylogenetic signal using methods including phylogenetically independent contrasts and phylogenetic generalised least squares (pGLS).
+
+Generalised least squares methods work just like an ANOVA or linear model - we can test for relationships between categorical or continuous values, optionally taking phylogenetic relatedness into account.
+
+Let's test for a relationship between specific root length (SRL) and root tissue density, taking phylogenetic relationships among species into account.
+
+```{r}
+# GLS of root tissue density as a function of SRL - non-phylogenetic model
+root.gls <- gls(RootTissueDens ~ SRL, data=traits)
+anova(root.gls)
+# Phylogenetic GLS - adds effect of phylogeny to the model
+root.pgls <- gls(RootTissueDens ~ SRL, correlation=corBrownian(value=1,phy), data=traits)
+anova(root.pgls)
+# plot relationship
+plot(RootTissueDens ~ SRL, data=traits, xlab="SRL (specific root length)", ylab="Root tissue density")
+# add model fit lines - coef is the model fit coefficients, lwd increases line width
+abline(coef(root.gls), lwd=2, col="black")
+abline(coef(root.pgls), lwd=2, col="red")
+legend("bottomleft", legend=c("GLS fit","Phylogenetic GLS fit"), lwd=2, col=c("black","red"))
+```
+
+There is a weak relationship between SRL and root tissue density. The relationship is not significant if we do not take phylogenetic relatedness into account. We see a stronger and significant relationship between SRL and root tissue density after taking phylogenetic relatedness into account.
+
+# Phylogenetic and trait diversity
+
+## Phylogenetic diversity
+
+One of the earliest measures of phylogenetic relatedness in ecological communities was the phylogenetic diversity (PD) index proposed by Faith. Faith's PD is defined as the total branch length spanned by the tree including all species in a local community, optionally including the root node of the phylogeny. The `pd` function returns two values for each community, Faith's PD and  species richness (SR).
+
+```{r fig.width=4,fig.height=4}
+# Calculate Faith's PD
+comm.pd <- pd(comm, phy)
+head(comm.pd)
+# Plot Faith's PD by habitat
+boxplot(comm.pd$PD ~ metadata$habitat, xlab="Habitat", ylab="Faith's PD")
+# Test for PD differences among habitats
+t.test(comm.pd$PD ~ metadata$habitat)
+# Compare PD and species richness
+plot(comm.pd$PD ~ comm.pd$SR, xlab="Species richness", ylab="Faith's PD")
+```
+
+Faith's PD is lower in mixedgrass habitats than in fescue habitats. But Faith's PD is highly correlated with species richness, and we already know that there are fewer species in mixedgrass habitats, so we need some way to compare phylogenetic diversity that takes this fact into account.
+
+### $MPD$, $MNTD$,  $SES_{MPD}$ and $SES_{MNTD}$
+
+Another way of thinking about the phylogenetic relatedness of species in a community is to ask 'how closely related are the average pair of species or individuals in a community', and relate the patterns we observe to what we'd expect under various null models of evolution and community assembly. These types of questions are addressed by the measures of community phylogenetic structure such as MPD, MNTD, NRI and NTI described by Webb et al. and implemented in Phylocom.
+
+The function `mpd` will calculate the mean pairwise distance between all species or individuals in each community. Similarly, the `mntd` function calculates the mean nearest taxon distance, the average distance separating each species or individual in the community from its closest heterospecific relative. The `mpd` and `mntd` functions differs slightly from the `pd` function in that they take a distance matrix as input rather than a phylogeny object. A `phylo` object can be converted to a interspecific phylogenetic distance matrix using the `cophenetic` function. Since the mpd and mntd functions can use any distance matrix as input, we can easily calculate trait diversity measures by substituting a trait distance matrix for the phylogenetic distance matrix. We'll return to this idea shortly.
+
+If the community data represent abundance measures, the abundance data can be taken into account. Doing so changes the interpretation of these metrics from the average distance among two randomly chosen species from a community, to the average distance among two randomly chosen individuals in a community.
+
+Measures of 'standardized effect size' of phylogenetic community structure can be calculated for MPD and MNTD by compared observed phylogenetic relatedness to the pattern expected under some null model of phylogeny or community randomization. Standardized effect sizes describe the difference between average phylogenetic distances in the observed communities versus null communities generated with some randomization method, standardized by the standard deviation of phylogenetic distances in the null data:
+
+$SES_{metric} =  \frac{ Metric_{observed} - mean(Metric_{null}) }{sd(Metric_{null})}$
+
+Phylocom users will be familiar with the measures NRI and NTI; $SES_{MPD}$ and $SES_{MNTD}$ are equivalent to -1 times NRI and NTI, respectively. Several different null models can be used to generate the null communities. These include randomizations of the tip labels of the phylogeny, and various community randomizations that can hold community species richness and/or species occurrence frequency constant. These are described in more detail in the help files, as well as in the Phylocom manual. Let's calculate some of these measures of community phylogenetic structure for our example data set. We will ignore abundance information, and use a simple null model of randomly drawing species while keeping sample species richness constant.
+
+```{r}
+# convert phylogenety to a distance matrix
+phy.dist <- cophenetic(phy)
+# calculate ses.mpd
+comm.sesmpd <- ses.mpd(comm, phy.dist, null.model="richness", abundance.weighted=FALSE, runs=999)
+head(comm.sesmpd)
+# calculate ses.mntd
+comm.sesmntd <- ses.mntd(comm, phy.dist, null.model="richness", abundance.weighted=FALSE, runs=999)
+head(comm.sesmntd)
+```
+
+The output includes the following columns:
+
+* `ntaxa` - Number of taxa in community
+* `mpd.obs` - Observed mpd in community
+* `mpd.rand.mean` - Mean mpd in null communities
+* `mpd.rand.sd` - Standard deviation of mpd in null communities
+* `mpd.obs.rank` - Rank of observed mpd vs. null communities
+* `mpd.obs.z` - Standardized effect size of mpd vs. null communities (equivalent to -NRI)
+* `mpd.obs.p` - P-value (quantile) of observed mpd vs. null communities (= mpd.obs.rank / runs + 1)
+* `runs` - Number of randomizations
+
+Positive SES values (mpd.obs.z > 0) and high quantiles (mpd.obs.p > 0.95) indicate phylogenetic evenness, while negative SES values and low quantiles (mpd.obs.p < 0.05) indicate phylogenetic clustering, relative to the null model. MPD is generally thought to be more sensitive to tree-wide patterns of phylogenetic clustering and eveness, while MNTD is more sensitive to patterns of evenness and clustering closer to the tips of the phylogeny. 
+
+```{r fig.height=4,fig.width=4}
+# compare ses.mpd between habitats
+plot(comm.sesmpd$mpd.obs.z ~ metadata$habitat, xlab="Habitat", ylab="SES(MPD)")
+abline(h=0, col="gray")
+t.test(comm.sesmpd$mpd.obs.z ~ metadata$habitat)
+# compare ses.mntd between habitats
+plot(comm.sesmntd$mntd.obs.z ~ metadata$habitat, xlab="Habitat", ylab="SES(MNTD)")
+abline(h=0, col="gray")
+t.test(comm.sesmntd$mntd.obs.z ~ metadata$habitat)
+```
+
+It looks like plant communities from fescue habitats are phylogenetically even (more distantly related than expected by chance, $SES > 0$), and communities from mixedgrass habitats are phylogenetically clustered (more closely related than expected by chance, $SES < 0$).
+
+Let's look at the distribution of species from samples in these different habitats on the phylogeny. Fescue community 'fes-K-11' contains species that are phylogenetically even.
+
+```{r fig.width=4,fig.height=5}
+# plot species present in a fescue community
+plot(phy, show.tip.label=FALSE, main="Fescue community fes-K-11")
+tiplabels(tip = which(phy$tip.label %in% colnames(comm)[comm["fes-K-11",]>0]), pch=19)
+```
+
+Mixedgrass community 'mix-H-23' contains species that are phylogenetically clumped.
+
+```{r fig.width=4,fig.height=5}
+# plot species present in a mixedgrass community
+plot(phy, show.tip.label=FALSE, main="Fescue community mix-H-23")
+tiplabels(tip = which(phy$tip.label %in% colnames(comm)[comm["mix-H-23",]>0]), pch=19)
+```
+
+## Trait diversity
+
+We can calculate measures of trait diversity within communities in a manner analogous to the methods we used to calculate phylogenetic diversity. Let's calculate the standardized effect size of functional trait diversity by measuring trait dissimilarity among co-occurring species, and comparing observed trait diversity to a null model.
+
+```{r fig.height=4,fig.width=4}
+# calculate trait distance - Euclidean distance among scaled trait values - we want the full distance matrix
+trait.dist <- as.matrix(dist(scale(traits), method="euclidean"))
+# calculate trait ses.mpd
+comm.sesmpd.traits <- ses.mpd(comm, trait.dist, null.model="richness", abundance.weighted=FALSE, runs=999)
+# compare trait ses.mpd between habitats
+plot(comm.sesmpd.traits$mpd.obs.z ~ metadata$habitat, xlab="Habitat", ylab="Trait SES(MPD)")
+abline(h=0, col="gray")
+```
+
+In contrast to the pattern we saw for phylogenetic diversity, trait diversity is lower than expected in both habitats ($SES_{MPD} < 0$), indicating that co-occurring plants have similar leaf and root traits, and this pattern of trait clustering is stronger in mixedgrass habitats.
+
+The `treedive` function in **vegan** calculates a measure of functional trait diversity that is similar to Faith's PD.
+
+## Phylogenetic beta-diversity
+
+We can measure patterns of phylogenetic relatedness among communities in a manner similar to the within-community phylogenetic diversity measures described above. The `unifrac` and `phylosor` functions measure the among-community equivalent of Faith's PD, the total unique/shared branch length between communities. The `comdist` and `comdistnt` functions measure the among-community equivalent of MPD and MNTD, the mean pairwise distance or mean nearest taxon distance between pairs of species drawn from two distinct communities.
+
+Let's compare a few different ways of measuring dissimilarity among communities. We've already calculated the Bray-Curtis distance among communities based on shared species (`comm.bc.dist`). Since the Bray-Curtis distance incorporates species abundances, we should use abundance information when calculating phylogenetic and trait diversity as well.
+
+```{r}
+# calculate phylogenetic MNTD beta diversity
+comm.mntd.dist <- comdistnt(comm, phy.dist, abundance.weighted=TRUE)
+# calculate functional trait MNTD beta diversity
+comm.mntd.traits.dist <- comdistnt(comm, trait.dist, abundance.weighted=TRUE)
+# calculate Mantel correlation for taxonomic Bray-Curtis vs. phylogenetic MNTD diversity
+mantel(comm.bc.dist, comm.mntd.dist)
+# calculate Mantel correlation for taxonomic Bray-Curtis vs. trait MNTD diversity
+mantel(comm.bc.dist, comm.mntd.traits.dist)
+```
+
+## Phylogeny/trait-based ordinations
+
+Since we can calculate phylogeny- and trait-based measures of dissimilarity among samples, we can also perform an ordination of samples based on these metrics. Let's compare phylogeny- and trait-based ordinations with the species-based ordination we performed earlier.
+
+```{r fig.height=4,fig.width=4,warning=FALSE}
+# NMDS ordination of phylogenetic distances - use monoMDS since we only have among-sample distances
+comm.mntd.mds <- monoMDS(comm.mntd.dist)
+# set up the plotting area but don't plot anything yet
+mds.fig <- ordiplot(comm.mntd.mds, type="none")
+# plot just the samples, colour by habitat, pch=19 means plot a circle
+points(mds.fig, "sites", pch=19, col="green", select=metadata$habitat=="Fescue")
+points(mds.fig, "sites", pch=19, col="blue", select=metadata$habitat=="Mixedgrass")
+# add confidence ellipses around habitat types
+ordiellipse(comm.mntd.mds, metadata$habitat, conf=0.95, label=TRUE)
+```
+
+```{r fig.height=4,fig.width=4,warning=FALSE}
+# NMDS ordination of trait distances - use monoMDS since we only have among-sample distances
+comm.mntd.traits.mds <- monoMDS(comm.mntd.traits.dist)
+# set up the plotting area but don't plot anything yet
+mds.fig <- ordiplot(comm.mntd.traits.mds, type="none")
+# plot just the samples, colour by habitat, pch=19 means plot a circle
+points(mds.fig, "sites", pch=19, col="green", select=metadata$habitat=="Fescue")
+points(mds.fig, "sites", pch=19, col="blue", select=metadata$habitat=="Mixedgrass")
+# add confidence ellipses around habitat types
+ordiellipse(comm.mntd.traits.mds, metadata$habitat, conf=0.95, label=TRUE)
+```
+
+It looks like fescue and mixedgrass habitats are quite distinct regardless of how we quantify their biodiversity - they contain different species, phylogenetically distinct taxa, and the traits of species in the two habitats are distinct.
+
+## Testing for multivariate differences among groups
+
+We can quantify the relationship between dissimilarity measures and different explanatory variables using the permutational MANOVA (a.k.a. AMOVA) framework in the `adonis` function in **vegan**. This method allows ANOVA-like tests of the variance in beta diversity explained by categorical or continuous variables.
+
+Let's quantify the degree to which habitat can explain taxonomic, phylogenetic, and trait dissimilarity among grasslands.
+
+```{r}
+# Taxonomic (Bray-Curtis) dissimilarity explained
+adonis(comm.bc.dist ~ habitat, data=metadata)
+# Phylogenetic dissimilarity explained
+adonis(comm.mntd.dist ~ habitat, data=metadata)
+# Trait dissimilarity explained
+adonis(comm.mntd.traits.dist ~ habitat, data=metadata)
+```
+
+These results support the pattern we can see visually in the ordination diagrams. These habitats are distinct in terms of their taxonomic, phylogenetic, and functional trait diversity.
+
+```{r echo=FALSE}
+# silently save an image of the workspace
+save.image("R_biodiversity_workspace.RData")
+```
+
+

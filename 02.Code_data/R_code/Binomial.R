@@ -1,8 +1,0 @@
-x <- seq(0,50,by=1)
-y <- dbinom(x,50,0.2)
-plot(x,y)
-y <- dbinom(x,50,0.6)
-plot(x,y)
-x <- seq(0,100,by=1)
-y <- dbinom(x,100,0.6)
-plot(x,y)
