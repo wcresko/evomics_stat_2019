@@ -16,7 +16,7 @@ Take a few minutes to familiarize yourself with the R studio environment by loca
 - In the plots and files window, click on the packages and help tabs to see what they offer. 
 - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
 
-Now open the file called 'Student_Exercises_for_Workshop_Lectures.Rmd'. This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
+Now open the file called 'Student_Exercises_for_Workshop_Lectures.Rmd'. This file will serve as your digital notebook for parts of the workshop and contains the other exercises.
 
 
 ## _Exercise 1.2: Intro to `R Markdown` Files_
@@ -38,7 +38,7 @@ What do you think `echo` and `eval` do, based on your manipulations?
     - Double tab in markdown indents your answer. Use this format throughout the doc.
 What are the defaults for `echo` and `eval`, based on your manipulations? 
 
-## _Exercise 1.3: Basic Mathmatics in `R`_
+## _Exercise 1.3: Basic Mathematics in `R`_
 Insert a code chunk below and complete the following tasks:
 1. Add and subtract
 2. Multiply and divide
@@ -47,7 +47,7 @@ Insert a code chunk below and complete the following tasks:
 
 ## _Exercise 1.4: Assigning Variables and Arithmetic Functions in `R`_
 Insert a code chunk below and complete the following tasks:
-1. Assign three variables using basic mathmatic operations
+1. Assign three variables using basic mathematical operations
 2. Take the log of your three variables
 3. Use the print function to display your most complex variable
 4. Use the `concatenate` function to print a sentence
@@ -106,8 +106,8 @@ Insert a code chunk below and complete the following tasks:
 
 
 ## _Exercise 1.10: Datasets and Indexing_
-By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you can access data from this directory or a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
-1. Save the file we created together in a subdirectory of your current working directory 
+By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you can access data from this directory or a sub-directory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
+1. Save the file we created together in a sub-directory of your current working directory 
 2. Use `read.csv` to read your file in  
 3. Use `str` and `head` to view your data structure
 4. Use the `$` and `[ ]` operators to select out different parts of the dataframe.
@@ -120,7 +120,7 @@ By opening this .Rmd file, you have automatically set your working directory to 
 
 --------------------------------------------------
 
-## _Excercise 2.1: RMarkdown advanced
+## _Excercise 2.1: RMarkdown advanced_
 
 1. Getting more familiar with RMarkdown
 
@@ -193,17 +193,17 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 
 4. R commands embedded in prose
 
-One of the best features in `knitr` and Rmarkdown generally, is the ability to embed real R commands in sentences, so that you can report actual values instead of constantly copying and pasting when results change a little bit. 
+One of the best features in `knitr` and RMarkdown generally, is the ability to embed real R commands in sentences, so that you can report actual values instead of constantly copying and pasting when results change a little bit. 
 
 This table has `r nrow(dat)` rows and `r ncol(dat)` columns. The 'x' variable starts at `r min(dat$x)` and ends at `r max(dat$x)`. 
 
 `r mean(rnorm(100))`
 
-5. Formatting text in Rmarkdown
-- Create a formatted list with 2 levels and 2 sublevels; make one of the sublevels italic and the main levels bold
+5. Formatting text in RMarkdown
+- Create a formatted list with 2 levels and 2 sub levels; make one of the sub levels italic and the main levels bold
 - Create a quote from one of your new workshop friends
     
-6. LaTeX in Rmarkdown
+6. LaTeX in RMarkdown
 - Insert three symbols of your choice
 - Recreate an equation from the slides and insert it in-line and fenced
 
@@ -211,8 +211,8 @@ This table has `r nrow(dat)` rows and `r ncol(dat)` columns. The 'x' variable st
 -------------------------------------------------
 
 ## _Exercise 2.2: RNAseq Example Dataset_
-By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
-1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to autopopulate paths (<-read.csv('data/RNAseq...', header=T))
+By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a sub-directory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
+1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to auto-populate paths (<-read.csv('data/RNAseq...', header=T))
 2. Use `str` and `head` to get an idea of the data structure
 3. Create a tibble using this dataset
 
@@ -232,205 +232,6 @@ Insert a code chunk below and complete the following tasks using your gene expre
 3. Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.
 4. Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using `geom_point`. Plot your most interesting coexpression by treatment using `facet_wrap`.
 5. Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes. 
-
-
---------------------------------------------------
-
-
-# Statistics for Genomics Lab
-
-## _Exercise 3.1: Binomially Distributed Data_
-- Using R, simulate these experimental data 
-    - using the `rbinom()` function
-    - look at the arguments to see how they map on to the trials, probability of each trial, and number of replicates
-    - use the `hist()` function to plot the simulated data.
-    - what do the y- and x-axes represent?
-    - what is the most common outcome, in terms of the number of “successes” per trial? Does this make sense?
-- Now just change you script to do the following
-    - perform 200 trials for each of the 100 replicates
-    - perform 2000 trials for each of the 100 replicate
-    - how do the distributions change when you go from 20 to 200 to 2000 trials?
-- Pretend that you want to create your own binomial distribution
-    - you could flip 20 fair coins: 20 independent Bernoulli “trials”
-    - you could then replicate this 100 times: 100 “observations”
-    - for each one of your replicates you record the number of heads
-    - probability of heads (“success”) for any flip of a fair coin is 0.5
-- Draw a diagram of what you think the distribution would look like
-    - what will the x-axis represent, and what are its values?
-    - what will the y-axis represent, and what are its values?
-    - where will the 'center of mass' be?
-    - what parameter determines the value of the center of mass?
-    - what parameter determines the spread of the distribution?
-- Now perform your experiment using R
-- Use the `rbinom` function to replicate what you sketched out for coin flipping
-- Be sure to check out the other functions in the `binom` family
-- Make sure you know how you are mapping the parameeters to values
-- Take the output and create a histogram
-- Does it look similar to what you expected?
-- Now change the values around so that
-    - You have more or fewer coin flips per trial
-    - You replicate the process with more or fewer trials
-    - You change the coin from being fair to being slightly biased
-    - You change the coin from being slightly to heavily biased
-
-## _Exercise 3.2: Normally Distributed Data_
-- Simulate a population of 10,000 individual values for a variable x with a mean of 50 and a sd of 5.5.
-- Take 1000 random samples of size 20, take the mean of each sample, and plot the distribution of these 1000 sample means using the for loop below.
-
-```{r, eval = F, echo = T}
-x_sample_means <- NULL
-for(i in 1:1000){
-x_samp <- sample(x, 20, replace=FALSE)
-x_sample_means[i] <- mean(x_samp)
-}
-```
-
-- For one of your samples, transform the observation values to z-scores. 
-- Plot the distribution of the z-scores, and calculate the mean and the standard deviation.  
-- Now, create a second population (called x.lognorm) by log-transforming all 10,000 values from population “x”
-- Plot the histogram of these data
-- Repeat the taking of 1000 samples of size 20
-- Take the mean of each sample
-- Plot the distribution of these 1000 sample means from the known lognormal population. 
-- What does the distribution of the sampled means look like?
-
-
-
-## _Exercise 3.3: Parametric t-test in R_
-1. Make a dummy data set that contains one continuous and one categorical value (with two levels). Draw individuals of the two different factor levels from normal distributions with slightly different means. Take 100 obsv. per factor level. 
-
-2. Now, perform a t-test to see if the two populations are statistically different from one another
-
-```{r, eval=FALSE, echo=TRUE}
-boxplot(continuous_variable~cat_variable, dataset name) 
-t.test(continuous_variable~cat_variable, dataset name) 
-```
-
-3. Repeat steps 1 and 2 above but use different sample sizes (e.g. 10 , then 100, then 1000, then 10,000 obsv. per factor level) 
-
-4. Repeat steps 1 and 2 above but now test between a categorical and continuous variable in the perchlorate data set (or any of your favorite data sets)
-
-- Now, apply the equations for the t-statistic above to your simulated sample to perform the same test, but using a resampling approach
-    - hint: go back to your Bootstrapping script
-- Use this approach to calculate a distribution of random t statistics assuming the the null hypothesis of no difference is true. 
-- Now, compare your observed value to your created null distribution. 
-- What is the probability of that value occurring by chance under the null? 
-    - This is your p-value! (Assume you’re doing a one-tailed test)
-    - hint: Proportion of values in the null distribution equal to or larger than the observed t-value = p-value
-
-## _Exercise 3.4: Permutation t-test in R_
-- Randomization test example 1
-- Data: The number of successful broods of pseudoscorpion females that were mated twice to either a single male (SM) or two different males (DM).
-    - SM: `4 0 3 1 2 3 4 2 4 2 0 2 0 1 2 6 0 2 3 3`
-    - DM: `2 0 2 6 4 3 4 4 2 7 4 1 6 3 6 4`
-- Observed difference in the means between the two
-    - $\bar{Y}_{SM}$ − $\bar{Y}_{DM}$ = 2.2−3.625 = −1.425
-
-- Steps of the randomization test
-- First, create a randomized data set in which the measurements are randomly reassigned (without replacement) to the two groups
-    - For example, the following
-    - SM: `4 0 7 4 2 2 2 1 4 4 0 3 3 4 6 2 4 6 0 0` 
-    - DM: `2 2 3 3 2 3 3 4 1 2 1 4 6 6 2 0`
-- Second, calculate the test statistic measuring the association between variables 
-    - difference between group means
-    - this is the first bootstrap replicate
-- Repeat steps 1 and 2 many times to produce many bootstrap replicates
-
-- Below is the **null distribution** of the test statistic from 10,000 replications 
-    - This is produced by the randomized assignment of values to each group (SM or DM)
-    - Thus this is the distribution we'd expect under the null hypothesis of no difference
-- The observed value from the data is –1.425 
-- The area in red is the tail beyond this observed value and is therefore the **bootstrap p-value**
-
-```{r, echo=FALSE, out.width='40%', fig.align='center'}
-knitr::include_graphics("images/week_3.010.jpeg")
-```
-
-- Of these 10,000 randomizations, only 176 had a test statistic (difference between means) equal to or less than the observed value, –1.425.
-- You can use the simulated null distribution in the same way as t or F distribution in conventional tests.
-- Proportion of values in the null distribution equal or larger than the observed value of the test statistic is 176/10000 = 0.0176.
-
-## _Exercise 3.5: Linear Models_
-Write a script to read in the perchlorate data set. Now, add the code to perform a linear model of two continuous variables. Notice how the output of the linear model is specified to a new variable. Also note that the variables and dataset are placeholders
-
-```{r, echo=TRUE, eval=FALSE}
-my_lm <- lm(XXX ~ YYY)
-```
-
-Now look at a summary of the linear model
-```{r, echo=TRUE, eval=FALSE}
-summary(my_lm)
-print(my_lm)
-```
-
-Now let's produce a nice regression plot
-```{r, echo=TRUE, eval=FALSE}
-plot(XXX~YYY, col = “blue”)
-abline(my_lm, col = “red”)
-```
-Notice that you are adding the fitted line from your linear model
-Finally, remake this plot in GGPlot2
-
-## Dataset information
-- Perchlorate_Data.tsv
-  - Strain - of zebrafish
-  - Perchlorate Level - treatment of perchlorate
-  - T4 Hormone Level
-  - Follicle Area
-  - Number of Follicles
-  - Age_Category
-  - Testes Area
-  - Testes Stage
-  
-
-## _Exercise 3.6: Residual Analyses_
-Take a look at the zebrafish diet data in teh data folder. 
-1. Plot the relationship between protein and weight, fit the linear model (call it `zfish_lm`), and add the prediction line to your plot.
-2. Plot the residuals and fitted values using the following code: 
-```{r, echo=TRUE, eval=FALSE}
-hist(residuals(zfish_lm), breaks=30)
-
-plot (residuals(zfish_lm) ~ fitted.values(zfish_lm))
-plot (residuals(zfish_lm) ~ x)
-```
-3. Or apply the plot() function to the linear model object directly
-```{r, echo=TRUE, eval=FALSE}
-plot(zfish_lm)
-```
-4. Figure out what these plots are telling you
-5. Use the influence.measures function to detemine if we have any high leverage observations to worry about
-
-
-
-
-## _Exercise 3.7: multiple regression with 2 predictor variables_
-- Read in the RNAseq_lip.tsv and examine the continuous variables.
-- We are interested in whether Gene01 and/or Gene02 expression levels influence lipid content.
-- First plot $Y$ vs $Gene01$, $Y$ vs $Gene02$, then set up and test a multiplicative model.
-- What are the parameter estimates of interest in this case?
-- What are the outcomes from our hypothesis tests?
-- Now get rid of the interaction term, and set up a purely additive model
-- Did any of our estimates change? Why?
-- Did the degrees of freedom change? Why? 
-- Check for multi-collinarity among three genes using the `scatterplotMatrix()` function
-
-
-## _Exercise 3.8: One way ANOVA_
-Again, use the RNAseq_lip.tsv data. Let’s test for an effect of Population on Gene01 expression levels
-1. First, look at how the data are distributed using a boxplot.
-2. now use the `aov` and `summary` functions to run an ANOVA. 
-
-## _Exercise 3.9: 2-by-2 fixed effect factorial ANOVA_
-Load the RNAseq.tsv dataset. What are the variables? Continuous or categorical?
-1. Use boxplots to graphically illustrate differences in distributions among genotype and microbiota treatment.
-2. Fit the factorial linear model - two different ways to do the same thing- then use the summary function to look at your results. 
-
-```{r, echo=TRUE, eval=FALSE}
-rna_aov <- aov(gene ~ microbiota + genotype + microbiota:genotype)
-rna_aov <- aov(gene ~ microbiota*genotype)
-```
-3. If there is an interaction, can we understand it by looking at the boxplots?
-
-
+6. Open a new Rmarkdown `flex dashboard` template and create a multi panel figure of your choice. 
 
 

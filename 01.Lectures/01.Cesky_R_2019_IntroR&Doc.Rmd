@@ -666,8 +666,7 @@ git merge origin/master
 - Clone a repo
 - Push to Github
 - Collaborating in a repo
-- Brief mention of other functions
-- Mention GitHub Pages or other additions
+- GitHub Pages
 
 ________________________
 
@@ -1356,5 +1355,30 @@ ggplot(data=mpg, aes(displ, hwy)) +
 knitr::include_graphics("images/images_4a.018.jpeg")
 ```
 
+## Arranging Multiple Figures- Flexdashboard
+
+- Modify YAML header to specify graph orientation
+
+```{r, echo=TRUE, eval=FALSE}
+---
+title: Flexdashboard Options"
+output: 
+  flexdashboard::flex_dashboard:
+    
+   vertical_layout: 'fill' or 'scroll'
+         or
+     orientation: 'rows'
+---
+```
+- Or specify data width to reorganize (try this in template)
+https://rmarkdown.rstudio.com/flexdashboard/
+
+## Arranging Multiple Figures- Flexdashboard
+
+```{r, echo=FALSE, out.width='30%'}
+knitr::include_graphics("images/felxdash_scroll.png")
+knitr::include_graphics("images/dashboard_orient_rows.png")
+knitr::include_graphics("images/dashboard_spec_col_widths.png")
+```
 
 ## FINAL R INTERLUDE | Complete Exercise 2.4 {.flexbox .vcenter}
