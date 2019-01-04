@@ -7,6 +7,7 @@ author: your name here
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 # Intro to R Workshop Lecture
 
 ## _Exercise 1.1: Exploring R Studio_
@@ -27,16 +28,15 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-Each code chunk begins and ends in the same way- with a fence. You can further specify what you want to show up in your final document using the `echo` and `eval` commands in the opening line. Insert a few code chunks below using the `insert` tab at the top of this window. Then, change the `echo` and `eval` arguments to TRUE or FALSE and see how different combinations of these arguments change the output when you knit. I have done the first one for you. Notice too that each `R` code chunk requires a unique title argument (here 'cars variant 1'), or the Rmd will not knit. 
+Each code chunk begins and ends in the same way- with a fence. You can further specify what you want to show up in your final document using the `echo` and `eval` commands in the opening line. Insert a few code chunks below using the `insert` tab at the top of this window. Then, change the `echo` and `eval` arguments to `TRUE` or `FALSE` and see how different combinations of these arguments change the output when you knit. I have done the first one for you. Notice too that each `R` code chunk requires a unique title argument (here 'cars variant 1'), or the Rmd will not knit. 
 
 ```{r cars variant 1, echo=TRUE, eval=TRUE}
 summary(cars)
 ```
 
 What do you think `echo` and `eval` do, based on your manipulations?
-
+    - Double tab in markdown indents your answer. Use this format throughout the doc.
 What are the defaults for `echo` and `eval`, based on your manipulations? 
-
 
 ## _Exercise 1.3: Basic Mathmatics in `R`_
 Insert a code chunk below and complete the following tasks:
@@ -60,17 +60,25 @@ Insert a code chunk below and complete the following tasks:
 
 ## _Exercise 1.6: Basic Statistics_
 Insert a code chunk below and complete the following tasks:
-1. Create a vector and calculate the mean, sd, sum, length, and var
-2. Use the log and sqrt functions on your vector
+1. Create a vector and calculate the `mean`, `sd`, `sum`, `length`, and `var`
+2. Use the `log` and `sqrt` functions on your vector
 3. What happens when you try to apply these functions to a factor?
 4. Type the first couple letters of a function into your chunk, then hit tab- what happens?
 
 ## _Exercise 1.7: Creating Larger Vectors and Random Sampling_
-Insert a code chunk below and complete the following tasks:
+Complete the following tasks in the codechunk below:
+- Note: If you ever want someone else to be able to perfectly reproduce your results, always set the random seed at the top. Any number will do. Note that it never hurts to set the seed, *but* robust results should always stand up to random number generators. 
 1. Create a vector with 100 elements using the `seq` function and calculate two basic statistics on your vector
 2. Create a variable and `sample` it with equal probability 
-3. Create a normally distributed variable of 1000 elements using the `rnorm` function then `sample` that variable with and without replacement
+    - Can you figure out what the three arguments in the parentheses mean?
+    - Try varying the arguments to see what happens.
+3. Create a normally distributed variable of 10000 elements using the `rnorm` function then `sample` that distribution with and without replacement
 4. Use `hist`, `curve`, and `dnorm` to plot your normally distributed variable
+
+```{r setSeed}
+set.seed(1415)
+```
+
 
 ## Including Plots
 You can also embed plots, for example:
@@ -83,7 +91,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 Insert a code chunk below and complete the following tasks, make sure to label all plot axes and have fun with colors!
 1.Create a variable using `seq` and make two different plots by changing the `type` argument 
 2.Create a normally distributed variable using `rnorm` and make two different plots using `hist` by varying the `breaks` argument (what does `breaks` appear to do?)
-3. Modify your parameter arguments to create a composite figure of the above graphs. 
+3. Modify your `par()` arguments to create a composite figure of the above graphs. 
 
 --------------------------------------------------
 
@@ -92,43 +100,27 @@ Insert a code chunk below and complete the following tasks:
 1. Recreate the dataframe from the slides by creating each vector then using `data.frame`
 2. Assign rownames to your dataframe using `rownames` and `c`
 3. Get class assignments for your whole dataframe using `str`
-4. Calculate the mean of each numeric variable 
+4. Calculate the `mean` of each numeric variable 
 5. Make a descriptive plot of your choosing
 6. What happens when you use the functions `head` and `tail` on your dataframe?
 
 
-## _Exercise 1.10: Reading in Datasets and Indexing_
-By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
-1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to autopopulate paths (<-read.csv("data/RNAseq..."))
-2. Use `str` and `head` to get an idea of the data structure
-3. Use the `$` and `[ ]` operators to select out different parts of the dataframe.
-4. Make the dataset into a tibble
+## _Exercise 1.10: Datasets and Indexing_
+By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you can access data from this directory or a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
+1. Save the file we created together in a subdirectory of your current working directory 
+2. Use `read.csv` to read your file in  
+3. Use `str` and `head` to view your data structure
+4. Use the `$` and `[ ]` operators to select out different parts of the dataframe.
+5. Plot temperature over elevation using `$`. 
+6. Calculate the `mean` and `var` of the 'mixed' and 'gipps' levels of habitat
+7. Use the `tapply` function to calculate the mean and var of temps by elevation 
+5. Export your data frame with a different file name
 
 
-## _Exercise 1.11: Indexing and Data Wrangling_
-Insert a code chunk below and complete the following tasks:
-1. `Select` all of the categorical variables and only 4 of the gene count variables and put them into a new variable
-2. `Mutate` each of the 4 gene expression values by performing a square root transformation making a new variable for each of the original (keep all 8 in the dataset).
-3. `Summarise` the mean and standard deviation for each of the gene count variables grouped by the ‘Microbiota’ and ‘Genotype’ categorical variables (hint, using `group_by` may make this easier; also remember your `na.rm=TRUE`)
-4. Create a histogram for one of the original gene expression variables, and one of the derived variables 
-5. Create a box plot for one of the original gene expression variables, and one of the derived variables, split by treatment
-6. Write the final data table to a .csv file and one of the figures to a .pdf file
- 
- 
---------------------------------------------------
-
-
-## _Exercise 1.12: Data Visualization with ggplot2_
-Insert a code chunk below and complete the following tasks using your gene expression tibble:
-1. Create a barplot of microbiota and genotype- what does this tell you about experimental design? What if you randomly sample 100 rows with replacement (use `mydata[sample(nrow(mydata), 100, replace=T), ]`) - does the plot change?
-2. Create a histogram and freq polygram of the expression of GeneX. What is the best binwidth?
-3. Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.
-4. Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using `geom_point`. Plot your most interesting coexpression by treatment using `facet_wrap`.
-5. Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes. 
 
 --------------------------------------------------
 
-## _Excercise 1.xx: RMarkdown advanced
+## _Excercise 2.1: RMarkdown advanced
 
 1. Getting more familiar with RMarkdown
 
@@ -149,13 +141,6 @@ opts_chunk$set(background='gray80', tidy=FALSE, cache=FALSE, comment='',
                dpi=72, fig.path='RMDfigs/', fig.width=4, fig.height=4)
 ```
 
-
-If you ever want someone else to be able to perfectly reproduce your results, always set the random seed at the top. 
-Any number will do. Note that it never hurts to set the seed, *but* robust results should always stand up to random number generators. 
-
-```{r setSeed}
-set.seed(1415)
-```
 
 2.  Generate fake data
 
@@ -206,7 +191,7 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 # dat <- dat[-c(3, 4, 5, 12), ]
 ```
 
-4.R commands embedded in prose
+4. R commands embedded in prose
 
 One of the best features in `knitr` and Rmarkdown generally, is the ability to embed real R commands in sentences, so that you can report actual values instead of constantly copying and pasting when results change a little bit. 
 
@@ -214,19 +199,42 @@ This table has `r nrow(dat)` rows and `r ncol(dat)` columns. The 'x' variable st
 
 `r mean(rnorm(100))`
 
+5. Formatting text in Rmarkdown
+- Create a formatted list with 2 levels and 2 sublevels; make one of the sublevels italic and the main levels bold
+- Create a quote from one of your new workshop friends
+    
+6. LaTeX in Rmarkdown
+- Insert three symbols of your choice
+- Recreate an equation from the slides and insert it in-line and fenced
 
 
+-------------------------------------------------
+
+## _Exercise 2.2: RNAseq Example Dataset_
+By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a subdirectory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
+1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to autopopulate paths (<-read.csv('data/RNAseq...', header=T))
+2. Use `str` and `head` to get an idea of the data structure
+3. Create a tibble using this dataset
+
+## _Exercise 2.3: Data Wrangling_
+Insert a code chunk below and complete the following tasks:
+1. `Select` all of the categorical variables and only 4 of the gene count variables and put them into a new variable
+2. `Mutate` each of the 4 gene expression values by performing a square root transformation making a new variable for each of the original (keep all 8 in the dataset).
+3. `Summarise` the mean and standard deviation for each of the gene count variables grouped by the ‘Microbiota’ and ‘Genotype’ categorical variables (hint, using `group_by` may make this easier; also remember your `na.rm=TRUE`)
+4. Create a histogram for one of the original gene expression variables, and one of the derived variables 
+5. Create a box plot for one of the original gene expression variables, and one of the derived variables, split by treatment
+
+
+## _Exercise 2.4: Graphical Communication with ggplot2_
+Insert a code chunk below and complete the following tasks using your gene expression tibble:
+1. Create a barplot of microbiota and genotype- what does this tell you about experimental design? What if you randomly sample 100 rows with replacement (use `mydata[sample(nrow(mydata), 100, replace=T), ]`) - does the plot change?
+2. Create a histogram and freq polygram of the expression of GeneX. What is the best binwidth?
+3. Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.
+4. Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using `geom_point`. Plot your most interesting coexpression by treatment using `facet_wrap`.
+5. Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes. 
 
 
 --------------------------------------------------
-
-# Will need to move around exercises to represent the new organization of lectures 1 and 2
-
---------------------------------------------------
-
-
-
-
 
 
 # Statistics for Genomics Lab

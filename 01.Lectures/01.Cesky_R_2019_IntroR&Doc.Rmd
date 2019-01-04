@@ -50,9 +50,9 @@ ___________________
 - Active development and dedicated community
 - Can use a nice GUI front end such as `Rstudio`
 - Reproducibility 
-  - keep your scripts to see exactly what was done
-  - distribute these with your data
-  - embed your `R` analyses in polished `R markdown` files
+    - keep your scripts to see exactly what was done
+    - distribute these with your data
+    - embed your `R` analyses in polished `R markdown` files
 - FREE
     
 ## {.flexbox .vcenter}
@@ -75,22 +75,22 @@ knitr::include_graphics("images/Stacked_barplot.png")
 
 ## Running `R` {.flexbox .vcenter}
 - Need to make sure that you have `R` installed 
-  - locally or on a server
-  - https://www.r-project.org
+    - locally or on a server
+    - https://www.r-project.org
   
 - Run R from the command line
-  - just type `R`
-  - can run it locally as well as on clsuters
+    - just type `R`
+    - can run it locally as well as on clsuters
 
-- Install a R Integrated Development Environment (IDE)
-  - RStudio: http://www.rstudio.com
-  - Makes working with R much easier, particularly for a new R user
-  - Run on Windows, Mac or Linux OS
-  - We're running as a server on the AWS instance
+- Install a R *Integrated Development Environment* (IDE)
+    - RStudio: http://www.rstudio.com
+    - Makes working with R much easier, particularly for a new R user
+    - Run on Windows, Mac or Linux OS
+    - We're running as a server on the AWS instance
 
 ## `R Studio` {.flexbox .vcenter}
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r, echo=FALSE, out.width='75%', fig.align='center'}
 knitr::include_graphics("images/RStudio_Screenshot.png")
 ```
 
@@ -98,15 +98,14 @@ ___________________
 
 # Exercise 1.1 - Exploring R studio {.flexbox .vcenter}
 
-## Exercise 1.1 - Exploring R studio {}
+## Exercise 1.1 - Exploring `R studio` {}
 
-- Take a few minutes to familiarize yourself with the R studio environment by locating the following features:
+- Take a few minutes to familiarize yourself with the `R studio` environment by locating the following features:
+    - See what types of new files can be made in `R studio` by clicking the top left icon- open a new R script.
     - The windows clockwise from top left are: the code editor, the workspace and history, the plots and files window, and the R console.
     - In the plots and files window, click on the packages and help tabs to see what they offer. 
-    - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
-
 - Now open the file called *Exercises_for_R_Lectures.Rmd* 
-- This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
+    - This file will serve as your digial notebook for parts of the workshop and contains the other exercises.
 
 ___________________
 
@@ -115,15 +114,15 @@ ___________________
 ## `RMarkdown` {.flexbox .vcenter}
 
 - A better way to embed code in R Markdown files
-  - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
-  - https://bookdown.org/yihui/rmarkdown/
-  - https://bookdown.org/yihui/bookdown/
+    - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+    - https://bookdown.org/yihui/rmarkdown/
+    - https://bookdown.org/yihui/bookdown/
 - You can insert `R chunks` into `Rmarkdown` documents
 - You will be doing more with markdown on Thursday
 
-## Exercise 1.2 - `R Markdown` Files
+## Exercise 1.2 - Intro to `R Markdown` Files
 
-- Take a few minutes to familiarize yourself with RMarkdown Files
+- Take a few minutes to familiarize yourself with RMarkdown files by completing exercise 1.2 in your exercises document.
 - You will be doing all of your work in RMarkdown
 
 ___________________
@@ -133,21 +132,21 @@ ___________________
 ## BASICS of `R` {}
 
 - Commands can be submitted through 
-  - terminal, console or scripts
-  - can be embedded as `code chunks` in RMarkdown
+    - terminal, console or scripts
+    - can be embedded as `code chunks` in RMarkdown
 - On these slides evaluating code chunks and showing output
-  - shown here after the two `#` symbols
-  - the number of output items is in `[]`
+    - shown here after the two `#` symbols
+    - the number of output items is in `[]`
 - `R` follows the normal priority of mathematical evaluation (PEDMAS)
 
 ## BASICS of `R` {}
 
-input code chunk and then output
+Input code chunk and then output
 ```{r basic multiplication, echo=TRUE}
 4*4
 ```
 
-input code chunk and then output
+Input code chunk and then output
 ```{r more multiplication, echo=TRUE}
 (4+3*2^2)
 ```
@@ -157,7 +156,7 @@ input code chunk and then output
 - A better way to do this is to assign variables
 - Variables are assigned values using the `<-` operator.
 - Variable names must begin with a letter, but other than that, just about anything goes.
-- Do keep in mind that `R` is case sensitive.
+- Do keep in mind that `R` is **case sensitive**.
 
 ## Assigning Variables {.flexbox .vcenter}
 
@@ -228,9 +227,9 @@ print (z)
 ## VECTORS {.flexbox .vcenter}
 
 - In general `R` thinks in terms of vectors
-  - a list of characters, factors or numerical values
-  - it will benefit any `R` user to try to write scripts with that in mind
-  - it will simplify most things
+    - a list of characters, factors or numerical values
+    - it will benefit any `R` user to try to write scripts with that in mind
+    - it will simplify most things
 - Vectors can be assigned directly using the 'c()' function and then entering the exact values.
 
 ## VECTORS {.flexbox .vcenter}
@@ -272,8 +271,45 @@ class(n)
 class(n_factor)
 ```
 - We can also determine how `R` "sees" a variable using str() or class() functions. 
-- This is a useful check when importing datasets.
+- This is a useful check when importing datasets or verifying that you assigned a class correctly
 
+## Types of vectors of data {.smaller}
+
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("images/week_3.014.jpeg")
+```
+
+## Types of vectors of data {}
+
+- `int` stands for integers  
+
+- `dbl` stands for doubles, or real numbers
+
+- `chr` stands for character vectors, or strings  
+
+- `dttm` stands for date-times (a date + a time)  
+
+- `lgl` stands for logical, vectors that contain only TRUE or FALSE
+
+- `fctr` stands for factors, which R uses to represent categorical variables with fixed possible values  
+
+- `date` stands for dates  
+
+## Types of vectors of data {.smaller}
+
+- Logical vectors can take only three possible values:
+    - `FALSE`
+    - `TRUE`
+    - `NA` which is 'not available'.
+
+- Integer and double vectors are known collectively as numeric vectors.
+    - In `R` numbers are doubles by default.
+
+- Integers have one special value: NA, while doubles have four:
+    - `NA`
+    - `NaN` which is 'not a number'
+    - `Inf`
+    - `-Inf`
 
 ## Basic Statistics {.flexbox .vcenter}
 
@@ -292,13 +328,14 @@ sample(n, replace = T)
 ```
 - Notice that the last function (`sample`) has an argument (`replace=T`)
 - Arguments modify or direct the function in some way
-- There are many arguments for each function, some of which are defaults
+    - There are many arguments for each function, some of which are defaults
+    - Tab complete is helpful to view argument options
 
 ## Getting Help {.flexbox .vcenter}
 
 - Getting Help on any function is very easy - just type a question mark and the name of the function.
 - There are functions for just about anything within `R` and it is easy enough to write your own functions if none already exist to do what you want to do.
-- In general, function calls have a simple structure: a function name, a set of parentheses and an optional set of parameters to send to the function.
+- In general, function calls have a simple structure: a function name, a set of parentheses and an optional set of parameters/arguments to send to the function.
 - Help pages exist for all functions that, at a minimum, explain what parameters exist for the function.  
 
 
@@ -315,17 +352,13 @@ sample(n, replace = T)
 
 ## Creating vectors {}
 
-- Creating vector of new data by entering it by hand can be a drag
+- Creating a vector of new data by entering it by hand can be a drag
 - However, it is also very easy to use functions such as
-  - `seq`
-  - `sample`
-- Try the examples below 
-  - Can you figure out what the three arguments in the parentheses mean?
-  - Try varying the arguments to see what happens.
-- Don't go too crazy with the last one or your computer might slow way down
+    - `seq`
+    - `sample`
 
 ## Creating vectors {}
-
+- What do the arguments mean?
 ```{r, echo = TRUE}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
 print(seq_1)
@@ -353,13 +386,13 @@ print(seq_square_new)
 
 ## Drawing samples from distributions {}
 
-- Here is a way to create your own data sets that are random samples.
+- Here is a way to create your own data sets that are random samples...
 - Again, play around with the arguments in the parentheses to see what happens.
 
 ## Drawing samples from distributions {.smaller}
 
 ```{r Samples from distributions 2, out.width='50%', echo = TRUE}
-x <- rnorm (10000, 0, 10)
+x <- rnorm (n = 10000, mean = 0, sd = 10)
 y <- sample (1:10000, 10000, replace = T)
 xy <- cbind(x,y)
 plot(xy)
@@ -412,7 +445,7 @@ plot (seq_1, xlab="space", ylab ="function of space", type = "p", col = "red")
 
 - On the next slide
 - The first line of the lower script tells R that you are going to create a composite figure that has two rows and two columns. 
-- Can you tell how?
+    - Can you tell how?
 
 ```{r, echo=TRUE, outwidth="40%", out.height="20%"}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
@@ -441,14 +474,14 @@ plot (seq_square_new, xlab="time", ylab ="p in population 1", type = "l", col = 
 
 Complete Excercises 1.3-1.8
 
-# Working with 'Real' Datasets in `R`
+# Working with Imported Datasets in `R`
 
-## Creating Data Frames in R {.smaller}
+## Creating Data Frames in `R` {.smaller}
 
-- As you have seen, in R you can generate your own random data set drawn from nearly any distribution very easily.
+- As you have seen, in `R` you can generate your own random data set drawn from nearly any distribution very easily.
 - Often we will want to use collected data.
 - Now, let’s make a dummy dataset to get used to dealing with data frames
-- Set up three variables (habitat, temp and elevation) as vectors
+    - Set up three variables (habitat, temp and elevation) as vectors
 
 ```{r, echo=TRUE}
 habitat <- factor(c("mixed", "wet", "wet", "wet", "dry", "dry", "dry","mixed"))
@@ -462,16 +495,17 @@ elevation <- c(0, 9.2, 3.8, 5, 5.6, 4.1, 7.1, 5.3)
 ```{r, echo=TRUE}
 mydata <- data.frame(habitat, temp, elevation)
 row.names(mydata) <- c("Reedy Lake", "Pearcadale", "Warneet", "Cranbourne", "Lysterfield", "Red Hill", "Devilbend", "Olinda")
+head(mydata)
 ```
 - Now you have a hand-made data frame with row names
 
-## Reading in Data Frames in R
+## R Interlude: Reading in Data Frames in R
 - A strength of `R` is being able to import data from an external source
-- Create the same table that you did above in a spreadsheet like Excel
-- Export it to comma separated and tab separated text files for importing into `R`.
-- The first will read in a comma-delimited file, whereas the second is a tab-delimited
-- In both cases the header and row.names arguments indicate that there is a header row and row label column
-- Note that the name of the file by itself will have R look in the CWD, whereas a full path can also be used
+    - Create the same table that you did above in a spreadsheet like Excel
+    - Export it to comma separated and tab separated text files for importing into `R`.
+    - The first will read in a comma-delimited file, whereas the second is a tab-delimited
+    - In both cases the header and row.names arguments indicate that there is a header row and row label column
+    - Note that the name of the file by itself will have `R` look in the CWD, whereas a full path can also be used
 
 ## Reading in Data Frames in R {.flexbox .vcenter}
 
@@ -487,6 +521,7 @@ YourFile <- read.table('yourfile.txt', header=T, row.names=1, sep='\t')
 write.csv(YourFile, "yourfile.csv", quote=F, row.names=T, sep=",")
 write.table(YourFile, "yourfile.txt", quote=F, row.names=T, sep="\t")
 ```
+- you will get more practice with this during the next R interlude
 
 ## Indexing in data frames {.flexbox .vcenter}
 - Next up - indexing just a subset of the data
@@ -512,15 +547,18 @@ plot (y, z)
 
 ## Indexing in data frames {.flexbox .vcenter}
 - You can perform operations on particular levels of a factor
-- Calculating the mean of the 'mixed' and 'gipps' levels of habitat.
 - Note that the first argument is the numerical column vector, and the second is the factor column vector.
-- The third is the operation. Reversing the first two does not work (the one below).
+- The third is the operation. Reversing the first two does not work - convince yourself of this by altering the order.
+    - Tab complete will tell you the correct order for arguments 
 
 ```{r, eval = FALSE, echo = TRUE}
 tapply(YourFile$temp, YourFile$habitat, mean)
 tapply(YourFile$temp, YourFile$habitat, var)
 ```
 
+## R Interlude
+
+Complete Exercises 1.9-1.10
 
 ________________________
 
@@ -625,7 +663,7 @@ git merge origin/master
 ## Git and GitHub Interlude
 - Make your GitHub account
 - Create a new repo for yourself
-- Cloning a repo
+- Clone a repo
 - Push to Github
 - Collaborating in a repo
 - Brief mention of other functions
@@ -648,9 +686,9 @@ ________________________
 - PANDOC is a general way to render markdown files into something else
 - https://pandoc.orgis
 - Can include math using LaTeX
-- GitHub will render markdown it directly
+- GitHub will render markdown directly
 - Markdown can easily be rendered within most editors now
-- Within RStudio just use `knit` button to render markdown
+- Within RStudio just use the `knit` button to render markdown
 - Markdown syntax is very easy
     
 ## Formatting text  {}    
@@ -689,21 +727,12 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 ```
 
 - list_element
-  - sub_list_element
-  - sub_list_element
-  - sub_list_element
+    - sub_list_element
+    - sub_list_element
+    - sub_list_element
 - list_element
-  - sub_list_element
+    - sub_list_element
   
-## Inserting images or URLs  {}    
-
-```{r, eval=FALSE, echo=TRUE}
-[Link](https://commonmark.org/help/)
-![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
-```
-
-[Link](https://commonmark.org/help/)
-![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
 
 ## Formatting lists  {}    
 
@@ -846,30 +875,30 @@ Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
 - Better yet there are packages that add functionality
 - When you install the package it will show up in the 'From Template' section of the 'new file' startup screen
 - There are packages to make
-  - books
-  - journal articles
-  - slide shows
-  - interactive exercises
-  - many more
+    - books
+    - journal articles
+    - slide shows
+    - interactive exercises
+    - many more
 - Some of these use 'Shiny'
-  - an interactive web based application
-  - allows users to input and get output
+    - an interactive web based application
+    - allows users to input and get output
 
 ## Final Thoughts on Markdown, LaTeX and GitHub
 - Many forms of markdown
-  - HTML is just a form of markdown
-  - RMardown is just a specific form of Markdown
-  - There is GitHub flavored markdown
-  - Once you learn one all the others are very easy
+    - HTML is just a form of markdown
+    - RMardown is just a specific form of Markdown
+    - There is  a GitHub flavored markdown
+    - Once you learn one, all the others are very easy
 - The goal increased collaboration and reproducibility
-  - Allows you to easily work with others by sharing the markdown file
-  - Allows **formal** representation of code and math
-  - Allows others to run your code directly
-  - Allows reports to nontech people
-  - All files are easily shared on GitHub
+    - Allows you to easily work with others by sharing the markdown file
+    - Allows **formal** representation of code and math
+    - Allows others to run your code directly
+    - Allows reports to nontech people
+    - All files are easily shared on GitHub
 - Once you start using Markdown you won't stop.....
 
-## R Interlude | Exploring RMarkdown
+## R Interlude | Exploring RMarkdown (Exercise 2.1)
 
 ________________________
 
@@ -953,58 +982,6 @@ knitr::include_graphics("images/week_3.012.jpeg")
 knitr::include_graphics("images/week_3.013.jpeg")
 ```
 
-## Types of vectors of data {.smaller}
-
-```{r, echo=FALSE, out.width='50%', fig.align='center'}
-knitr::include_graphics("images/week_3.014.jpeg")
-```
-
-## Types of vectors of data {}
-
-- `int` stands for integers  
-
-- `dbl` stands for doubles, or real numbers
-
-- `chr` stands for character vectors, or strings  
-
-- `dttm` stands for date-times (a date + a time)  
-
-- `lgl` stands for logical, vectors that contain only TRUE or FALSE
-
-- `fctr` stands for factors, which R uses to represent categorical variables with fixed possible values  
-
-- `date` stands for dates  
-
-## Types of vectors of data {.smaller}
-
-- Logical vectors can take only three possible values:
-    - `FALSE`
-    - `TRUE`
-    - `NA` which is 'not available'.
-
-- Integer and double vectors are known collectively as numeric vectors.
-    - In `R` numbers are doubles by default.
-
-- Integers have one special value: NA, while doubles have four:
-    - `NA`
-    - `NaN` which is 'not a number'
-    - `Inf`
-    - `-Inf`
-
-## Types of vectors of data {.smaller}
-
-- R will implicitly coerce the length of vectors.
-     - The shorter vector will be made the same length as the longer vector
-     - This is called **vector recycling**
-
-- R will expand the shortest vector to same length as the longest
-    - This is silent except when the length of the longer is not an integer multiple of the length of the shorter
-    - When it is not you’ll get an error
-
-- The vectorised functions in tidyverse will throw errors when you recycle anything other than a scalar.
-    - If you do want to recycle something other than a scaler
-    - You’ll need to do it yourself with `rep()`
-
 ## Key functions in `dplyr` for vectors
 
 - Pick observations by their values with `filter()`.
@@ -1056,7 +1033,7 @@ transmute(flights,
 
 ## `group_by( )` & `summarize( )`
 
-This first function allows you to aggregate data by values of categorical variables
+This first function allows you to aggregate data by values of categorical variables (factors)
 
 ```{r, echo=T, eval=F}
 by_day <- group_by(flights, year, month, day)
@@ -1075,7 +1052,7 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
     - if there’s any missing value in the input, the output will be a missing value.
     - fortunately, all aggregation functions have an na.rm argument which removes the missing values prior to computation
 
-## R INTERLUDE | Complete Exercises 1.9-1.11 {.flexbox .vcenter}
+## R INTERLUDE | Complete Exercise 2.2-2.3 {.flexbox .vcenter}
 
 _________________________________
 
@@ -1219,7 +1196,7 @@ knitr::include_graphics("images/images_4a.011.jpeg")
 
 Represent  magnitudes  honestly  and  accurately  
 
-```{r, echo=FALSE, out.width='75%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='75%', fig.asp=.6, fig.align='center'}
 knitr::include_graphics("images/images_4a.012.jpeg")
 ```
 
@@ -1370,4 +1347,4 @@ knitr::include_graphics("images/images_4a.018.jpeg")
 ```
 
 
-## FINAL R INTERLUDE | Complete Exercise 1.12 {.flexbox .vcenter}
+## FINAL R INTERLUDE | Complete Exercise 2.4 {.flexbox .vcenter}
