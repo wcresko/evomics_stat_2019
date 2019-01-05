@@ -46,14 +46,11 @@ knitr::include_graphics("images/week_01.006.jpeg")
 - The **sample space** of a random variable is the universe of all possible values
 
 ## Random variables & probability {.smaller}
-
 - The **sample space** can be represented by a 
-
     - **probability distribution** (for discrete variables) 
     - **probability density function** (PDF - for continuous variables)
     - algebra and calculus are used for each respectively
     - the probabilities of an entire sample space **always sum to 1.0**
-
 - There are many **families** or **forms** of distributions or PDFs
     - depends on the nature of the dynamical system they represent
     - the exact **instantiation of the form** depends on their parameter values
@@ -79,7 +76,7 @@ $$ p + (1-p) = 1 $$
 - Same is true for other binary possibilities
     - success or failure
     - yes or no answers
-    - choosing an allele from a population based upon allele frequences
+    - choosing an allele from a population based upon allele frequencies
 
 ## Probability rules {.flexbox .vcenter}
 
@@ -142,10 +139,10 @@ $$Pr(Y|X) \neq Pr(Y)\text{ and }Pr(X|Y) \neq Pr(X)$$
 - A **binomial distribution** results from the **combination** of several independent Bernoulli events 
 
 - **Example** 
-  - Pretend that you flip 20 fair coins and record the number of heads
-  - Now repeat that process and record the number of heads for each
-  - We expect that most of the time we will get approximately 10 heads
-  - Sometimes we get many fewer heads or many more heads
+    - Pretend that you flip 20 fair coins and record the number of heads
+    - Now repeat that process and record the number of heads for each
+    - We expect that most of the time we will get approximately 10 heads
+    - Sometimes we get many fewer heads or many more heads
 
 ## Binomial Distribution {.smaller}
 
@@ -179,7 +176,7 @@ $$\large {n \choose k}$$
 
 ## Poisson Probability Distribution  {.smaller}
 
-- Another common situation in biology is when each trial is discrete but number of observations of each outcome is observed
+- Another common situation in biology is when each trial is discrete, but the number of observations of each outcome is observed/counted
 
 - Some examples are
     - counts of snails in several plots of land
@@ -209,7 +206,7 @@ $$Pr(y=r) = \frac{e^{-\lambda}\lambda^r}{r!}$$
 - This means that for a variable that is truly Poisson distributed:
     - the mean and variance should be equal to one another
     - variables that are approximately Poisson distributed but have a larger variance than mean are often called 'overdispersed'
-    - quite common in RNA-seq data
+    - quite common in RNA-seq and microbiome data
 
 ## Poisson Probability Distribution | gene length by bins of 500 nucleotides {.smaller}
 
@@ -260,7 +257,8 @@ knitr::include_graphics("images/week_2.012.jpeg")
 ```
 
 
-## Normal PDF  |  A function of two parameters ($\mu$ and $\sigma$) {.smaller}
+## Normal PDF | A function of two parameters 
+### ($\mu$ and $\sigma$) {.smaller}
 
 ```{r, echo=FALSE, out.width='40%', fig.align='center'}
 knitr::include_graphics("images/week_2.032.jpeg")
@@ -311,7 +309,7 @@ knitr::include_graphics("images/week_2.014.jpeg")
 
 ## Parent-offspring resemblance {.smaller}
 
-```{r, echo=FALSE, out.width='50%', fig.align='center'}
+```{r, echo=FALSE, out.width='45%', fig.align='center'}
 knitr::include_graphics("images/week_2.016.jpeg")
 ```
 
@@ -323,7 +321,7 @@ knitr::include_graphics("images/week_2.017.jpeg")
 
 ## Distribution of $F_2$ genotypes | really just binomial sampling {.smaller}
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
 knitr::include_graphics("images/week_2.018.jpeg")
 ```
 
@@ -332,8 +330,8 @@ knitr::include_graphics("images/week_2.018.jpeg")
 - The normal distribution is immensely useful because of the central limit theorem  
 - The mean of many random variables independently drawn from the same distribution is distributed approximately normally
 - One can think of numerous situations, such as 
-  - when multiple genes contribute to a phenotype
-  - or that many factors contribute to a biological process
+    - when multiple genes contribute to a phenotype
+    - or that many factors contribute to a biological process
 - In addition, whenever there is variance introduced by stochastic factors or sampling error, the central limit theorem holds
 - Thus, normal distributions occur throughout biology and biostatistics
 
@@ -341,10 +339,10 @@ knitr::include_graphics("images/week_2.018.jpeg")
 
 - Often we want to make variables more comparable to one another
 - For example, consider measuring the leg length of mice and of elephants
-  - Which animal has longer legs in absolute terms? 
-  - Which has longer legs on average proportional to their body size? 
-  - Which has more variation proportional to their body size?
-- A qood way to answer this last question is to use 'z-scores'
+    - Which animal has longer legs in absolute terms? 
+    - Which has longer legs on average proportional to their body size? 
+    - Which has more variation proportional to their body size?
+- A good way to answer this last question is to use 'z-scores'
 
 ## z-scores of normal variables
 - z-scores are standardized to a mean of 0 and a standard deviation of 1
@@ -407,7 +405,7 @@ knitr::include_graphics("images/week_3.003.jpeg")
 
 ## The t-test and t sampling distribution {.smaller}
 
-$$\huge t = \frac{(\bar{y}_1-\bar{y}_2)}{s_{\bar{y}_1-\bar{y}_2}} $$
+$$\large t = \frac{(\bar{y}_1-\bar{y}_2)}{s_{\bar{y}_1-\bar{y}_2}} $$
 
 where
 
@@ -417,13 +415,13 @@ knitr::include_graphics("images/week_3.016.jpeg")
 
 which is the calculation for the standard error of the mean difference
 
-## The t-test and t sampling distribution | one tailed test {.smaller}
+## The t-test and t sampling distribution | one-tailed test {.smaller}
 
 ```{r, echo=FALSE, out.width='90%', fig.align='center'}
-knitr::include_graphics("images/week_3.005.jpeg")
+knitr::include_graphics("images/week_3.005_1_tailed.jpeg")
 ```
 
-## The t-test and t sampling distribution | two tailed test {.smaller}
+## The t-test and t sampling distribution | two-tailed test {.smaller}
 
 ```{r, echo=FALSE, out.width='60%', fig.align='center'}
 knitr::include_graphics("images/week_3.006.jpeg")
@@ -451,15 +449,15 @@ knitr::include_graphics("images/week_3.007.jpeg")
 - **p-value** = the long run probability of rejecting a true null hypothesis
 - **alpha** = critical value of p-value cutoff for experiments. The Type I error we are willing to tolerate.
 - **beta** = cutoff for probability of accepting a false null hypothesis
-- **Power** = the probability that a test will reject a false null hypothesis (1 - beta). It depends on effect size, sample size, chosen alpha, and population standard deviation
-- **Multiple testing** = performing the same or similar tests multiple times - need to correct
+- **Power** = the probability that a test will reject a false null hypothesis (1 - beta). It depends on effect size, sample size, chosen alpha, and population standard deviation 
+- **Multiple testing** = performing the same or similar tests multiple times - need to correct alpha value
 
 ## Statistical power
 
 - Type 1 error - $\alpha$ - incorrectly rejecting a true null hypothesis
-    - This is saying that there is an effect when there isn’t)
+    - This is saying that there is an effect when there isn’t
 - Type 2 error - $\beta$ - incorrectly accepting a false null hypothesis
-    - This is saying that there isn’t an effect when there is)
+    - This is saying that there isn’t an effect when there is
       
 - Power is the probability of rejecting a false null hypothesis
 - Mostly we shoot for a power of around 80%
@@ -488,7 +486,7 @@ knitr::include_graphics("images/images_6b.002.jpeg")
 knitr::include_graphics("images/images_6b.003.jpeg")
 ```
 
-## R Interlude | Complete Exercises 3.3-3.4
+## R Interlude | Complete Exercises 3.3-3.5
 
 ________________________
 
@@ -541,17 +539,17 @@ knitr::include_graphics("images/images_4b.008.jpeg")
 ## Many approaches are linear models
 
 - Flexible - applicable to many different study designs 
-- Provides a common set of tools (lm in R for fixed effects)
+- Provides a common set of tools (`lm` in R for fixed effects)
 - Includes tools to estimate parameters:
-  - sizes of effects like the slope, 
-  - or change in means among categories
+    - sizes of effects like the slope 
+    - difference in means among categories
 - Is easier to work with, especially with multiple variables
 
 ## Many approaches are linear models
 
 - Linear regression 
 - Single factor ANOVA
-- Analysis of covariance
+- Analysis of covariance (ANCOVA)
 - Multiple regression
 - Multi-factor ANOVA
 - Repeated-measures ANOVA
@@ -562,14 +560,14 @@ knitr::include_graphics("images/images_4b.008.jpeg")
 
 - General Linear Mixed Model (**GLMM**) - a continuous response variable with a mix of continuous and categorical predictor variables
 
-- Generalized Linear Model - a GLMM that doesn’t assume normality of the response
+- Generalized Linear Model - a GLM that doesn’t assume normality of the response
 
 - Generalized Additive Model (**GAM**) - a model that doesn’t assume linearity
 
 
 ## Linear models {.smaller}
 
-All an be written in the form
+All can be written in the form
 
 response variable = intercept + (explanatory_variables) + random_error
 
@@ -609,7 +607,7 @@ full model - $y_i = \beta_0 + \beta_1*x_i + error_i$
 reduced model - $y_i = \beta_0 + 0*x_i + error_i$
 
 
-1. fits a “reduced” model without slope term (H0)
+1. fits a “reduced” model without slope term ($H_0$)
 2. fits the “full” model with slope term added back
 3. compares fit of full and reduced models using an F test
 
@@ -676,30 +674,31 @@ knitr::include_graphics("images/images_4b.017.jpeg")
 
 ## Anscombe's quartet | what would residual plots look like for these?
 
-```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.018.jpeg")
 ```
 
 
+_______________________________
 
-## R INTERLUDE | Complete Exercises 3.5-3.6
 
 # Multiple Linear Regression
 
 ## Multiple Linear Regression - Goals
 
 - To develop a better predictive model than is possible from models based on single independent variables.
-
 - To investigate the relative individual effects of each of the multiple independent variables above and beyond the effects of the other variables.
-
 - The individual effects of each of the predictor variables on the response variable can be depicted by single partial regression lines. 
-
 - The slope of any single partial regression line (partial regression slope) thereby represents the rate of change or effect of that specific predictor variable (holding all the other predictor variables constant to their respective mean values) on the response variable.
 
 ## Multiple Linear Regression | Additive and multiplicative models of 2 or more predictors
 
+
+
 Additive model
 $$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + ... + B_jx_{ij} + \epsilon_i$$
+
+
 
 Multiplicative model (with two predictors)
 $$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + B_3x_{i1}x_{i2} + \epsilon_i$$
@@ -715,20 +714,25 @@ knitr::include_graphics("images/images_5a.006.jpeg")
 - linearity
 - normality
 - homogeneity of variance
-- **multi-collinearity** - a predictor variable must not be correlated to the combination of other predictor variables.
+- The absence of **multi-collinearity** 
+    - a predictor variable must not be linearly predicted by - or correlated with - any combination of the other predictor variables.
 
 ## checking for multi-collinearity
-
-```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/images_5b.001.jpeg")
-```
 
 ```{r, echo=TRUE, eval=FALSE}
 library(car)
 scatterplotMatrix(~var1+var2+var3, diag=”boxplot”)
 ```
 
-## R Interlude | Exercise 3.7
+```{r, echo=FALSE, out.width='60%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_5b.001.jpeg")
+```
+
+
+
+## R Interlude | Exercise 3.6-3.7
+
+__________________________________
 
 # ANOVA
 
@@ -832,7 +836,7 @@ knitr::include_graphics("images/images_7a.021.jpeg")
 knitr::include_graphics("images/images_7a.022.jpeg")
 ```
 
-## R Interlude | Exercise 3.8-3.9
+## R Interlude | Exercise 3.8
 
 ______________________________________
 
@@ -841,11 +845,11 @@ ______________________________________
 ## What are multivariate statitistics?
 
 - **General** - more than one variable recorded from a number of experimental sampling units
-- **Specific** - two or more response variables that likely covary
+- **Specific** - two or more response variables that likely co-vary
 - Goals of multivariate statistics
-  - Data reduction and simplification (PCA and PCoA)
-  - Organization of objects (Cluster Analysis and MDS)
-  - Testing the effects of a factor on linear combinations of variables (MANOVA and DFA)
+    - Data reduction and simplification (PCA and PCoA)
+    - Organization of objects (Cluster Analysis and MDS)
+    - Testing the effects of a factor on linear combinations of variables (MANOVA and DFA)
 
 ## Conceptual overview of multivariate statistics
 
@@ -872,7 +876,7 @@ knitr::include_graphics("images/multi.002.jpeg")
 
 $$Z_{ik} = c_1y_{i1} + c_2y_{i1} + c_3y_{i2} + c_1y_{i3} + ... + c_py_{ip}$$
 
-- Derive linear combinations of the original variables that best summarize the total variation in the data
+- Derives linear combinations of the original variables that best summarize the total variation in the data
 - These new linear combinations become new variables themselves
 - Each object can now have a score for the new variables
 
@@ -925,6 +929,7 @@ knitr::include_graphics("images/multi.004.jpeg")
 - You can perform single or multiple regression of your PCs on other continuous variables (e.g. an environmental gradient).
 - If you have one or more grouping variables you can use ANOVA on each newly derived PC.
 
-## R Interlude | Exercises xxxx...
+## R Interlude | Exercises 3.9-3.10
+- Getting slightly more advanced and bringing it all together
 
 
