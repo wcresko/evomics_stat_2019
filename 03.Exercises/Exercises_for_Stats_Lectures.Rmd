@@ -28,19 +28,6 @@ opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
   - what happens to the curve as your probability of "success" gets smaller or larger than 0.5?
     
     
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
 _______________________________
 
 
@@ -75,12 +62,6 @@ forward_reverse_mutation(forward = 0.01, reverse = 0.01, start_freq = seq(0.0, 1
 
 
 
-
-
-
-
-
-
 _______________________________
 
 
@@ -98,12 +79,6 @@ t.test(continuous_variable~cat_variable, dataset name)
 3. Repeat steps 1 and 2 above but use different sample sizes (e.g. 10 , then 100, then 1000, then 10,000 obsv. per factor level). How does the sample size affect the statistics?
 4. What if you run the test again and  make the means of the categorical groups more dissimilar? 
 5. What happens if you change the standard deviation of your normal distributions to be very small or very large?  
-
-
-
-
-
-
 
 
 
@@ -160,10 +135,6 @@ print(chi.sq)
 ```
 
 - Based on these result, do you reject or fail to reject the null hypothesis? What was your alpha level?
-
-
-
-
 
 
 
@@ -312,7 +283,7 @@ plot (vare.mds, type = "t")
 
 - How does this plot compare to your first plot? What's all that red stuff?
 
-6. We can run a PCA on our data as well, which is a *metric* analysis that utilizes Euclidian distanes
+6. We can run a PCA on our data as well, which is a *metric* analysis that utilizes Euclidean distances
 
 ```{r}
 vare.pca <- rda(yeast_data, scale = TRUE)

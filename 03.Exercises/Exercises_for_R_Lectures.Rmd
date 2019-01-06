@@ -84,7 +84,7 @@ Insert a code chunk below and complete the following tasks:
 2. Use the `log` and `sqrt` functions on your vector
 3. What happens when you try to apply these functions to a factor?
 4. Type the first couple letters of a function within your R code chunk, then hit tab- what happens? 
-- What if you pess tab with you cursor inside the function parenthese? 
+- What if you press tab with you cursor inside the function parentheses? 
 
 _______________________________
 
