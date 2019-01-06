@@ -154,7 +154,48 @@ By opening this .Rmd file, you have automatically set your working directory to 
 _______________________________
 
 
-## _Excercise 2.1: RMarkdown advanced_
+## _Excercise 2.1: Git and GitHub basics_
+- Make your GitHub account https://github.com/
+
+- Create a new directory on the terminal usig `mkdir directory_name` and clone the evomics_stat_2019 repo into that directory using the command 'git clone https://github.com/wcresko/evomics_stat_2019.git'
+
+- Create a new repo for yourself on Github by going to 'Your repositories' in the dropdown menu at the right and selecting 'new'
+
+- Clone your new repo into a new local directory
+
+- Push a file to your new repo:
+    1. Create a new file in your new local directory
+    2. Type `git status` to see what files can be pushed. red= no, green=yes
+    3. To make files in your current directory available for a push use `git add .`
+    4. Check the status again- should be green
+    5. Create a descriptive commit using `git commit -am "descriptive message here"
+    6. `git push`
+    7. Check Github to see what happened
+    
+- Clone your neighbor's repo, change a file, and push it
+    1. Clone your neighbor's repo using `git clone url_for_friend`
+    2. Make a change to your local version of their test file and save it
+    3. Use the `add` and `status` commands to prep your file for a push
+    4. Use `commit` to annotate what you changed
+    5. `push` it!
+    
+- Pull down changes that your friend made
+    1. In instances where you are not sure if your local branch is up to date with the master, use `git fetch` and then `git status` to see how many commits you have missed
+    2. Then type `git merge origin/master` to sync everything between your computer and the repository
+    3. You can also pull down changes that your neighbor made in your new repo using `git pull`- which runs a fetch and merge for you, *but* can cause your local directory to become conflicted if you have made changes locally that have not been pushed.
+
+- Look at your Github repo
+    1. Where did the commit message end up?
+    2. Look at the commits tab- what information can you find here?
+    
+- Check out GitHub Pages: https://pages.github.com/
+    - Example from Bill's stats course at UO: In the 'README.md file in Bill's UO_ABS repo you will find a link for the GitHub Pages website. 
+
+
+_______________________________
+
+
+## _Excercise 2.2: RMarkdown advanced_
 
 Getting more familiar with RMarkdown
 
@@ -235,7 +276,7 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 _______________________________
 
 
-## _Exercise 2.2: RNAseq Example Dataset_
+## _Exercise 2.3: RNAseq Example Dataset_
 By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a sub-directory in this folder. You can do this by including that part of the path in the `read.csv` function. Insert a code chunk below and complete the following tasks:
 
 1. Read in the provided file 'RNAseq_sample_data.csv' from the data folder, tab complete can also be helpful to auto-populate paths (<-read.csv('data/RNAseq...', header=T))
@@ -246,7 +287,7 @@ By opening this .Rmd file, you have automatically set your working directory to 
 _______________________________
 
 
-## _Exercise 2.3: Data Wrangling_
+## _Exercise 2.4: Data Wrangling_
 Insert a code chunk below and complete the following tasks:
 
 1. `Select` all of the categorical variables and only 4 of the gene count variables and put them into a new variable
@@ -258,7 +299,7 @@ Insert a code chunk below and complete the following tasks:
 _______________________________
 
 
-## _Exercise 2.4: Graphical Communication with ggplot2_
+## _Exercise 2.5: Graphical Communication with ggplot2_
 Insert a code chunk below and complete the following tasks using your gene expression tibble:
 
 1. Create a barplot of microbiota and genotype- what does this tell you about experimental design? What if you randomly sample 100 rows with replacement (use `mydata[sample(nrow(mydata), 100, replace=T), ]`) - does the plot change?

@@ -52,7 +52,7 @@ ___________________
 - Reproducibility 
     - keep your scripts to see exactly what was done
     - distribute these with your data
-    - embed your `R` analyses in polished `R markdown` files
+    - embed your `R` analyses in polished `RMarkdown` files
 - FREE
     
 ## {.flexbox .vcenter}
@@ -113,14 +113,14 @@ ___________________
 
 ## `RMarkdown` {.flexbox .vcenter}
 
-- A better way to embed code in R Markdown files
+- A better way to embed code in RMarkdown files
     - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
     - https://bookdown.org/yihui/rmarkdown/
     - https://bookdown.org/yihui/bookdown/
 - You can insert `R chunks` into `Rmarkdown` documents
 - You will be doing more with markdown on Thursday
 
-## Exercise 1.2 - Intro to `R Markdown` Files
+## Exercise 1.2 - Intro to `RMarkdown` Files
 
 - Take a few minutes to familiarize yourself with RMarkdown files by completing exercise 1.2 in your exercises document.
 - You will be doing all of your work in RMarkdown
@@ -191,7 +191,7 @@ log(x)
 ## Arithmetic operations on functions {}
 - Note that the last of these - `log` - is a built in function of `R`, and therefore the object of the function needs to be put in parentheses
 - These parentheses will be important, and we'll come back to them later when we add arguments after the object in the parentheses  
-- The outcome of calculations can be assigned to new variables as well, and the results can be checked using the 'print' command
+- The outcome of calculations can be assigned to new variables as well, and the results can be checked using the `print` command
 
 
 ## Arithmetic operations on functions {.flexbox .vcenter}
@@ -270,7 +270,7 @@ str(n_factor)
 class(n)
 class(n_factor)
 ```
-- We can also determine how `R` "sees" a variable using str() or class() functions. 
+- We can also determine how `R` "sees" a variable using `str()` or `class()` functions. 
 - This is a useful check when importing datasets or verifying that you assigned a class correctly
 
 ## Types of vectors of data {.smaller}
@@ -632,11 +632,6 @@ knitr::include_graphics("images/images_5a.012.jpeg")
 knitr::include_graphics("images/images_5a.013.jpeg")
 ```
 
--------
-
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/images_5a.014.jpeg")
-```
 
 ## Clone the repository
 
@@ -660,13 +655,8 @@ git merge origin/master
 - The first command just tells you if anything has changed  
 - If so, do the second!
 
-## Git and GitHub Interlude
-- Make your GitHub account
-- Create a new repo for yourself
-- Clone a repo
-- Push to Github
-- Collaborating in a repo
-- GitHub Pages
+## Git and GitHub Interlude: Exercise 2.1
+
 
 ________________________
 
@@ -907,7 +897,7 @@ Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
     - All files are easily shared on GitHub
 - Once you start using Markdown you won't stop.....
 
-## R Interlude | Exploring RMarkdown (Exercise 2.1)
+## R Interlude | Exploring RMarkdown (Exercise 2.2)
 
 ________________________
 
@@ -1061,7 +1051,7 @@ summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
     - if there’s any missing value in the input, the output will be a missing value.
     - fortunately, all aggregation functions have an na.rm argument which removes the missing values prior to computation
 
-## R INTERLUDE | Complete Exercise 2.2-2.3 {.flexbox .vcenter}
+## R INTERLUDE | Complete Exercise 2.3-2.4 {.flexbox .vcenter}
 
 _________________________________
 
@@ -1381,4 +1371,4 @@ knitr::include_graphics("images/dashboard_orient_rows.png")
 knitr::include_graphics("images/dashboard_spec_col_widths.png")
 ```
 
-## FINAL R INTERLUDE | Complete Exercise 2.4 {.flexbox .vcenter}
+## FINAL R INTERLUDE | Complete Exercise 2.5 {.flexbox .vcenter}
