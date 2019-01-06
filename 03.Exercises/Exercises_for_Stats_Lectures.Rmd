@@ -1,6 +1,6 @@
 ---
 title: "Student Exercises | Statistics for Genomics"
-output: pdf_document
+output: html_document
 author: your name here 
 ---
 
@@ -8,50 +8,45 @@ author: your name here
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Statistics for Genomics Lab
-
+```{r}
+library(knitr)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
 
 ## _Exercise 3.1: Examining Binomially Distributed Data_
 1. Using R, simulate the following experimental data: 
-- use the `rbinom()` function to create a new data set
-- look at the arguments to see how they relate to the trials, probability of each trial, and number of replicates using tab complete or help- then assign each argument based on 20 observations of a fair coin toss
-- use the `hist()` function to plot your simulated data
-- what do the y- and x-axes represent?
-- what is the most common outcome, in terms of the number of “successes” per trial? Does this make sense?
+  - use the `rbinom()` function to create a new, simulated data set
+  - look at the arguments to see how they relate to the trials, probability of each trial, and number of replicates using tab complete or help- then assign each argument based on 20 observations of a fair coin toss
+  - use the `hist()` function to plot your simulated data
+  - what do the y- and x-axes represent?
+  - what is the most common outcome, in terms of the number of “successes” per trial? Does this make sense?
 2. Now, vary the `probability` argument to reflect an unfair coin toss
 3. Now, change your script to do the following:
-- perform 200 trials for each of the 100 replicates
-- perform 2000 trials for each of the 100 replicate
-- how do the distributions change when you go from 20 to 200 to 2000 trials?
-- what happens to the curve as your probability of "success" gets smaller or larger than 0.5?
+  - perform 200 trials for each of the 100 replicates
+  - perform 2000 trials for each of the 100 replicate
+  - how do the distributions change when you go from 20 to 200 to 2000 trials?
+  - what happens to the curve as your probability of "success" gets smaller or larger than 0.5?
     
-_______________________________
+    
+    
+    
+    
+    
+    
+    
 
-## _Exercise 3.2: Examining Normally Distributed Data_
 
-1. Simulate a population of 10,000 individual values for a variable x with a mean of 50 and a sd of 5.5.
-- From your simulated data take 1000 random samples of size 20, take the mean of each sample, and plot the distribution of these 1000 sample means using the for loop below.
 
-```{r, eval = F, echo = T}
-x_sample_means <- NULL
-for(i in 1:1000){
-x_samp <- sample(x, 20, replace=FALSE)
-x_sample_means[i] <- mean(x_samp)
-}
-```
 
-2. For one of your samples, transform the observation values to z-scores (hint- you can use another `for` loop for this) 
-- plot the distribution of the z-scores, and calculate the mean and the standard deviation.  
-3. Now, create a second population (called x.lognorm) by log-transforming all 10,000 values from population “x”.
-- plot the histogram of these data- how is it different?
+
 
 
 _______________________________
 
 
-## _Exercise 3.3: An example of creating your own function to model forward and reverse mutation equilibrium_
+## _Exercise 3.2: An example of creating your own function to model forward and reverse mutation equilibrium_
 
-Populations of organisms constantly experience mutations, often in opposing directions for the same genes. For example, some mutations may create a new function, whereas others destroy that function. The relative rates of those mutations will determine the equilibrium frequencies of the wild type and mutant alleles in a population. Below is a function, defined using `R`, to calculate that equilibrium frequency over time. The values for the different forward and reverse mutations, starting frequencies, and generations for the simulation are defined in the first script. Change those values in the last line to see how they affect the equilibrium frequency in the population. 
+Populations of organisms constantly experience mutations, often in opposing directions for the same genes. For example, some mutations may create a new function, whereas others destroy that function. The relative rates of those mutations will determine the equilibrium frequencies of the wild type and mutant alleles in a population. Below is a function, defined using `R`, to calculate that equilibrium frequency over time. The values for the different forward and reverse mutations, starting frequencies, and generations for the simulation are initialized in the first line of the script. Change those values in the last line to see how they affect the equilibrium frequency in the population. Can you determine how those values are utilized during the calculations of the equilibrium allele frequencies over time in the function that you defined? Try changing aspects of the function to see what happens to the output.
 
 ```{r}
 forward_reverse_mutation <- function(forward = 0.00, reverse = 0.00, start_freq = 0.5, generations = 1000)
@@ -74,21 +69,27 @@ legend(600, 1, start_freq, col = 1:20, lty = 1:20)
 forward_reverse_mutation(forward = 0.01, reverse = 0.01, start_freq = seq(0.0, 1.0, by = 0.1), generations = 1000)
 ```
 
-1. How does the relative magnitude of forward and reverse mutations affect your final allele frequency once your population reaching equilibrium?
-- What if the rates are equal? What if they are largely different?
-2. How does the magnitude of your mutation rates affect time to equilibrium?
-- What happens if they are very small? Very large?
+1. How does the relative magnitude of forward and reverse mutations affect your final allele frequency once your population reaching equilibrium? What if the rates are equal? What if they are largely different?
+2. How does the magnitude of your mutation rates affect time to equilibrium? What happens if they are very small? Very large?
 3. How does the start frequency of A1 allele factor into both time to equilibrium and magnitude of frequency change when your mutation rates are equal? What about when they are not equal?
+
+
+
+
+
+
+
 
 
 _______________________________
 
 
-## _Exercise 3.4: Parametric t-test in R_
+## _Exercise 3.3: Parametric t-test in R_
 
-1. Using R to make a dummy data set that contains one continuous and one categorical value with two levels. To do so draw individuals of the two different factor levels from normal distributions with slightly different means but equal standard deviations. Take 100 observations per factor level. 
+1. Using R to make a dummy data set that contains one continuous and one categorical value with two levels. To do so draw individuals of the two different factor levels from normal distributions (check the 'norm' family of functions) with slightly different means but equal standard deviations. Take 100 observations per factor level. 
 
 2. Now, perform a t-test to see if the two populations are statistically different from one another (see below)
+
 ```{r, eval=FALSE, echo=TRUE}
 boxplot(continuous_variable~cat_variable, dataset name) 
 t.test(continuous_variable~cat_variable, dataset name) 
@@ -99,12 +100,19 @@ t.test(continuous_variable~cat_variable, dataset name)
 5. What happens if you change the standard deviation of your normal distributions to be very small or very large?  
 
 
+
+
+
+
+
+
+
 _______________________________
 
 
-##_Exercise 3.5: Test for Hardy Weinberg Equilibrium in a two-allele model using a Chi-square statistical distribution_
+## _Exercise 3.4: Test for Hardy-Weinberg Equilibrium in a two-allele model using a Chi-square statistical distribution_
 
-Another common statistical scenario is to test whether counts in different categories of variables are random or not. A good example is the combination of alleles in to genotypes in a diploid, sexually reproducing population. This so-called Hardy-Weinberg Equilibrium (HWE) expectation is simply a statement that the choice of each allele is an independent random event. Therefore, the null expectation under random mating and lack of strong selection is that the genotypes will be predicted by the binomial sampling of alleles based upon their frequencies. We can test against these expectations using the Chi-square statistic. Below modify the counts of genotypes to see how this affects your conclusion as to whether the population is in HWE.
+Another common statistical scenario is to test whether counts in different categories of variables are random or not. A good example is the combination of alleles into genotypes in a diploid, sexually reproducing population. This so-called Hardy-Weinberg Equilibrium (HWE) expectation is simply a statement that the choice of each allele is an independent random event (note that this is equivalent to the binomial expectation for two independent events). Therefore, the null expectation under random mating and lack of strong selection is that the genotypes will be predicted by the binomial sampling of alleles based upon their frequencies. We can test against these expectations using the Chi-square statistic. Below modify the counts of genotypes to see how this affects your conclusion as to whether the population is in HWE.
 
 ```{r}
 # initial genotype frequencies
@@ -144,24 +152,31 @@ print(chi.sq)
 ```
 
 - You've calculated the observed Chi-square value above
-- To calculate the p-value associated for this statistic with 2 degrees of use the equation below with the observed chi-square
+- To calculate the p-value associated for this statistic with 2 degrees plug into the equation below with the observed chi-square (as occurs here)
 - Significant p-values (< 0.05) mean that the population deviates from HWE
 
 ```{r}
 1- pchisq(chi.sq,df = 2)
 ```
 
-1. Based on these result, do you reject or fail to reject the null hypothesis?
-- what does this tell you about the population in question?
-- is there a genotype that appears to be under selection?
+- Based on these result, do you reject or fail to reject the null hypothesis? What was your alpha level?
+
+
+
+
+
+
+
 
 
 _______________________________
 
 
-## _Exercise 3.6: Linear Models to examine the relationship of different hormone levels and thyroid morphology in zebrafish_
+## _Exercise 4.1: Linear models to examine the relationship of different hormone levels and thyroid morphology in zebrafish_
 
-Write a code chunk to read in the 'perchlorate2.csv' data set in the data folder. This file includes data from a test in which multiple strains of zebrafish were exposed to multiple concentrations of the toxic compound perchlorate, which interferes with thyroid development and function. Several outcomes of fish thyroid morphology and hormone concentration were measured. The data set includes the following variables in this order:
+Write a code chunk to read in the 'perchlorate2.csv' data set in the data folder. This file includes data from a test in which multiple strains of zebrafish were exposed to multiple concentrations of the toxic compound perchlorate, which interferes with thyroid development and function. Several outcomes of fish thyroid morphology and hormone concentration were measured. 
+
+1. The data set includes the following variables in this order:
 
 - Strain of zebrafish (categorical)
 - Perchlorate_Level	(continuous)
@@ -173,60 +188,59 @@ Write a code chunk to read in the 'perchlorate2.csv' data set in the data folder
 - Testes_Area	(continuous)
 - Testes_StageNow (categorical)
 
-1. Modify the code below to build a linear model of two **continuous** variables. You can check for variable class using `str`.  
-- What is the response? What is the predictor?
-- Notice how the output of the linear model is specified to a new object.
+2. Modify the code below to build a linear model of two **continuous** variables. You can check for variable class using `str`.  
+  - What is the response? What is the predictor?
+  - Notice how the output of the linear model is specified to a new object.
+  
 ```{r, echo=TRUE, eval=FALSE}
 my_lm <- lm(XXX ~ YYY)
 ```
 
 - Now look at a summary of the linear model
+
 ```{r, echo=TRUE, eval=FALSE}
 summary(my_lm)
 print(my_lm)
 ```
 
-2. Now let's produce a regression plot
+3. Now let's produce a regression plot
+
 ```{r, echo=TRUE, eval=FALSE}
 plot(XXX~YYY, col = “blue”)
 abline(my_lm, col = “red”)
 ```
-- What does the line represent?
+ 
+  - What does the line represent?
 
-3. You can use the `$` operator to select out parameter values and estimates from your model object. Plot the residuals over the fitted values by extracting them from your model object.   
-- Are there any obvious patterns in this plot?
-- What happens when you `plot` the linear model object itself?
-- Using these plots, does it appear that you have violated any assumptions?
+4. You can use the `$` operator to select out parameter values and estimates from your model object. Plot the residuals over the fitted values by extracting them from your model object.   
+  - Are there any obvious patterns in this plot?
+  - What happens when you `plot` the linear model object itself?
+  - Using these plots, does it appear that you have violated any assumptions?
 
 
-_______________________________
 
-## _Exercise 3.7: Multiple linear regression_
 
-1. Using the perchlorate dataset, create a multiplicative multiple linear regression model using the `lm` function that examines the affects of perchlorate level and age on one of our phenotypic outcomes.
-- What can you conclude form the output?
-- Is there an interactive affect of perchlorate and age? What does that tell you biologically?
-2. Plot the residuals of this model over the fitted values.
-- Any problems? Why?
-- Are your predictors truly continuous? So are we using the right test...? 
+
+
+
 
 
 _______________________________
 
 
-## _Exercise 3.8: 2-by-2 fixed effect factorial ANOVA examining the effects of microbiome treatment on RNA expression levels in the guts of threespine stickleback_
+## _Exercise 4.2: 2-by-2 fixed effect factorial ANOVA examining the effects of microbiome treatment on RNA expression levels in the guts of threespine stickleback_
 
-Load the RNAseq_microbiome.csv dataset which represents RNAseq data collected for three different genes (FGF3, Sox10 and SLC5) from the guts of threespine stickleback fish. In this experiment two different genotypes of stickleback (ocean and freshwater) were tested by subjecting each to two different microbiome treatments (conventional or mono-associated). Stickleback can be made germ free and then either exposed to the conventional microbiome or just one microbe. After exposure the guts were extracted, RNA isolated, and RNAseq data collected. This data set has just three genes.
-
-- Is `R` correctly interpreting the class of your variables? It is always good to check this before doing anything. 
+Load the RNAseq_microbiome.csv dataset which represents RNAseq data collected for three different genes (FGF3, Sox10 and SLC5) from the guts of threespine stickleback fish. In this experiment two different genotypes of stickleback (ocean and freshwater) were tested by subjecting each to two different microbiome treatments (conventional or mono-associated). Stickleback can be made germ free and then either exposed to the conventional microbiome or just one microbe. After exposure the guts were extracted, RNA isolated, and RNAseq data collected. This data set has just three genes. Is `R` correctly interpreting the class of your variables? It is always good to check this before doing anything. 
 
 1. Make boxplots to graphically illustrate differences in gene expression distributions among genotype and microbiota treatment for each gene.
-- Hint: You may need to create a new variable for this.
-- Any obvious patterns?
-- Would you guess there is a difference among means?
-- Does it look like there may be an interaction?
+  - Hint: You may need to create a new variable for this.
+  - Any obvious patterns?
+  - Would you guess there is a difference among means?
+  - Does it look like there may be an interaction?
 
-2. Fit the factorial linear model - two different ways to do the same thing- then use the summary function to look at your results. 
+2. Fit the factorial linear model 
+  - Below are two different ways to do the same thing
+  - Then use the summary function to look at your results. 
 
 ```{r, echo=TRUE, eval=FALSE}
 rna_aov <- aov(gene ~ microbiota + genotype + microbiota:genotype)
@@ -234,18 +248,23 @@ rna_aov <- aov(gene ~ microbiota*genotype)
 ```
 
 3. Is there a significant interaction between genotype and treatment?
-- Fit the reduced, additive model
-- Bonus: You can use the `anova` function to compare the fit of your models, to test if the interaction should be included or if the reduced model is sufficient. A significant _P-value_ for this analysis of deviance test implies that the model fit is significantly different among models. Order your model objects by increasing complexity, that way you can test if the addition of the interaction term significantly improves the fit of your model. Based on this test, does the interaction significantly improve the model fit?   
+
+
+
+
+
+
+
+
+
 
 
 ____________________________________
 
 
-## _Exercise 3.9: NMDS for the analysis of multivariate data_
+## _Exercise 4.3: NMDS for the analysis of multivariate data_
 
-Nonmetric Multidimensional Scaling (NMDS) is a form of nonparametric clustering. As such, some of the distributional assumptions of multivariate analyses are relaxed. The package VEGAN was originally derived for ecological data across plots or sites. For example, enumeration of species across different locations. However, the approach is very applicable to genetic data across geographic locals or phenotypes, or gene expression data across different samples.
-
-Now examine the 'yeast.tsv' data set, which is a measurement of RNAseq levels of numerous genes from six different yeast samples from different vineyards.
+Nonmetric Multidimensional Scaling (NMDS) is a form of nonparametric clustering. As such, some of the distributional assumptions of multivariate analyses are relaxed. The package VEGAN was originally derived for ecological data across plots or sites. For example, enumeration of species across different locations. However, the approach is very applicable to genetic data across geographic locals or phenotypes, or gene expression data across different samples. Now examine the 'yeast.tsv' data set, which is a measurement of RNAseq levels of numerous genes from six different yeast samples from different vineyards.
 
 ```{r, eval=TRUE, echo=TRUE}
 library (vegan)
@@ -267,11 +286,12 @@ vare.mds0 <- monoMDS(vare.dis)
 print (vare.mds0)
 ```
 
-3. Let's take a look at how the dissimilarities among samples maps onto the ordination distance. Notice that there is a fit with the data, but we're no longer assumed consistent linearity over the entire data set.
+3. Let's take a look at how the dissimilarities among samples maps onto the ordination distance. Notice that there is a fit with the data, but we're no longer assuming consistent linearity over the entire data set.
 
 ```{r}
 stressplot(vare.mds0, vare.dis)
 ```
+
 - What does the R^2 value tell you? Is the model accurately predicting the observed dissimilarity?
 
 
@@ -280,36 +300,38 @@ stressplot(vare.mds0, vare.dis)
 ```{r}
 ordiplot (vare.mds0, type = "t")
 ```
--Any clustering?
 
-5. Now we can rerun the ordination and add all of the data (genes) as well.
+- Any clustering?
+
+5. Now we can rerun the ordination and add all of the data (genes) as well to the plot.
 
 ```{r}
 vare.mds <- metaMDS(yeast_data, trace = F)
 plot (vare.mds, type = "t")
 ```
-- How does this plot compare to your first plot?
 
-6. We can run a PCA on our data as well.
+- How does this plot compare to your first plot? What's all that red stuff?
+
+6. We can run a PCA on our data as well, which is a *metric* analysis that utilizes Euclidian distanes
 
 ```{r}
 vare.pca <- rda(yeast_data, scale = TRUE)
 print (vare.pca)
 ```
-- What do you notice about the eignevalues of the PCs?
 
-Showing both the locations of the samples. Try both plots.
+- What do you notice about the eignevalues of the PCs? 
+- How many original variables were there? How many eigenvectors will there be?
+- Showing both the locations of the samples and the variables. 
+- Try different plots that show one or the other or both
 
 ```{r}
 plot (vare.pca, scaling = -1)
 plot (vare.pca, scaling = 1)
 plot (vare.pca, scaling = 2)
-plot (vare.pca, scaling = 3)
 ```
-- What are these plots showing? What is in red? What is in black?
 
-
-And the weighting of the original variables (expression level) on the PCs
+- What are these plots showing? What does that scaling argument do?
+- What is in red? What is in black?
 
 ```{r}
 biplot (vare.pca, scaling = -1)
@@ -351,12 +373,13 @@ print (grp)
 ________________________________________
 
 
-## _Exercise 3.10: Biodiversity analysis in R - pulling it all together_
+## _Exercise 4.4: Biodiversity analysis in R - pulling it all together_
 
-This last exercise comes to us thanks to the hard work of Steven Kembel, who is a faculty member at the University of Montreal in Canada. Steve was a postdoctoral scholar at the University of Oregon and put together this very nice exercise to demonstrate how to pull numerous different R packages and scripts together into an integrated data analysis pipeline. The purpose of this particular script is to examine the biodiversity of grassland plants in ecological communities in Canada using several common ecological statistics. 
+This last exercise comes to us thanks to the hard work of Steven Kembel, who is a faculty member at the University of Montreal in Canada. Steve was a postdoctoral scholar at the University of Oregon and put together this very nice exercise to demonstrate how to pull numerous different R packages and scripts together into an integrated data analysis pipeline. The purpose of this particular script is to examine the biodiversity of grassland plants in ecological communities in Canada using several common ecological statistics. You are participating in a workshop on genomics, so might wonder how this applies to you. An amazing convergence in understanding has occurred over the past decade by recognizing that analyses of the distributions and abundances of macro-organisms, micro-organisms and gene transcripts across different samples (e.g. environments, body sites or cell types) are all very similar. Therefore, the workflow that you learn here can be applied to numerous biological problems you might encounter in the future regarding when, where and how much biological units occur across various units. 
 
 ## General background
-In this workshop we are going to analyze a data set on the biodiversity of grassland plants in Alberta. This data set consists of data on the occurrence of grassland plants at several different sites in Alberta, along with information on their functional traits and phylogenetic relationships.
+
+In this exercise we are going to analyze a data set on the biodiversity of grassland plants in Alberta. This data set consists of data on the occurrence of grassland plants at several different sites in Alberta, along with information on their functional traits and phylogenetic relationships.
 
 Dr. Kembel described this data set in more detail in the following paper:
 S.W. Kembel and J.F. Cahill, Jr. 2011. Independent evolution of leaf and root traits within and among temperate grassland plant communities. PLoS ONE 6(6): e19992. (doi:10.1371/journal.pone.0019992).
@@ -419,6 +442,7 @@ comm[1:5, 1:5]
 ```
 
 ## Trait data
+
 We also have information on the leaf and root traits of each species. We can load these data in the same way as the community data, but now we will have species in the rows and traits in the columns.
 
 ```{r}
@@ -435,6 +459,7 @@ pairs(traits)
 ```
 
 ## Metadata
+
 We have some information about the samples, including the habitat and site they were collected from, and a few basic environmental variables such as slope and moisture regime.
 
 ```{r}
@@ -548,6 +573,7 @@ comm.bc.clust <- hclust(comm.bc.dist, method="average")
 # plot cluster diagram
 plot(comm.bc.clust, ylab="Bray-Curtis dissimilarity")
 ```
+
 What does your plot tell you about whether the two habitats contain different plant communities?
 
 ## Ordination
@@ -589,7 +615,7 @@ ordisurf(comm.bc.mds, comm[,"Sphaeralcea_coccinea"], bubble=TRUE, main="Sphaeral
 
 ### Adding environmental and trait data to ordinations
 
-- How are environmental variables correlated with the ordination axes?
+How are environmental variables correlated with the ordination axes?
 
 ```{r}
 ordiplot(comm.bc.mds)
@@ -604,7 +630,7 @@ It is also possible to do a constrained ordination such as constrained correspon
 
 ## Phylogenetic signal
 
-The idea of phylogenetic niche conservatism (the ecological similarity of closely related species) has attracted a lot of attention recently, for example in the widely used framework of inferring community assembly processes based on knowledge of community phylogenetic structure plus the phylogenetic conservatism of traits. (Webb et al. 2002).
+The idea of phylogenetic niche conservatism (the ecological similarity of closely related species) has attracted a lot of attention, for example in the widely used framework of inferring community assembly processes based on knowledge of community phylogenetic structure plus the phylogenetic conservatism of traits. (Webb et al. 2002).
 
 Phylogenetic signal is a quantitative measure of the degree to which phylogeny predicts the ecological similarity of species. The K statistic is a measure of phylogenetic signal that compares the observed signal in a trait to the signal under a Brownian motion model of trait evolution on a phylogeny (Blomberg et al. 2003). K values of 1 correspond to a Brownian motion process, which implies some degree of phylogenetic signal or conservatism. K values closer to zero correspond to a random or convergent pattern of evolution, while K values greater than 1 indicate strong phylogenetic signal and conservatism of traits. The statistical significance of phylogenetic signal can be evaluated by comparing observed patterns of the variance of independent contrasts of the trait to a null model of shuffling taxa labels across the tips of the phylogeny. These tests are implemented in the `Kcalc`, `phylosignal`, and `multiPhylosignal` functions.
 
