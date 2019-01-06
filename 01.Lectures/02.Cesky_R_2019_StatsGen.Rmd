@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 
 
-```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='65%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/week_01.005.jpeg")
 ```
 
@@ -215,13 +215,13 @@ knitr::include_graphics("images/week_2.004.jpeg")
 
 ## Poisson Probability Distribution | increasing parameter values of $\lambda$ {.smaller}
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
 knitr::include_graphics("images/week_2.005.jpeg")
 ```
 
 ## Log-normal PDF | Continuous version of Poisson (-ish) { .smaller}
 
-```{r, echo=FALSE, out.width='100%', fig.align='center'}
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
 knitr::include_graphics("images/week_2.006.jpeg")
 ```
 
@@ -302,7 +302,7 @@ knitr::include_graphics("images/week_2.015.jpeg")
 
 ## Why is the Normal special in biology? {.smaller}
 
-```{r, echo=FALSE, out.width='70%', fig.align='center'}
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
 knitr::include_graphics("images/week_2.014.jpeg")
 ```
 
@@ -378,7 +378,7 @@ $$\huge z_i = \frac{(x_i - \bar{x})}{s}$$
 
 ## Null and alternative hypotheses | population distributions {.smaller}
 
-```{r, echo=FALSE, out.width='60%', fig.align='center'}
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
 knitr::include_graphics("images/week_3.002.jpeg")
 ```
 
@@ -398,7 +398,7 @@ knitr::include_graphics("images/week_3.002.jpeg")
 
 ## Four common statistical distributions {.smaller}
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
 knitr::include_graphics("images/week_3.003.jpeg")
 ```
 
@@ -493,37 +493,37 @@ ________________________
 
 ## Parent offspring regression
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.002.jpeg")
 ```
 
 ## Linear Models - a note on history
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.003.jpeg")
 ```
 
 ## Linear Models - a note on history
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.004.jpeg")
 ```
 
 ## Bivariate normality
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.005.jpeg")
 ```
 
 ## Covariance and correlation
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.006.jpeg")
 ```
 
 ## A linear model to relate two variables
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.008.jpeg")
 ```
 
@@ -578,7 +578,7 @@ where $\beta_0, \beta_1, \beta_2, ....$ are the parameters of the linear model
 
 ## linear model parameters
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.010.jpeg")
 ```
 
@@ -612,14 +612,14 @@ reduced model - $y_i = \beta_0 + 0*x_i + error_i$
 
 ## Model fitting and hypothesis tests in regression
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.011.jpeg")
 ```
 
 
 ## Hypothesis tests in linear regression {.smaller}
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.012.jpeg")
 ```
 
@@ -649,25 +649,25 @@ $$y_i = \beta_0 + \beta_1 * x_I + \epsilon_i$$
 
 ## Residual Analysis
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.015.jpeg")
 ```
 
 ## Residual Analysis
 
-```{r, echo=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.016.jpeg")
 ```
 
 ## Residual Plots | Spotting assumption violations
 
-```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.020.jpeg")
 ```
 
 ## Anscombe's quartet | what would residual plots look like for these?
 
-```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4b.017.jpeg")
 ```
 
@@ -781,7 +781,7 @@ knitr::include_graphics("images/Images_5b.015.jpeg")
 ## ANOVA | Conceptually similar to regression {.vcenter .flexbox}
 
 ```{r, echo=FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/images_5b.016.jpeg")
+knitr::include_graphics("images/Images_5b.016.jpeg")
 ```
 
 ## ANOVA | Statistical results table {.vcenter .flexbox}

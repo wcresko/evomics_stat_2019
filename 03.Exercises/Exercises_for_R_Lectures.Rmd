@@ -39,7 +39,7 @@ summary(cars)
 ```
 
 3. What do you think `echo` and `eval` do, based on your manipulations?
-  - In a new line press tab twice, add a `-` and a space, then type your answer (as I did here). This will indent your answer in Rmarkdown (`knit` to visualize the difference). Use this format throughout the doc to format your answers.
+  - In a new line press tab twice, add a `-` and a space, then type your answer (as I did here). This will indent your answer in RMarkdown (`knit` to visualize the difference). Use this format throughout the doc to format your answers.
   - What are the defaults for `echo` and `eval`, based on your manipulations? 
 
 _______________________________
@@ -157,7 +157,7 @@ _______________________________
 ## _Excercise 2.1: Git and GitHub basics_
 - Make your GitHub account https://github.com/
 
-- Create a new directory on the terminal usig `mkdir directory_name` and clone the evomics_stat_2019 repo into that directory using the command 'git clone https://github.com/wcresko/evomics_stat_2019.git'
+- Create a new directory on the terminal using `mkdir directory_name` and clone the evomics_stat_2019 repo into that directory using the command 'git clone https://github.com/wcresko/evomics_stat_2019.git'
 
 - Create a new repo for yourself on Github by going to 'Your repositories' in the dropdown menu at the right and selecting 'new'
 
@@ -242,7 +242,7 @@ kable(head(dat))
 ```
 
 
-<!-- This is a comment in html, which is a great way to include comments in an Rmarkdown document. 
+<!-- This is a comment in html, which is a great way to include comments in an RMarkdown document. 
 The following two code chunks are also hidden - because of the 'echo=FALSE' command. 
 The code is also not evaluated in R - notice the 'eval=FALSE' command. --> 
 
@@ -307,4 +307,4 @@ Insert a code chunk below and complete the following tasks using your gene expre
 3. Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.
 4. Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using `geom_point`. Plot your most interesting coexpression by treatment using `facet_wrap`.
 5. Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes. 
-6. Open a new Rmarkdown `flex dashboard` template and create a multi panel figure of your choice.
+6. Open a new RMarkdown `flexdashboard` template and create a multi panel figure of your choice.

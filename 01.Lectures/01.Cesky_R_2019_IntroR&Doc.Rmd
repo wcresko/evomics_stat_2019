@@ -971,13 +971,13 @@ knitr::include_graphics("images/week_3.011.jpeg")
 
 ## Example of a tibble {.smaller}
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
 knitr::include_graphics("images/week_3.012.jpeg")
 ```
 
 ## Example of a tibble {.smaller}
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
 knitr::include_graphics("images/week_3.013.jpeg")
 ```
 
@@ -1066,7 +1066,7 @@ _________________________________
 
 ## GGPlot2 and the Grammar of Graphics
 
-```{r, echo=FALSE, fig.cap="xxx", out.width='90%', fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, fig.cap="xxx", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4a.017.jpeg")
 ```
 
@@ -1195,17 +1195,17 @@ knitr::include_graphics("images/images_4a.011.jpeg")
 
 Represent  magnitudes  honestly  and  accurately  
 
-```{r, echo=FALSE, out.width='75%', fig.asp=.6, fig.align='center'}
+```{r, echo=FALSE, out.width='60%', fig.asp=.6, fig.align='center'}
 knitr::include_graphics("images/images_4a.012.jpeg")
 ```
 
-## How Fox News makes a figure ....    
+## How Fox News makes a figure ...    
 
 ```{r, echo=FALSE, out.width='75%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4a.013.jpeg")
 ```
 
-## How Fox News makes a figure ....   
+## How Fox News makes a figure ...   
 
 ```{r, echo=FALSE, out.width='30%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics("images/images_4a.013.jpeg")
