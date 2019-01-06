@@ -177,8 +177,8 @@ print(my_lm)
 3. Now let's produce a regression plot
 
 ```{r, echo=TRUE, eval=FALSE}
-plot(XXX~YYY, col = “blue”)
-abline(my_lm, col = “red”)
+plot(XXX~YYY, col = "blue")
+abline(my_lm, col = "red")
 ```
  
   - What does the line represent?
