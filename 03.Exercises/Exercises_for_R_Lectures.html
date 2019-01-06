@@ -421,7 +421,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)</code></pre>
 <li>What do you think <code>echo</code> and <code>eval</code> do, based on your manipulations?</li>
 </ol>
 <ul>
-<li>In a new line press tab twice, add a <code>-</code> and a space, then type your answer (as I did here). This will indent your answer in Rmarkdown (<code>knit</code> to visualize the difference). Use this format throughout the doc to format your answers.</li>
+<li>In a new line press tab twice, add a <code>-</code> and a space, then type your answer (as I did here). This will indent your answer in RMarkdown (<code>knit</code> to visualize the difference). Use this format throughout the doc to format your answers.</li>
 <li>What are the defaults for <code>echo</code> and <code>eval</code>, based on your manipulations?</li>
 </ul>
 <hr />
@@ -536,8 +536,51 @@ opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)</code></pre>
 </ol>
 <hr />
 </div>
-<div id="excercise-2.1-rmarkdown-advanced" class="section level2">
-<h2><em>Excercise 2.1: RMarkdown advanced</em></h2>
+<div id="excercise-2.1-git-and-github-basics" class="section level2">
+<h2><em>Excercise 2.1: Git and GitHub basics</em></h2>
+<ul>
+<li><p>Make your GitHub account <a href="https://github.com/" class="uri">https://github.com/</a></p></li>
+<li><p>Create a new directory on the terminal using <code>mkdir directory_name</code> and clone the evomics_stat_2019 repo into that directory using the command ‘git clone <a href="https://github.com/wcresko/evomics_stat_2019.git" class="uri">https://github.com/wcresko/evomics_stat_2019.git</a>’</p></li>
+<li><p>Create a new repo for yourself on Github by going to ‘Your repositories’ in the dropdown menu at the right and selecting ‘new’</p></li>
+<li><p>Clone your new repo into a new local directory</p></li>
+<li>Push a file to your new repo:
+<ol style="list-style-type: decimal">
+<li>Create a new file in your new local directory</li>
+<li>Type <code>git status</code> to see what files can be pushed. red= no, green=yes</li>
+<li>To make files in your current directory available for a push use <code>git add .</code></li>
+<li>Check the status again- should be green</li>
+<li>Create a descriptive commit using `git commit -am “descriptive message here”</li>
+<li><code>git push</code></li>
+<li>Check Github to see what happened</li>
+</ol></li>
+<li>Clone your neighbor’s repo, change a file, and push it
+<ol style="list-style-type: decimal">
+<li>Clone your neighbor’s repo using <code>git clone url_for_friend</code></li>
+<li>Make a change to your local version of their test file and save it</li>
+<li>Use the <code>add</code> and <code>status</code> commands to prep your file for a push</li>
+<li>Use <code>commit</code> to annotate what you changed</li>
+<li><code>push</code> it!</li>
+</ol></li>
+<li>Pull down changes that your friend made
+<ol style="list-style-type: decimal">
+<li>In instances where you are not sure if your local branch is up to date with the master, use <code>git fetch</code> and then <code>git status</code> to see how many commits you have missed</li>
+<li>Then type <code>git merge origin/master</code> to sync everything between your computer and the repository</li>
+<li>You can also pull down changes that your neighbor made in your new repo using <code>git pull</code>- which runs a fetch and merge for you, <em>but</em> can cause your local directory to become conflicted if you have made changes locally that have not been pushed.</li>
+</ol></li>
+<li>Look at your Github repo
+<ol style="list-style-type: decimal">
+<li>Where did the commit message end up?</li>
+<li>Look at the commits tab- what information can you find here?</li>
+</ol></li>
+<li>Check out GitHub Pages: <a href="https://pages.github.com/" class="uri">https://pages.github.com/</a>
+<ul>
+<li>Example from Bill’s stats course at UO: In the ’README.md file in Bill’s UO_ABS repo you will find a link for the GitHub Pages website.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="excercise-2.2-rmarkdown-advanced" class="section level2">
+<h2><em>Excercise 2.2: RMarkdown advanced</em></h2>
 <p>Getting more familiar with RMarkdown</p>
 <ul>
 <li>If you want to beautify your output, it always starts here.</li>
@@ -628,7 +671,7 @@ dat &lt;- data.frame(x, y, z)</code></pre>
 </tr>
 </tbody>
 </table>
-<!-- This is a comment in html, which is a great way to include comments in an Rmarkdown document. 
+<!-- This is a comment in html, which is a great way to include comments in an RMarkdown document. 
 The following two code chunks are also hidden - because of the 'echo=FALSE' command. 
 The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 <pre class="r"><code># remove a few samples that we don&#39;t want to analyze. 
@@ -657,8 +700,8 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 </ul>
 <hr />
 </div>
-<div id="exercise-2.2-rnaseq-example-dataset" class="section level2">
-<h2><em>Exercise 2.2: RNAseq Example Dataset</em></h2>
+<div id="exercise-2.3-rnaseq-example-dataset" class="section level2">
+<h2><em>Exercise 2.3: RNAseq Example Dataset</em></h2>
 <p>By opening this .Rmd file, you have automatically set your working directory to the folder containing it. Now, you need to access data from a sub-directory in this folder. You can do this by including that part of the path in the <code>read.csv</code> function. Insert a code chunk below and complete the following tasks:</p>
 <ol style="list-style-type: decimal">
 <li>Read in the provided file ‘RNAseq_sample_data.csv’ from the data folder, tab complete can also be helpful to auto-populate paths (&lt;-read.csv(‘data/RNAseq…’, header=T))</li>
@@ -667,8 +710,8 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 </ol>
 <hr />
 </div>
-<div id="exercise-2.3-data-wrangling" class="section level2">
-<h2><em>Exercise 2.3: Data Wrangling</em></h2>
+<div id="exercise-2.4-data-wrangling" class="section level2">
+<h2><em>Exercise 2.4: Data Wrangling</em></h2>
 <p>Insert a code chunk below and complete the following tasks:</p>
 <ol style="list-style-type: decimal">
 <li><code>Select</code> all of the categorical variables and only 4 of the gene count variables and put them into a new variable</li>
@@ -679,8 +722,8 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 </ol>
 <hr />
 </div>
-<div id="exercise-2.4-graphical-communication-with-ggplot2" class="section level2">
-<h2><em>Exercise 2.4: Graphical Communication with ggplot2</em></h2>
+<div id="exercise-2.5-graphical-communication-with-ggplot2" class="section level2">
+<h2><em>Exercise 2.5: Graphical Communication with ggplot2</em></h2>
 <p>Insert a code chunk below and complete the following tasks using your gene expression tibble:</p>
 <ol style="list-style-type: decimal">
 <li>Create a barplot of microbiota and genotype- what does this tell you about experimental design? What if you randomly sample 100 rows with replacement (use <code>mydata[sample(nrow(mydata), 100, replace=T), ]</code>) - does the plot change?</li>
@@ -688,7 +731,7 @@ The code is also not evaluated in R - notice the 'eval=FALSE' command. -->
 <li>Create a boxplot of the expression of GeneX by microbiota/genotype combination. Reorder it by median expression and flip the coordinates.</li>
 <li>Explore the coexpression patterns among your genes by plotting a couple pairwise combinations using <code>geom_point</code>. Plot your most interesting coexpression by treatment using <code>facet_wrap</code>.</li>
 <li>Combine layers of your coexpression plot by adding a smoothing line with standard error. Be sure to label your axes.</li>
-<li>Open a new Rmarkdown <code>flex dashboard</code> template and create a multi panel figure of your choice.</li>
+<li>Open a new RMarkdown <code>flexdashboard</code> template and create a multi panel figure of your choice.</li>
 </ol>
 </div>
 
