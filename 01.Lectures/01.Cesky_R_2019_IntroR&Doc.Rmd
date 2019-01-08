@@ -113,7 +113,7 @@ ___________________
 
 ## `RMarkdown` {.flexbox .vcenter}
 
-- A better way to embed code in RMarkdown files
+- A great way to embed `R code` into descriptive files
     - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
     - https://bookdown.org/yihui/rmarkdown/
     - https://bookdown.org/yihui/bookdown/
@@ -206,8 +206,8 @@ print(z)
 ```
 
 ## STRINGS {.flexbox .vcenter}
-- Variables and operations can be performed on characters as well
-- Note that characters need to be set off by quotation marks to differentiate them from numbers
+- Operations can be performed on _character_ variables as well
+- Note that "characters" need to be set off by quotation marks to differentiate them from numbers
 - The `c` stands for `concatenate`
 - Note that we are using the same variable names as we did previously, which means that we're overwriting our previous assignment
 - A good rule of thumb is to use new names for each variable, and make them short but still descriptive
@@ -246,7 +246,7 @@ print(z)
 
 ## FACTORS {.flexbox .vcenter}
 
-- The vector `x` is now what is called a list of character values.
+- The vector `x` is now what is called a list of character values ("I Love").
 - Sometimes we would like to treat the characters as if they were units for subsequent calculations.
 - These are called `factors`, and we can redefine our character variables as factors.
 - This might seem a bit strange, but it’s important for statistical analyses where we might want to see the mean or variance for two different treatments.
@@ -260,7 +260,7 @@ print (x_factor)
 - Note that factor levels are reported alphabetically
 
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, eval = TRUE, echo = TRUE}
 str(x)
 class(x)
 ```
@@ -519,7 +519,6 @@ write.table(YourFile, "yourfile.txt", quote=F, row.names=T, sep="\t")
 ## Indexing in data frames {.flexbox .vcenter}
 - Next up - indexing just a subset of the data
 - This is a very important idea in R, that you can analyze just a subset of the data.
-
 ```{r, echo=TRUE, eval=FALSE}
 print (YourFile[,2])
 print (YourFile$temp)
