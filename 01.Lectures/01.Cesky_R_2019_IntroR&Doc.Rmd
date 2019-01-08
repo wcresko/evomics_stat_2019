@@ -876,8 +876,7 @@ Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
 
 ## Final Thoughts on Markdown, LaTeX and GitHub
 - Many forms of markdown
-    - HTML is just a form of markdown
-    - RMardown is just a specific form of Markdown
+    - HTML and Rmarkdown are just forms of markdown
     - There is  a GitHub flavored markdown
     - Once you learn one, all the others are very easy
 - The goal increased collaboration and reproducibility
