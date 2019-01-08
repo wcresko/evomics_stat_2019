@@ -151,6 +151,7 @@ By opening this .Rmd file, you have automatically set your working directory to 
 7. Use the `tapply` function to calculate the `mean` and `var` of temp by habitat type and temp by elevation. 
 8. Export your data frame with a different file name
 
+
 _______________________________
 
 

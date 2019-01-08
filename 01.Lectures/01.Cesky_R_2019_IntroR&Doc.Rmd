@@ -227,7 +227,7 @@ print (z)
 ## VECTORS {.flexbox .vcenter}
 
 - In general `R` thinks in terms of vectors
-    - a list of characters, factors or numerical values
+    - a list of characters, factors or numerical values ("I Love")
     - it will benefit any `R` user to try to write scripts with that in mind
     - it will simplify most things
 - Vectors can be assigned directly using the 'c()' function and then entering the exact values.
@@ -253,27 +253,21 @@ print(z)
 
 ## FACTORS {.flexbox .vcenter}
 
-```{r, eval = FALSE, echo = TRUE}
-n_factor <- as.factor(n)
-print (n_factor)
-
-z_factor <- as.factor(z)
-print (z_factor)
-
+```{r, eval = TRUE, echo = TRUE}
+x_factor <- as.factor(x)
+print (x_factor)
 ```
 - Note that factor levels are reported alphabetically
 
 
 ```{r, eval = FALSE, echo = TRUE}
-str(n)
-str(n_factor)
-class(n)
-class(n_factor)
+str(x)
+class(x)
 ```
 - We can also determine how `R` "sees" a variable using `str()` or `class()` functions. 
 - This is a useful check when importing datasets or verifying that you assigned a class correctly
 
-## Types of vectors of data {.smaller}
+## Types or 'classes' of vectors of data {.smaller}
 
 ```{r, echo=FALSE, out.width='50%', fig.align='center'}
 knitr::include_graphics("images/week_3.014.jpeg")
@@ -314,7 +308,6 @@ knitr::include_graphics("images/week_3.014.jpeg")
 ## Basic Statistics {.flexbox .vcenter}
 
 Many functions exist to operate on vectors.
-
 ```{r, eval = FALSE, echo = TRUE}
 mean(n)
 median(n)
@@ -324,9 +317,8 @@ exp(n)
 sqrt(n)
 sum(n)
 length(n)
-sample(n, replace = T)
+sample(n, replace = T) #has an additional argument (replace=T)
 ```
-- Notice that the last function (`sample`) has an argument (`replace=T`)
 - Arguments modify or direct the function in some way
     - There are many arguments for each function, some of which are defaults
     - Tab complete is helpful to view argument options
@@ -413,12 +405,17 @@ hist(x)
 - What if you want to draw from a distribution?
 - Again, play around with the arguments in the parentheses to see what happens.
 
+```{r Samples from distributions 4, out.width='50%', echo = TRUE, eval=F}
+x <- rnorm (10000, 0, 10)
+y <- sample (???, 10000, replace = ???)
+```
+
 ## Drawing samples from distributions {.flexbox .vcenter out.width='50%'}
 
 - `dnorm()` generates the probability density, which can be plotted using the `curve()` function.
 - Note that is curve is added to the plot using `add=TRUE`
 
-```{r, out.width='40%', echo = TRUE}
+```{r, out.width='30%', echo = TRUE}
 x <-rnorm(1000, 0, 100)
 hist(x, xlim = c(-500,500))
 curve(50000*dnorm(x, 0, 100), xlim = c(-500,500), add=TRUE, col='Red')
@@ -442,17 +439,13 @@ plot (seq_1, xlab="space", ylab ="function of space", type = "p", col = "red")
 ```
 
 ## Putting plots in a single figure {.flexbox .vcenter}
-
-- On the next slide
-- The first line of the lower script tells R that you are going to create a composite figure that has two rows and two columns. 
+- The first line of the lower script tells R that you are going to create a composite figure that has two rows and two columns (on next slide)
     - Can you tell how?
-
 ```{r, echo=TRUE, outwidth="40%", out.height="20%"}
 seq_1 <- seq(0.0, 10.0, by = 0.1)
 seq_2 <- seq(10.0, 0.0, by = -0.1)
 ```
-
-```{r, echo=TRUE, eval=FALSE, outwidth="50%", out.height="50%"}
+```{r, echo=TRUE, eval=FALSE, outwidth="50%", out.height="40%"}
 par(mfrow=c(2,2))
 plot (seq_1, xlab="time", ylab ="p in population 1", type = "p", col = 'red')
 plot (seq_2, xlab="time", ylab ="p in population 2", type = "p", col = 'green')
@@ -501,7 +494,7 @@ head(mydata)
 
 ## R Interlude: Reading in Data Frames in R
 - A strength of `R` is being able to import data from an external source
-    - Create the same table that you did above in a spreadsheet like Excel
+    - Create the same table that you did above in a spreadsheet using LibreOffice 
     - Export it to comma separated and tab separated text files for importing into `R`.
     - The first will read in a comma-delimited file, whereas the second is a tab-delimited
     - In both cases the header and row.names arguments indicate that there is a header row and row label column
@@ -526,7 +519,6 @@ write.table(YourFile, "yourfile.txt", quote=F, row.names=T, sep="\t")
 ## Indexing in data frames {.flexbox .vcenter}
 - Next up - indexing just a subset of the data
 - This is a very important idea in R, that you can analyze just a subset of the data.
-- This is analyzing only the data in the file you made that has the factor value 'mixed'.
 
 ```{r, echo=TRUE, eval=FALSE}
 print (YourFile[,2])
