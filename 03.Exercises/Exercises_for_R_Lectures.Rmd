@@ -1,6 +1,6 @@
 ---
 title: "Student Exercises | Intro to R"
-output: html_document
+output: pdf_document
 author: your name here 
 ---
 
@@ -72,6 +72,14 @@ Insert a code chunk below and complete the following tasks:
 
 1. Create a numeric vector using the `c` function
 2. Create a multi-level character factor using the `c` function
+
+```{r factor things}
+vec1<-c("I", "am", "great","at","R")
+fac1<-as.factor(vec1)
+print(fac1)
+```
+
+
 3. Use `str` and `class` to evaluate your variables
 
 _______________________________

@@ -634,9 +634,11 @@ knitr::include_graphics("images/images_5a.013.jpeg")
 
 ## Clone the repository
 
-- First make a new directory into which you will clone our course repository
+- First make a *new directory* into which you will clone our course repository
+    - This will prevent you from overwriting any of the documents you have have edited.
+    - And it's good practice to do it again:)
 - You should work through the terminal application and use Unix to do this
-- Open the terminal and navigate to the directory and type the following
+- Open the terminal and navigate to your new directory and type the following:
 
 ```{bash, echo=TRUE, eval=FALSE}
 git clone https://github.com/wcresko/evomics_stat_2019.git
@@ -655,7 +657,7 @@ git merge origin/master
 - If so, do the second!
 
 ## Git and GitHub Interlude: Exercise 2.1
-
+- Please read the directions carefully to prevent pushing to the wrong repository
 
 ________________________
 
@@ -663,7 +665,7 @@ ________________________
 
 ## What is markdown?  {}
 - Lightweight _formal_ markup languages are used to add formatting to plaintext documents
-    - Adding basic syntax to the text will make elements look different once rendered
+    - Adding basic syntax to the text will make elements look different once rendered/knit
     - Available in many base editors (e.g., Atom text editor)
 - You then need a markdown application with a markdown processor/parser to render your text files into something more exciting
     - Static and dynamic outputs!
@@ -707,11 +709,12 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 
 ```{r, eval=FALSE, echo=TRUE}
 - list_element
-    - sub_list_element
+    - sub_list_element #double tab to indent
     - sub_list_element
     - sub_list_element
 - list_element
-    - sub_list_element
+    - sub_list_element 
+#note the space after each dash- this is important!
 ```
 
 - list_element
@@ -738,7 +741,7 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 
 ## Inserting images or URLs  {}    
 
-```{r, eval=FALSE, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE, out.width="50%"}
 [Link](https://commonmark.org/help/)
 ![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
 ```
@@ -868,8 +871,7 @@ Whereas this equation, $$y=\frac{1}{2}$$, is put on a separate line
 Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
 
 ## Markdown is very flexible
-- You can import RMarkdown templates into RStudio
-- Just find a template and open it in RStudio
+- You can import RMarkdown templates into RStudio and open as a new Rmarkdown file
 - Better yet there are packages that add functionality
 - When you install the package it will show up in the 'From Template' section of the 'new file' startup screen
 - There are packages to make
@@ -883,11 +885,11 @@ Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
     - allows users to input and get output
 
 ## Final Thoughts on Markdown, LaTeX and GitHub
-- Many forms of markdown
+- Many forms/flavors of markdown
     - HTML and Rmarkdown are just forms of markdown
-    - There is  a GitHub flavored markdown
+    - There is a GitHub flavored markdown
     - Once you learn one, all the others are very easy
-- The goal increased collaboration and reproducibility
+- The goal is increased collaboration and reproducibility
     - Allows you to easily work with others by sharing the markdown file
     - Allows **formal** representation of code and math
     - Allows others to run your code directly
