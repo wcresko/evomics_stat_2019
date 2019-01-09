@@ -524,9 +524,48 @@ write.table(YourFile, "yourfile.txt", quote=F, row.names=T, sep="\t")
 ```
 - you will get more practice with this during the next R interlude
 
+## Where we left off...
+- Working with imported datasets and reading and writing datasets
+- Next up: indexing!
+
+- _But first_- a note about arguments...
+
+## Arguments in `R` Functions
+
+- Sometimes `R` can guess what you mean because of order...
+
+```{r, eval=T, echo=T}
+x <- rnorm(1000, 0, 10)  #n=, mean=, sd=
+x[1:10]
+```
+
+- But sometimes if the order isn't right, you can confuse `R` and get something you _really_ didn't want...
+```{r, eval=T, echo=T}
+x2 <- rnorm(10, 1000, 0)  #n=, mean=, sd=
+x2
+```
+
+## Arguments in `R` Functions
+
+- A work-around and best-practice: include the arguments!!
+```{r, eval=T, echo=T}
+set.seed(145)
+x <- rnorm(n=1000, mean=0, sd=10)  #n=, mean=, sd=
+x[1:10]
+```
+
+```{r, eval=T, echo=T}
+set.seed(145)
+x2 <- rnorm(sd=10, n=1000, mean=0)  #n=, mean=, sd=
+x2[1:10]
+```
+   
+  - Notice we also set the seed to replicate our sample results!
+
+
 ## Indexing in data frames {.flexbox .vcenter}
 - Next up - indexing just a subset of the data
-- This is a very important idea in R, that you can analyze just a subset of the data.
+- This is a very important feature in `R`, that allows you to analyze just a subset of the data.
 ```{r, echo=TRUE, eval=FALSE}
 print (YourFile[,2])
 print (YourFile$temp)
@@ -547,7 +586,7 @@ plot (y, z)
 ## Indexing in data frames {.flexbox .vcenter}
 - You can perform operations on particular levels of a factor
 - Note that the first argument is the numerical column vector, and the second is the factor column vector.
-- The third is the operation. Reversing the first two does not work - convince yourself of this by altering the order.
+- The third is the operation. **Reversing the first two does not work**
     - Tab complete will tell you the correct order for arguments 
 
 ```{r, eval = FALSE, echo = TRUE}
@@ -555,9 +594,10 @@ tapply(YourFile$temp, YourFile$habitat, mean)
 tapply(YourFile$temp, YourFile$habitat, var)
 ```
 
-## Final R Interlude
+## R Interlude
 
 Complete Exercises 1.9-1.10
+- Login to `Rstudio` using `:8787` again
 
 ________________________
 
@@ -635,8 +675,8 @@ knitr::include_graphics("images/images_5a.013.jpeg")
 ## Clone the repository
 
 - First make a *new directory* into which you will clone our course repository
-    - This will prevent you from overwriting any of the documents you have have edited.
-    - And it's good practice to do it again:)
+    - This will prevent you from overwriting any of the documents you have have edited
+    - And it's good practice to do it again
 - You should work through the terminal application and use Unix to do this
 - Open the terminal and navigate to your new directory and type the following:
 
@@ -710,10 +750,10 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 ```{r, eval=FALSE, echo=TRUE}
 - list_element
     - sub_list_element #double tab to indent
-    - sub_list_element
-    - sub_list_element
+    - sub_list_element #double tab to indent
+    - sub_list_element #double tab to indent
 - list_element
-    - sub_list_element 
+    - sub_list_element #double tab to indent
 #note the space after each dash- this is important!
 ```
 
@@ -852,7 +892,6 @@ $$	\begin{matrix}
 ## Including LaTeX and Code into Markdown Files {.flexbox .vcenter}
 
 - Explicit inclusion of code and mathematical equations helps with reproducibility
-- Very similar idea for including both
 - Need to designate the 'environment' as being code or math
 - Can be included in-line or in 'chunks'
 
@@ -897,7 +936,8 @@ Whereas this equation $$y=\frac{1}{2}$$ is put on a separate line
     - All files are easily shared on GitHub
 - Once you start using Markdown you won't stop.....
 
-## R Interlude | Exploring RMarkdown (Exercise 2.2)
+## R Interlude | Exploring RMarkdown 
+- Exercise 2.2
 
 ________________________
 
@@ -927,7 +967,7 @@ knitr::include_graphics("images/week_01.006.jpeg")
 
 - How should the data set be organized to best analyze it?
 - What are the key properties of the variables?
-- Why does that matter for learning R?
+- Why does that matter for learning `R`?
 - Why does that matter for performing statistical analyses?
 
 
@@ -958,13 +998,13 @@ knitr::include_graphics("images/week_3.011.jpeg")
 
 ## Tidyverse family of packages {.vcenter .flexbox}
 
-- Hadley Wickham and others have written R packages to modify data
+- Hadley Wickham and others have written `R` packages to modify data
 
-- These packages do many of the same things as base functions in R
+- These packages do many of the same things as base functions in `R`
 
 - However, they are specifically designed to do them faster and more easily
 
-- Wickham also wrote the package GGPlot2 for elegant graphics creations
+- Wickham also wrote the package `GGPlot2` for elegant graphics creations
 
 - GG stands for ‘Grammar of Graphics’
 
@@ -1013,7 +1053,7 @@ knitr::include_graphics("images/week_3.015.jpeg")
 This function will add a new variable that is a function of other variable(s)
 
 ```{r, echo=T, eval=F}
-mutate(flights_sml,
+mutate(flights,
   gain = arr_delay - dep_delay,
   hours = air_time / 60,
   gain_per_hour = gain / hours
@@ -1109,7 +1149,6 @@ knitr::include_graphics("images/images_4a.001.jpeg")
 ## Scatter Plot {.flexbox .vcenter .smaller}
 
 - Displays association between two numerical variables 
-- Non-zero baseline often ok  
 - Goal is association not magnitude or frequency  
 - Points fill the space available 
 
@@ -1162,12 +1201,6 @@ knitr::include_graphics("images/images_4a.008.jpeg")
 >
 > --- Edward Tufte
 
-## The best statistical graphic ever drawn | according to Edward Tufte
-
-```{r, echo=FALSE, out.width='75%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics("images/images_4a.009.jpeg")
-```
-
 ## Principles of effective display
 
 - Show the data  
@@ -1217,6 +1250,13 @@ knitr::include_graphics("images/images_4a.014.jpeg")
 “Graphical  excellence  begins  with  telling  the  truth  about  the  data”  –  Tufte    1983  
 
 # Using GGPlot2 to make nice figures
+
+## GGPlot2 and the Grammar of Graphics
+
+```{r, echo=FALSE, fig.cap="xxx", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics("images/images_4a.017.jpeg")
+```
+
 
 ## The `geom_bar` function {.flexbox .vcenter}
 
