@@ -38,6 +38,10 @@ knitr::include_graphics("images/week_01.003.jpeg")
 
 ___________________
 
+## Before we talk about how amazing `R` is...
+- navigate into this directory: ~/workshop_materials/evomics_stats_2019/
+- type 'git pull'
+
 # Why use `R`?
 
 ## {}
@@ -86,7 +90,7 @@ knitr::include_graphics("images/Stacked_barplot.png")
     - RStudio: http://www.rstudio.com
     - Makes working with R much easier, particularly for a new R user
     - Run on Windows, Mac or Linux OS
-    - We're running as a server on the AWS instance
+    - We're running as a server on the AWS instances
 
 ## `RStudio` {.flexbox .vcenter}
 
@@ -94,17 +98,14 @@ knitr::include_graphics("images/Stacked_barplot.png")
 knitr::include_graphics("images/RStudio_Screenshot.png")
 ```
 
-___________________
-
-# Exercise 1.1 - Exploring RStudio {.flexbox .vcenter}
 
 ## Exercise 1.1 - Exploring `RStudio` {}
-- Open `RStudio` by adding `:8787` to your AWS url   
+- Open `RStudio` by adding `:8787` to your AMI url   
 - Take a few minutes to familiarize yourself with the `Rstudio` environment by locating the following features:
     - See what types of new files can be made in `Rstudio` by clicking the top left icon- open a new R script.
     - The windows clockwise from top left are: the code editor, the workspace and history, the plots and files window, and the R console.
     - In the plots and files window, click on the packages and help tabs to see what they offer. 
-- Now open the file called *Exercises_for_R_Lectures.Rmd* 
+- Now open the file called *Exercises_for_R_Lectures.Rmd* in /workshop_materials/evomics_stat_2019/03.Exercises/ 
     - This file will serve as your digital notebook for parts of the workshop and contains the other exercises.
 
 ___________________
@@ -113,7 +114,7 @@ ___________________
 
 ## `RMarkdown` {.flexbox .vcenter}
 
-- A great way to embed `R code` into descriptive files
+- A great way to embed `R code` into descriptive files to keep your life organized
     - http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
     - https://bookdown.org/yihui/rmarkdown/
     - https://bookdown.org/yihui/bookdown/
@@ -123,7 +124,6 @@ ___________________
 ## Exercise 1.2 - Intro to `RMarkdown` Files
 
 - Take a few minutes to familiarize yourself with RMarkdown files by completing exercise 1.2 in your exercises document.
-- You will be doing all of your work in RMarkdown
 
 ___________________
 
@@ -259,13 +259,15 @@ print (x_factor)
 ```
 - Note that factor levels are reported alphabetically
 
+## FACTORS {.flexbox .vcenter}
 
+- We can also determine how `R` "sees" a variable using `str()` or `class()` functions. 
+- This is a useful check when importing datasets or verifying that you assigned a class correctly
 ```{r, eval = TRUE, echo = TRUE}
 str(x)
 class(x)
 ```
-- We can also determine how `R` "sees" a variable using `str()` or `class()` functions. 
-- This is a useful check when importing datasets or verifying that you assigned a class correctly
+
 
 ## Types or 'classes' of vectors of data {.smaller}
 
@@ -376,13 +378,18 @@ seq_square_new <- (seq_2)^2
 print(seq_square_new)
 ```
 
-## Drawing samples from distributions {}
+## R Interlude 
 
-- Here is a way to create your own data sets that are random samples...
-- Again, play around with the arguments in the parentheses to see what happens.
+Complete Exercises 1.3-1.6
+
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics("images/Mr_Rog_and_cat.png")
+```
+
 
 ## Drawing samples from distributions {.smaller}
 
+- Here is a way to create your own data sets that are random samples...
 ```{r Samples from distributions 2, out.width='50%', echo = TRUE}
 x <- rnorm (n = 10000, mean = 0, sd = 10)
 y <- sample (1:10000, 10000, replace = T)
@@ -465,7 +472,8 @@ plot (seq_square_new, xlab="time", ylab ="p in population 1", type = "l", col = 
 
 ## R Interlude 
 
-Complete Exercises 1.3-1.8
+Complete Exercises 1.7-1.8
+
 
 # Working with Imported Datasets in `R`
 
@@ -498,7 +506,7 @@ head(mydata)
     - Export it to comma separated and tab separated text files for importing into `R`.
     - The first will read in a comma-delimited file, whereas the second is a tab-delimited
     - In both cases the header and row.names arguments indicate that there is a header row and row label column
-    - Note that the name of the file by itself will have `R` look in the CWD, whereas a full path can also be used
+    - Note that the name of the file by itself will have `R` look in the PWD, whereas a full path can also be used
 
 ## Reading in Data Frames in R {.flexbox .vcenter}
 
@@ -547,7 +555,7 @@ tapply(YourFile$temp, YourFile$habitat, mean)
 tapply(YourFile$temp, YourFile$habitat, var)
 ```
 
-## R Interlude
+## Final R Interlude
 
 Complete Exercises 1.9-1.10
 

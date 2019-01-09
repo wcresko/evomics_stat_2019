@@ -19,7 +19,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 - In the plots and files window, click on the packages and help tabs to see what they offer. 
 - See what types of new files can be made in R studio by clicking the top left icon- open a new R script.
 
-2. Now open the file called 'Student_Exercises_for_Workshop_Lectures.Rmd'. This file will serve as your digital notebook for parts of the workshop and contains the other exercises.
+2. Now open the file called 'Exercises_for_R_Lectures.Rmd'. This file will serve as your digital notebook for parts of the workshop and contains the other exercises.
 
 _______________________________
 
