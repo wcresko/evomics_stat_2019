@@ -524,10 +524,14 @@ write.table(YourFile, "yourfile.txt", quote=F, row.names=T, sep="\t")
 ```
 - you will get more practice with this during the next R interlude
 
+# Where we left off...
+
 ## Where we left off...
+- Use `:8787` to access `R studio` again 
+- Please rename your _Exercises_ document before doing any `git pull`s today, as to not overwrite your work!
+    - You can do this through the terminal window _in R studio_ using the `mv` command
 - Working with imported datasets and reading and writing datasets
 - Next up: indexing!
-
 - _But first_- a note about arguments...
 
 ## Arguments in `R` Functions
@@ -597,7 +601,7 @@ tapply(YourFile$temp, YourFile$habitat, var)
 ## R Interlude
 
 Complete Exercises 1.9-1.10
-- Login to `Rstudio` using `:8787` again
+
 
 ________________________
 
@@ -695,6 +699,7 @@ git merge origin/master
 ```
 - The first command just tells you if anything has changed  
 - If so, do the second!
+- This is **much safer** than `git pull` 
 
 ## Git and GitHub Interlude: Exercise 2.1
 - Please read the directions carefully to prevent pushing to the wrong repository
@@ -781,13 +786,13 @@ But there’s no such thing as the unknown — only things temporarily hidden, t
 
 ## Inserting images or URLs  {}    
 
-```{r, eval=FALSE, echo=TRUE, out.width="50%"}
+```{r, eval=FALSE, echo=TRUE}
 [Link](https://commonmark.org/help/)
-![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
+![Image](https://i1.wp.com/evomics.org/wp-content/uploads/2012/07/20120115-IMG_0297.jpg)
 ```
 
 [Link](https://commonmark.org/help/)
-![Image](https://www.timetravelturtle.com/wp-content/uploads/2017/03/Czech-Republic-2016-330_new.jpg)
+![Image](https://i1.wp.com/evomics.org/wp-content/uploads/2012/07/20120115-IMG_0297.jpg)
 
 ## What is LaTeX?  {.flexbox .vcenter}
 
