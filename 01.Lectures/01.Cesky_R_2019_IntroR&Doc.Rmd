@@ -694,7 +694,8 @@ git clone https://github.com/wcresko/evomics_stat_2019.git
 
 ```{bash, echo=TRUE, eval=FALSE}
 git status
-
+git fetch
+git status
 git merge origin/master
 ```
 - The first command just tells you if anything has changed  
